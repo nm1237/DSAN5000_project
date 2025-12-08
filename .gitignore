@@ -1,1 +1,8 @@
 /.quarto/
+
+# API Keys - NEVER COMMIT
+.env
+*_key*
+*.key
+config.py
+api_keys.json

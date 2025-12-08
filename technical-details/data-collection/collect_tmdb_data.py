@@ -3,12 +3,16 @@ import pandas as pd
 import time
 from datetime import datetime
 import os
+from dotenv import load_dotenv
 
 # ==========================================
 # TMDB DATA COLLECTION SCRIPT
 # ==========================================
 
-API_KEY = "b46efa6b7d2a102458d93cc7b0bc7599"  
+# load environment variables from .env file
+load_dotenv()
+
+API_KEY = os.getenv("5d36ddb017b75e39993969f4f023d8cf")
 
 BASE_URL = "https://api.themoviedb.org/3"
 
