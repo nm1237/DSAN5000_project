@@ -56,3 +56,12 @@ fi
 # else
 #     echo NOT PUSHING TO GU DOMAINS!
 # fi
+
+# PUSH WEBSITE TO GU DOMAINS 
+printf 'Would you like to push to GU domains? (y/n)? '
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    rsync -alvr --delete _site/* nmartell@gtown03.reclaimhosting.com:~/public_html/
+else
+    echo NOT PUSHING TO GU DOMAINS!
+fi

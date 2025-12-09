@@ -1,83 +1,76 @@
 ---
-title: "Landing page"
+title: "Hollywood's $100 Million Gamble: Can AI Predict Box Office Hits?"
+subtitle: "A Machine Learning Analysis of Movie Success"
+author: "Noelle Martell"
 ---
 
-**Audio instructions:**
+Hollywood invests billions in film production every year, yet predicting which movies will succeed remains incredibly difficult. Studios routinely greenlight $100+ million productions with no guarantee of returns, while low-budget indies occasionally become massive hits. This project examines whether machine learning can identify patterns in box office success by analyzing 2,691 films from The Movie Database (TMDB).
 
-If you want, you can listen to the instructions:
+Using features available before release (budget, cast popularity, genre, and release timing), I built classification models to predict profitability with 77.7% accuracy. Beyond just prediction, this analysis reveals what actually drives success in the film industry and how studios might make smarter investment decisions.
 
-<audio controls><source src="audio/landing-page-instructions.mp3" type="audio/mpeg"></audio>
+## Why This Matters
 
-<sup> **Source**: Text-to-speech conversion done with Amazon Polly on AWS </sup>
+Understanding what drives box office success has practical value for studios making investment decisions, producers planning releases, and investors assessing risk. But beyond industry applications, this project demonstrates how machine learning can extract insights from messy, real-world data where traditional methods fall short. Box office performance depends on complex interactions between artistic merit, marketing, competitive landscape, and cultural timing. These factors don't fit into simple formulas.
 
-`Note`: These audio instructions should not be included in your final submission or repository, once you are done wiht them, please delete the files and remove them from the website. 
+By leveraging data science techniques for data collection, cleaning, visualization, and analysis, as well as methods in unsupervised and supervised machine learning, this project aims to shed light on what factors predict movie success and whether patterns exist that human intuition might miss.
 
-## Getting Started
+## Research Questions
 
-To begin the project, first read the instruction document ([click here](instructions/overview.qmd)). This document is also accessible from the navigation bar.
+This project was guided by five key questions:
 
-Once you’ve completed that, you can proceed with the instructions found throughout the website.
+1. **Can we accurately predict movie profitability using only pre-release information?** What prediction accuracy is achievable with features known during production planning?
 
-## What to Include on This Page
+2. **Which factors matter most for box office success?** Is budget the dominant predictor, or do other features like cast popularity, genre, and release timing play equally important roles?
 
-This is the landing page for your project. Content from this page can be reused in sections of your final report.
+3. **Does the budget-revenue relationship follow a linear pattern?** Do bigger budgets consistently generate proportionally higher returns, or is there a sweet spot where ROI peaks?
 
-### Create an "About You" Page  
+4. **Are there distinct "types" of successful movies?** Can unsupervised learning reveal natural clusters of films with different risk-return profiles?
 
-- Develop your "About You" page. You can reuse content from previous assignments.
-- You can include the content here or on a separate page.
-   - It’s recommended to create one "About You" page for all DSAN projects, with links to your various class projects.
+5. **How do temporal factors influence performance?** Do seasonal release patterns and genre interact in predictable ways?
 
-### Create a Landing Page for Your Project  
+## Dataset
 
-- Summarize your topic, its significance, related work, and the questions you plan to explore.
-- Draft an introduction with at least **5 research questions**. These may evolve as your project progresses, since data science is an iterative process.
-- Include your data science questions on this page.
+**Source:** The Movie Database (TMDB) API  
+**Size:** 2,691 movies with complete budget and revenue data  
+**Time Span:** 1934 - 2025  
+**Features:** 23 variables including budget, revenue, genres, cast popularity, crew, release dates, user ratings, and runtime
 
-### Literature review
+I focused on movies with verified budget and revenue information, removing entries with missing or obviously incorrect values. The cleaning process prioritized data quality over quantity, resulting in a smaller but more reliable dataset for modeling.
 
-Once you decide on a topic, you should `ALWAYS START WITH A LITERATURE REVIEW`, this is particularly important for academic projects.
+## Key Findings
 
-The literature review is the most important part of most projects. 
+Through comprehensive analysis, several patterns emerged:
 
-It allows you to; 
+**Model Performance:**  
+Random Forest achieved 77.7% accuracy in predicting profitability, outperforming Logistic Regression (75.3%) and Gradient Boosting (77.6%). Feature importance analysis revealed cast popularity and budget as co-dominant predictors, each contributing approximately 25% of the model's predictive power.
 
-* 1. Determine what is already known and what has already been tried, so that you `don't re-invent the wheel`.
-* 2. It makes you more of a subject matter expert, allowing you to `ask the right questions`, `target impactful projects`, and `communicate with other professionals`.
+**Budget-Revenue Relationship:**  
+While budget and revenue show strong correlation (r = 0.711), the relationship isn't linear. Mid-budget films ($80-150M) achieve the highest median ROI at 2.9x, suggesting diminishing returns beyond a certain threshold. Ultra-low-budget films occasionally hit massive returns (39x ROI) but represent only 3% of the dataset.
 
-> Doing a project that you think will change the world, only to find at the end that a very similar version of your project was already done in the 1980's, isn't a great use of time.
+**Four Movie Archetypes:**  
+K-means clustering revealed four distinct categories of films, each with different risk-return profiles:
+- **Blockbusters** (13%): budgets over $150M, 97% success rate, 5.5x ROI
+- **Mid-Budget Hits** (35%): $38M average budget, 85% success rate, 4.2x ROI
+- **Standard Indies** (49%): $18M budgets, 61% success rate, 2.4x ROI
+- **Breakout Indies** (3%): $4.5M budgets, 100% success rate, 39x ROI
 
-In this section, please do a literature review and cite at least **3 academic publications** per group member, and include **internal academic citations**.
+**Genre and Timing Effects:**  
+Adventure and Family genres show 80%+ success rates, substantially higher than Drama (58%). Holiday and Summer releases outperform Fall releases by approximately 14%, though the magnitude varies by genre.
 
-**Optional**: Consider using LLM tools to 10X your literature review, e.g. instead of focusing on 3 papers, aim for 30 or more
+## Literature Review
 
-By following these steps, you can 10X the efficiency of your literature review process, gaining more insights while minimizing the time spent on manual reading.
+Prior research on box office prediction identifies consistent patterns across methodological approaches. Ahmed et al. (2019) conducted systematic feature engineering on 2,000+ movies, finding cast popularity as the single strongest predictor while noting diminishing returns for budgets above $150M. Their Random Forest models achieved 79% accuracy, comparable to my 77.7%, validating the robustness of tree-based methods for this problem. The study also revealed that release timing significantly impacts performance, with holiday and summer releases substantially outperforming other periods.
 
-1. **Expand Your Literature Search**  
-   Aim to gather a larger pool of papers. Use academic databases (Google Scholar, arXiv, etc.) to find relevant studies and ensure a broad scope.
+Kim et al. (2021) extended traditional prediction by incorporating social media sentiment from 1,500 movies released 2015-2019, achieving 82% accuracy with deep learning. While their social media features provided incremental improvement, the gains came at substantial cost in data collection complexity. Importantly, they found genre-specific patterns where negative sentiment could boost performance for horror films, highlighting how feature interactions matter more than individual predictors.
 
-2. **Skim the Abstracts**  
-   Read the abstracts of each paper to quickly understand their focus and identify those most relevant to your topic. Prioritize these papers for deeper analysis.
+Li and Liu (2022) took a market-level approach, predicting total box office revenues for countries rather than individual films. Using Support Vector Machines with economic indicators like GDP, they achieved strong forecasting accuracy while emphasizing that simpler models with fewer high-quality predictors often outperform complex approaches. Their work validates budget as a fundamental predictor while demonstrating that tree-based machine learning methods consistently outperform traditional econometric models.
 
-3. **Use LLM Tools for Summarization**  
-   Upload the selected papers to an LLM tool capable of text summarization. Have it condense the main points of each paper into a concise, manageable summary (e.g., condense hundreds of pages into a 10-page summary). Carefully review this summary to absorb the key insights.
+These studies converge on several findings: cast and budget are primary predictors, tree-based algorithms achieve 75-82% accuracy, and release timing matters. However, most research uses data through 2019-2020, predating pandemic impacts on theatrical performance. This project addresses that gap with current data while adding interpretability through cluster analysis.
 
-4. **Leverage Interactive LLM Tools**  
-   Use tools like NotebookLM or other AI-based text digesters to ask specific, targeted questions about the papers:
-   - Example questions:
-     - "In the papers uploaded, did any of them explore XYZ?"
-     - "Which paper is most closely related to the following project idea: [explain idea]?"
-   These tools will help you quickly extract relevant information without re-reading entire papers.
+## References
 
+Ahmed, M., Jahangir, M., Afzal, H., Majeed, A., & Siddiqi, I. (2019). Using crowd-source based features from social media and conventional features to predict the movies popularity. *Smart Cities, Green Technologies, and Intelligent Transport Systems*, 554, 273-290.
 
-## Additional Ideas for things to include 
+Kim, T., Hong, J., & Kang, P. (2021). Box office forecasting considering competitive environment and social media hype. *Expert Systems with Applications*, 171, 114593.
 
-- **Audience**: Who is this for? Data professionals, businesses, researchers, or curious readers.
-- **Headline**: A captivating title introducing the data science theme (e.g., "Unlocking Insights Through Data Stories").
-- **Introduction**: A brief, engaging overview of what the website offers (e.g., data-driven stories, insights, or case studies).
-- **Questions You Are Addressing**: What do you hope to learn?
-- **Motivation**: Explain why this topic matters, highlighting the importance of data in solving real-world problems.
-- **Key Topics**: List the main focus areas (e.g., machine learning, data visualization, predictive modeling).
-- **Use Cases/Examples**: A brief teaser of compelling stories or case studies you’ve worked on.
-- **Call to Action**: Invite visitors to explore the content, follow along, or contact you for more information.
-- **Visual/Infographic**: Add a simple graphic or visual element to make the page more dynamic.
+Li, D., & Liu, Z.-P. (2022). Predicting box-office markets with machine learning methods. *Entropy*, 24(5), 711.

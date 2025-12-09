@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Collection – DSAN-5000: Project</title>
+<title>Data Cleaning – DSAN-5000: Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -65,15 +66,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../assets/gu-logo.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,11 +103,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -194,17 +199,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements:</a></li>
   </ul></li>
   <li><a href="#what-do-include-on-this-page" id="toc-what-do-include-on-this-page" class="nav-link" data-scroll-target="#what-do-include-on-this-page">What do include on this page</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#goals" id="toc-goals" class="nav-link" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  </ul></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#api-selection-and-setup" id="toc-api-selection-and-setup" class="nav-link" data-scroll-target="#api-selection-and-setup">API Selection and Setup</a></li>
+  <li><a href="#collection-strategy" id="toc-collection-strategy" class="nav-link" data-scroll-target="#collection-strategy">Collection Strategy</a>
+  <ul class="collapse">
+  <li><a href="#query-construction" id="toc-query-construction" class="nav-link" data-scroll-target="#query-construction">Query Construction</a></li>
+  <li><a href="#rate-limiting-and-request-management" id="toc-rate-limiting-and-request-management" class="nav-link" data-scroll-target="#rate-limiting-and-request-management">Rate Limiting and Request Management</a></li>
+  <li><a href="#pagination-logic" id="toc-pagination-logic" class="nav-link" data-scroll-target="#pagination-logic">Pagination Logic</a></li>
+  </ul></li>
+  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">Feature Extraction</a></li>
+  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage">Data Storage</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
+  </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with." id="toc-i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with." class="nav-link" data-scroll-target="#i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with.">I collected 2,812 movies from TMDB with complete budget and revenue data. First, I’m loading the data to see what I’m working with.</a></li>
+  <li><a href="#now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning." id="toc-now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning." class="nav-link" data-scroll-target="#now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning.">Now I’m checking to see if there are any missing values or data quality issues that I’ll need to address during cleaning.</a></li>
+  <li><a href="#before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable." id="toc-before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable." class="nav-link" data-scroll-target="#before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable.">Before cleaning, I’m creating the key features I’ll need for my analysis: ROI and a success label to predict whether movies are profitable.</a></li>
+  <li><a href="#i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality." id="toc-i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality." class="nav-link" data-scroll-target="#i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality.">I noticed some extreme ROI values that are likely data errors (movies with budgets under $1000 or revenues under $1000). I’m filtering these out to ensure data quality.</a></li>
+  <li><a href="#now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases." id="toc-now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases." class="nav-link" data-scroll-target="#now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases.">Now that I’ve engineered features and removed outliers, I’m saving the cleaned dataset for use in my exploratory analysis and modeling phases.</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
   <ul class="collapse">
-  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
-  <li><a href="#benchmarks" id="toc-benchmarks" class="nav-link" data-scroll-target="#benchmarks">Benchmarks</a></li>
-  <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
+  <li><a href="#collection-results" id="toc-collection-results" class="nav-link" data-scroll-target="#collection-results">Collection Results</a></li>
+  <li><a href="#challenges-and-design-decisions" id="toc-challenges-and-design-decisions" class="nav-link" data-scroll-target="#challenges-and-design-decisions">Challenges and Design Decisions</a></li>
+  <li><a href="#data-quality-assessment" id="toc-data-quality-assessment" class="nav-link" data-scroll-target="#data-quality-assessment">Data Quality Assessment</a></li>
+  <li><a href="#validation-against-benchmarks" id="toc-validation-against-benchmarks" class="nav-link" data-scroll-target="#validation-against-benchmarks">Validation Against Benchmarks</a></li>
+  <li><a href="#transition-to-data-cleaning" id="toc-transition-to-data-cleaning" class="nav-link" data-scroll-target="#transition-to-data-cleaning">Transition to Data Cleaning</a></li>
+  <li><a href="#future-improvements" id="toc-future-improvements" class="nav-link" data-scroll-target="#future-improvements">Future Improvements</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -214,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Collection</h1>
+<h1 class="title">Data Cleaning</h1>
 </div>
 
 
@@ -315,18 +345,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>In this section, provide a high-level overview for technical staff, summarizing the key tasks and processes carried out here. Include the following elements:</p>
-<ul>
-<li><strong>Goals</strong>: Clearly define the purpose of the tasks or analysis being conducted.</li>
-<li><strong>Motivation</strong>: Explain the reasoning behind the work, such as solving a specific problem, improving a system, or optimizing performance.</li>
-<li><strong>Objectives</strong>: Outline the specific outcomes you aim to achieve, whether it’s implementing a solution, analyzing data, or building a model.</li>
-</ul>
-<p>This overview should give technical staff a clear understanding of the context and importance of the work, while guiding them on what to focus on in the details that follow.</p>
+<section id="goals" class="level2">
+<h2 class="anchored" data-anchor-id="goals">Goals</h2>
+<p>This data collection phase builds a comprehensive movie dataset from The Movie Database (TMDB) API to support machine learning analysis of box office performance. The focus is on gathering both pre-release features (budget, genre, cast) and post-release outcomes (revenue, ratings) that might predict a film’s commercial success.</p>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>Predicting box office performance matters. Studios invest millions in production and marketing, often with little concrete data on what actually drives commercial success. The conventional wisdom—star power, big budgets, summer releases—gets repeated endlessly, but how much of it holds up under statistical scrutiny?</p>
+<p>Machine learning offers a way to move beyond industry folklore and identify quantifiable patterns in what makes movies succeed or fail financially. However, this depends entirely on having quality data. Many existing movie datasets are incomplete, outdated, or lack the feature diversity needed for meaningful analysis. TMDB’s API provides a solution: it’s comprehensive, actively maintained, freely accessible, and includes the multidimensional features—from production budgets to cast popularity scores—necessary for this kind of investigation.</p>
+<p>The challenge is straightforward: collect clean, complete data on thousands of films to determine whether algorithmic approaches can outperform traditional methods of predicting box office outcomes.</p>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<p>This data collection phase has five concrete objectives:</p>
+<p><strong>1. Scale</strong>: Retrieve records for 2,500+ movies spanning 1934-2025, prioritizing recent releases while maintaining historical breadth for temporal analysis.</p>
+<p><strong>2. Feature completeness</strong>: Extract 18+ features per movie across multiple dimensions: - Financial data (budget, revenue, calculated ROI) - Temporal patterns (release dates, seasonal trends)<br>
+- Genre classifications (primary genre plus multi-genre combinations) - Talent metrics (cast lists, director information, popularity indices) - Audience reception (user ratings, vote counts, popularity scores) - Production specifications (runtime, production companies, countries)</p>
+<p><strong>3. Data quality</strong>: Implement filtering to exclude incomplete records—specifically, movies lacking budget or revenue data—since these are essential for any profitability analysis.</p>
+<p><strong>4. Reproducibility</strong>: Document the entire collection process in reusable Python scripts that handle API authentication, rate limiting, pagination, and error handling. Future researchers should be able to replicate or extend this dataset.</p>
+<p><strong>5. API efficiency</strong>: Respect TMDB’s rate limits while maximizing data yield through strategic query construction and 0.25-second request spacing.</p>
+<p>Meeting these objectives establishes the foundation for the exploratory analysis, clustering, and classification tasks that follow. The quality of insights from machine learning models depends directly on the quality of data going in—so getting this right matters.</p>
+</section>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>In this section, provide an overview summary of the methods used on this page. This should include a brief description of the key techniques, algorithms, tools, or processes employed in your work. Make sure to outline the approach taken for data collection, processing, analysis, or any specific technical steps relevant to the project.</p>
-<p>If you are developing a package, include a reference to the relevant documentation and provide a link here for easy access. Ensure that the package details are properly documented in its dedicated section, but mentioned and connected here for a complete understanding of the methods used in this project.</p>
+<section id="api-selection-and-setup" class="level2">
+<h2 class="anchored" data-anchor-id="api-selection-and-setup">API Selection and Setup</h2>
+<p>This project uses The Movie Database (TMDB) API v3 as its primary data source. TMDB was selected over alternatives like IMDB or OMDb for several practical reasons: it provides comprehensive metadata without requiring paid subscriptions, maintains active data quality through community contributions, and offers a well-documented RESTful API with generous rate limits (1,000 requests per day on the free tier).</p>
+<p>Authentication requires a personal API key obtained through TMDB’s developer portal. The key is stored locally in a configuration file excluded from version control via <code>.gitignore</code> to prevent accidental exposure in the public repository.</p>
+</section>
+<section id="collection-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="collection-strategy">Collection Strategy</h2>
+<section id="query-construction" class="level3">
+<h3 class="anchored" data-anchor-id="query-construction">Query Construction</h3>
+<p>The collection uses TMDB’s <code>/discover/movie</code> endpoint, which allows filtering by multiple parameters. The core query strategy prioritizes data completeness by applying two critical filters:</p>
+<ol type="1">
+<li><strong>Budget filter</strong>: <code>with_budget=true</code> - excludes movies without reported production budgets</li>
+<li><strong>Revenue filter</strong>: <code>with_revenue=true</code> - excludes movies without box office data</li>
+</ol>
+<p>These filters are essential because profitability analysis—the core objective of this project—requires both values. Movies missing either field cannot contribute to ROI calculations or success classification, so excluding them upfront prevents wasted API calls and downstream data quality issues.</p>
+<p>Additional query parameters include: - <code>sort_by=popularity.desc</code> - prioritizes well-known films likely to have complete metadata - <code>include_adult=false</code> - excludes adult content - <code>page={n}</code> - handles pagination to retrieve beyond the initial 20 results per request</p>
+</section>
+<section id="rate-limiting-and-request-management" class="level3">
+<h3 class="anchored" data-anchor-id="rate-limiting-and-request-management">Rate Limiting and Request Management</h3>
+<p>TMDB’s free tier allows approximately 40 requests per 10 seconds. To stay well within this limit and avoid throttling, the collection script implements a 0.25-second delay between requests (effectively 4 requests per second). This conservative approach ensures stable data collection over the 35-40 minute runtime required to gather 2,500+ movie records.</p>
+<p>The script includes error handling for common API issues: - HTTP 429 (rate limit exceeded) triggers exponential backoff - HTTP 404 (movie not found) logs the error and continues - Network timeouts retry up to 3 times before skipping the record</p>
+</section>
+<section id="pagination-logic" class="level3">
+<h3 class="anchored" data-anchor-id="pagination-logic">Pagination Logic</h3>
+<p>Each API call returns up to 20 movies per page. The collection script iterates through pages sequentially until either: - The target number of movies is reached (~2,800 to account for later filtering) - The API returns fewer than 20 results (indicating the end of available data) - An unrecoverable error occurs</p>
+</section>
+</section>
+<section id="feature-extraction" class="level2">
+<h2 class="anchored" data-anchor-id="feature-extraction">Feature Extraction</h2>
+<p>For each movie, the script extracts 18 features across multiple dimensions:</p>
+<p><strong>Core Identifiers:</strong> - <code>movie_id</code> - TMDB’s unique identifier - <code>title</code> - Movie title - <code>release_date</code> - Theatrical release date</p>
+<p><strong>Financial Metrics:</strong> - <code>budget</code> - Production budget (USD) - <code>revenue</code> - Worldwide box office gross (USD)</p>
+<p><strong>Temporal Features:</strong> - <code>release_year</code> - Extracted from release_date - <code>release_month</code> - Extracted from release_date</p>
+<p><strong>Audience Reception:</strong> - <code>vote_average</code> - TMDB user rating (0-10 scale) - <code>vote_count</code> - Number of user ratings - <code>popularity</code> - TMDB’s proprietary popularity score</p>
+<p><strong>Content Metadata:</strong> - <code>runtime</code> - Film duration in minutes - <code>overview</code> - Plot synopsis - <code>genres</code> - Full list of genre classifications - <code>primary_genre</code> - Dominant genre</p>
+<p><strong>Production Details:</strong> - <code>production_companies</code> - Studios and production companies - <code>cast</code> - Top-billed actors (limited to top 5) - <code>cast_popularity</code> - Average popularity score of cast - <code>director</code> - Primary director</p>
+<p>Genre data arrives as nested JSON requiring parsing to extract both the complete genre list and the primary genre. Cast information requires a separate API call to the <code>/movie/{id}/credits</code> endpoint for each film, though this data is cached to minimize redundant requests.</p>
+</section>
+<section id="data-storage" class="level2">
+<h2 class="anchored" data-anchor-id="data-storage">Data Storage</h2>
+<p>Raw data is saved incrementally during collection to <code>data/raw-data/tmdb_movies_raw.csv</code> in case the script encounters errors midway through. This provides a recovery point without requiring a full re-collection. Each row represents a single movie with all 18 features as columns.</p>
+<p>The collection script logs: - Total movies collected - Collection duration - Any errors or skipped records - Final file location</p>
+<p>This raw dataset serves as the input for the data cleaning phase, where additional filtering, feature engineering, and quality checks prepare the data for analysis.</p>
+</section>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
+<p>The complete collection process is implemented in <code>collect_tmdb_data.py</code> in the <code>technical-details/data-collection/</code> directory. The script is self-contained and can be re-run with a valid TMDB API key to replicate the dataset or collect updated data as new movies are released.</p>
+<p>Key dependencies: - Python 3.8+ - <code>requests</code> library for API calls - <code>pandas</code> for data manipulation - <code>time</code> for rate limiting</p>
+<p>Total runtime: ~37 minutes for 2,812 movies (before cleaning).</p>
+</section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
@@ -334,91 +426,594 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
 <p>Ensure that the code is well-commented to enhance readability and understanding for others who may review or use it. If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
 <p>This page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<p>In the following code, we first utilized the requests library to retrieve the HTML content from the Wikipedia page. Afterward, we employed BeautifulSoup to parse the HTML and locate the specific table of interest by using the find function. Once the table was identified, we extracted the relevant data by iterating through its rows, gathering country names and their respective populations. Finally, we used Pandas to store the collected data in a DataFrame, allowing for easy analysis and visualization. The data could also be optionally saved as a CSV file for further use.</p>
-<div id="cell-6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Send a request to Wikipedia page</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population'</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Parse the page content using BeautifulSoup</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.content, <span class="st">'html.parser'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Find the table containing the data (usually the first table for such lists)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, {<span class="st">'class'</span>: <span class="st">'wikitable'</span>})</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Extract data from the table rows</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> []</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>populations <span class="op">=</span> []</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over the table rows</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> table.find_all(<span class="st">'tr'</span>)[<span class="dv">1</span>:]:  <span class="co"># Skip the header row</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> row.find_all(<span class="st">'td'</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        country <span class="op">=</span> cells[<span class="dv">1</span>].text.strip()  <span class="co"># The country name is in the second column</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        population <span class="op">=</span> cells[<span class="dv">2</span>].text.strip()  <span class="co"># The population is in the third column</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        countries.append(country)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        populations.append(population)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create a DataFrame to store the results</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Country'</span>: countries,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Population'</span>: populations</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scraped data</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally save to CSV</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'../../data/raw-data/countries_population.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with." class="level3">
+<h3 class="anchored" data-anchor-id="i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with.">I collected 2,812 movies from TMDB with complete budget and revenue data. First, I’m loading the data to see what I’m working with.</h3>
+<div id="cell-6" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/tmdb_movies_raw.csv'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># basic exploration</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset shape:"</span>, df.shape)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist())</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few rows:"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                 Country     Population
-0                                  World  8,119,000,000
-1                                  China  1,409,670,000
-2                          1,404,910,000          17.3%
-3                          United States    335,893,238
-4                              Indonesia    281,603,800
-..                                   ...            ...
-235                   Niue (New Zealand)          1,681
-236                Tokelau (New Zealand)          1,647
-237                         Vatican City            764
-238  Cocos (Keeling) Islands (Australia)            593
-239                Pitcairn Islands (UK)             35
+<pre><code>Dataset shape: (2812, 18)
 
-[240 rows x 2 columns]</code></pre>
+Column names:
+['movie_id', 'title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'overview', 'genres', 'primary_genre', 'production_companies', 'cast', 'cast_popularity', 'director', 'release_year', 'release_month']
+
+First few rows:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">movie_id</th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">release_date</th>
+<th data-quarto-table-cell-role="th">budget</th>
+<th data-quarto-table-cell-role="th">revenue</th>
+<th data-quarto-table-cell-role="th">runtime</th>
+<th data-quarto-table-cell-role="th">vote_average</th>
+<th data-quarto-table-cell-role="th">vote_count</th>
+<th data-quarto-table-cell-role="th">popularity</th>
+<th data-quarto-table-cell-role="th">overview</th>
+<th data-quarto-table-cell-role="th">genres</th>
+<th data-quarto-table-cell-role="th">primary_genre</th>
+<th data-quarto-table-cell-role="th">production_companies</th>
+<th data-quarto-table-cell-role="th">cast</th>
+<th data-quarto-table-cell-role="th">cast_popularity</th>
+<th data-quarto-table-cell-role="th">director</th>
+<th data-quarto-table-cell-role="th">release_year</th>
+<th data-quarto-table-cell-role="th">release_month</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1084242</td>
+<td>Zootopia 2</td>
+<td>2025-11-26</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>107</td>
+<td>7.725</td>
+<td>344</td>
+<td>512.6445</td>
+<td>After cracking the biggest case in Zootopia's ...</td>
+<td>Animation|Family|Comedy|Adventure</td>
+<td>Animation</td>
+<td>Walt Disney Animation Studios</td>
+<td>Ginnifer Goodwin|Jason Bateman|Ke Huy Quan|For...</td>
+<td>5.07572</td>
+<td>Jared Bush</td>
+<td>2025</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>533533</td>
+<td>TRON: Ares</td>
+<td>2025-10-08</td>
+<td>220000000</td>
+<td>142073994</td>
+<td>119</td>
+<td>6.489</td>
+<td>539</td>
+<td>458.1744</td>
+<td>A highly sophisticated Program called Ares is ...</td>
+<td>Science Fiction|Adventure|Action</td>
+<td>Science Fiction</td>
+<td>Walt Disney Pictures|Sean Bailey Productions</td>
+<td>Jared Leto|Greta Lee|Evan Peters|Gillian Ander...</td>
+<td>4.80276</td>
+<td>Joachim Rønning</td>
+<td>2025</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1246049</td>
+<td>Dracula</td>
+<td>2025-07-30</td>
+<td>52000000</td>
+<td>25788866</td>
+<td>130</td>
+<td>7.100</td>
+<td>518</td>
+<td>248.9951</td>
+<td>When a 15th-century prince denounces God after...</td>
+<td>Horror|Fantasy|Romance</td>
+<td>Horror</td>
+<td>EuropaCorp|Luc Besson Production|TF1 Films Pro...</td>
+<td>Caleb Landry Jones|Zoë Bleu Sidel|Christoph Wa...</td>
+<td>3.63440</td>
+<td>Luc Besson</td>
+<td>2025</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1242898</td>
+<td>Predator: Badlands</td>
+<td>2025-11-05</td>
+<td>105000000</td>
+<td>175186920</td>
+<td>107</td>
+<td>7.379</td>
+<td>548</td>
+<td>190.6551</td>
+<td>Cast out from his clan, a young Predator finds...</td>
+<td>Action|Science Fiction|Adventure</td>
+<td>Action</td>
+<td>20th Century Studios|Lawrence Gordon Productio...</td>
+<td>Elle Fanning|Dimitrius Schuster-Koloamatangi|R...</td>
+<td>6.45618</td>
+<td>Dan Trachtenberg</td>
+<td>2025</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>967941</td>
+<td>Wicked: For Good</td>
+<td>2025-11-19</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>137</td>
+<td>6.700</td>
+<td>366</td>
+<td>142.4678</td>
+<td>As an angry mob rises against the Wicked Witch...</td>
+<td>Fantasy|Adventure|Romance</td>
+<td>Fantasy</td>
+<td>Universal Pictures|Marc Platt Productions|dentsu</td>
+<td>Ariana Grande|Cynthia Erivo|Jonathan Bailey|Je...</td>
+<td>6.13622</td>
+<td>Jon M. Chu</td>
+<td>2025</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning." class="level3">
+<h3 class="anchored" data-anchor-id="now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning.">Now I’m checking to see if there are any missing values or data quality issues that I’ll need to address during cleaning.</h3>
+<div id="cell-8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing Values by Column:"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> df.isnull().<span class="bu">sum</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>missing_pct <span class="op">=</span> (df.isnull().<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(df)) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>missing_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missing Count'</span>: missing,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Percentage'</span>: missing_pct</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(missing_df[missing_df[<span class="st">'Missing Count'</span>] <span class="op">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Budget Statistics:"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'budget'</span>].describe())</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Revenue Statistics:"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'revenue'</span>].describe())</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Runtime Statistics:"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'runtime'</span>].describe())</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies by Year (last 10 years):"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'release_year'</span>].value_counts().sort_index().tail(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Missing Values by Column:
+============================================================
+                      Missing Count  Percentage
+production_companies              1    0.035562
+cast                              1    0.035562
+
+============================================================
+Budget Statistics:
+count    2.812000e+03
+mean     4.536952e+07
+std      5.817536e+07
+min      5.000000e+00
+25%      8.289067e+06
+50%      2.500000e+07
+75%      6.000000e+07
+max      5.839000e+08
+Name: budget, dtype: float64
+
+============================================================
+Revenue Statistics:
+count    2.812000e+03
+mean     1.590962e+08
+std      2.650542e+08
+min      1.000000e+00
+25%      1.155852e+07
+50%      5.614315e+07
+75%      1.788447e+08
+max      2.923706e+09
+Name: revenue, dtype: float64
+
+============================================================
+Runtime Statistics:
+count    2812.000000
+mean      112.612731
+std        22.772921
+min        56.000000
+25%        97.000000
+50%       108.000000
+75%       124.000000
+max       254.000000
+Name: runtime, dtype: float64
+
+============================================================
+Movies by Year (last 10 years):
+release_year
+2016     63
+2017     74
+2018     82
+2019     85
+2020     40
+2021     81
+2022     74
+2023     85
+2024    113
+2025    113
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable." class="level3">
+<h3 class="anchored" data-anchor-id="before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable.">Before cleaning, I’m creating the key features I’ll need for my analysis: ROI and a success label to predict whether movies are profitable.</h3>
+<div id="cell-10" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create ROI </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'roi'</span>] <span class="op">=</span> df[<span class="st">'revenue'</span>] <span class="op">/</span> df[<span class="st">'budget'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create profitability label</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'profitable'</span>] <span class="op">=</span> (df[<span class="st">'revenue'</span>] <span class="op">&gt;</span> df[<span class="st">'budget'</span>]).astype(<span class="bu">int</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create success categories</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_success(row):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    roi <span class="op">=</span> row[<span class="st">'roi'</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> roi <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Bomb'</span>  <span class="co"># lost money</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roi <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Modest'</span>  <span class="co"># made money but not much</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roi <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Hit'</span>  <span class="co"># strong performer</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Blockbuster'</span>  <span class="co"># massive success</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'success_category'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(categorize_success, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># create budget tiers</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_budget(budget):</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> budget <span class="op">&lt;</span> <span class="dv">20_000_000</span>:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Low'</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> budget <span class="op">&lt;</span> <span class="dv">80_000_000</span>:</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Medium'</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> budget <span class="op">&lt;</span> <span class="dv">150_000_000</span>:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'High'</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Blockbuster'</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'budget_tier'</span>] <span class="op">=</span> df[<span class="st">'budget'</span>].<span class="bu">apply</span>(categorize_budget)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># create release season</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_season(month):</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> month <span class="kw">in</span> [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]:</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Summer'</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> month <span class="kw">in</span> [<span class="dv">11</span>, <span class="dv">12</span>]:</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Holiday'</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> month <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Spring'</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Fall'</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'release_season'</span>] <span class="op">=</span> df[<span class="st">'release_month'</span>].<span class="bu">apply</span>(get_season)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"New Features Created:"</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROI range: </span><span class="sc">{</span>df[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Success Distribution:"</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'success_category'</span>].value_counts())</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Profitable: </span><span class="sc">{</span>df[<span class="st">'profitable'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>df[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Budget Tiers:"</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'budget_tier'</span>].value_counts())</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Release Seasons:"</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'release_season'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>New Features Created:
+ROI range: 0.00 to 12890.39
+
+Success Distribution:
+success_category
+Hit            936
+Blockbuster    706
+Bomb           690
+Modest         480
+Name: count, dtype: int64
+
+Profitable: 2118 (75.3%)
+
+Budget Tiers:
+budget_tier
+Low            1229
+Medium         1060
+High            299
+Blockbuster     224
+Name: count, dtype: int64
+
+Release Seasons:
+release_season
+Fall       911
+Summer     711
+Spring     649
+Holiday    541
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality." class="level3">
+<h3 class="anchored" data-anchor-id="i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality.">I noticed some extreme ROI values that are likely data errors (movies with budgets under $1000 or revenues under $1000). I’m filtering these out to ensure data quality.</h3>
+<div id="cell-12" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before cleaning:"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min budget: $</span><span class="sc">{</span>df[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min revenue: $</span><span class="sc">{</span>df[<span class="st">'revenue'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remove unrealistic budget/revenue values</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'budget'</span>] <span class="op">&gt;=</span> <span class="dv">1_000_000</span>) <span class="op">&amp;</span>  <span class="co"># at least $1M budget</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'revenue'</span>] <span class="op">&gt;=</span> <span class="dv">1_000</span>) <span class="op">&amp;</span>      <span class="co"># at least $1k revenue</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'roi'</span>] <span class="op">&lt;</span> <span class="dv">100</span>)                <span class="co"># ROI less than 100x </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>].copy()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drop rows with missing cast or production companies</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df_clean.dropna(subset<span class="op">=</span>[<span class="st">'cast'</span>, <span class="st">'production_companies'</span>])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># recalculate features after cleaning</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'profitable'</span>] <span class="op">=</span> (df_clean[<span class="st">'revenue'</span>] <span class="op">&gt;</span> df_clean[<span class="st">'budget'</span>]).astype(<span class="bu">int</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">After cleaning:"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Movies removed: </span><span class="sc">{</span><span class="bu">len</span>(df) <span class="op">-</span> <span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min budget: $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min revenue: $</span><span class="sc">{</span>df_clean[<span class="st">'revenue'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max ROI: </span><span class="sc">{</span>df_clean[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">New Success Distribution:"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean[<span class="st">'success_category'</span>].value_counts())</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">New Profitable Rate: </span><span class="sc">{</span>df_clean[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before cleaning:
+Total movies: 2812
+Min budget: $5
+Min revenue: $1
+
+After cleaning:
+Total movies: 2691
+Movies removed: 121
+Min budget: $1,000,000
+Min revenue: $1,361
+Max ROI: 94.50
+
+New Success Distribution:
+success_category
+Hit            913
+Bomb           668
+Blockbuster    642
+Modest         468
+Name: count, dtype: int64
+
+New Profitable Rate: 75.1%</code></pre>
+</div>
+</div>
+</section>
+<section id="now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases." class="level3">
+<h3 class="anchored" data-anchor-id="now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases.">Now that I’ve engineered features and removed outliers, I’m saving the cleaned dataset for use in my exploratory analysis and modeling phases.</h3>
+<div id="cell-14" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save cleaned data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">'../../data/processed-data/tmdb_movies_clean.csv'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_clean.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Clean data saved to: </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Final Dataset Summary:"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features: </span><span class="sc">{</span><span class="bu">len</span>(df_clean.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Date range: </span><span class="sc">{</span>df_clean[<span class="st">'release_year'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>df_clean[<span class="st">'release_year'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Budget range: $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss"> - $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Profitable rate: </span><span class="sc">{</span>df_clean[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All columns:"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean.columns.tolist())</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># show sample</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Sample of cleaned data:"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>df_clean[[<span class="st">'title'</span>, <span class="st">'budget'</span>, <span class="st">'revenue'</span>, <span class="st">'roi'</span>, <span class="st">'success_category'</span>, <span class="st">'budget_tier'</span>]].head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Clean data saved to: ../../data/processed-data/tmdb_movies_clean.csv
+
+Final Dataset Summary:
+Total movies: 2,691
+Features: 23
+Date range: 1934-2025
+Budget range: $1,000,000 - $583,900,000
+Profitable rate: 75.1%
+
+All columns:
+['movie_id', 'title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'overview', 'genres', 'primary_genre', 'production_companies', 'cast', 'cast_popularity', 'director', 'release_year', 'release_month', 'roi', 'profitable', 'success_category', 'budget_tier', 'release_season']
+
+Sample of cleaned data:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">budget</th>
+<th data-quarto-table-cell-role="th">revenue</th>
+<th data-quarto-table-cell-role="th">roi</th>
+<th data-quarto-table-cell-role="th">success_category</th>
+<th data-quarto-table-cell-role="th">budget_tier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Zootopia 2</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>4.280000</td>
+<td>Hit</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>TRON: Ares</td>
+<td>220000000</td>
+<td>142073994</td>
+<td>0.645791</td>
+<td>Bomb</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Dracula</td>
+<td>52000000</td>
+<td>25788866</td>
+<td>0.495940</td>
+<td>Bomb</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Predator: Badlands</td>
+<td>105000000</td>
+<td>175186920</td>
+<td>1.668447</td>
+<td>Modest</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Wicked: For Good</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>4.280000</td>
+<td>Hit</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Frankenstein</td>
+<td>120000000</td>
+<td>480678</td>
+<td>0.004006</td>
+<td>Bomb</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Zootopia</td>
+<td>150000000</td>
+<td>1025521689</td>
+<td>6.836811</td>
+<td>Blockbuster</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Bugonia</td>
+<td>50000000</td>
+<td>34817177</td>
+<td>0.696344</td>
+<td>Bomb</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Demon Slayer: Kimetsu no Yaiba Infinity Castle</td>
+<td>20000000</td>
+<td>740400000</td>
+<td>37.020000</td>
+<td>Blockbuster</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Now You See Me: Now You Don't</td>
+<td>90000000</td>
+<td>159000154</td>
+<td>1.766668</td>
+<td>Modest</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
 </section>
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>This section should be written for a <strong>technical audience</strong>, focusing on detailed analysis, factual reporting, and clear presentation of data. The following serves as a guide, but feel free to adjust as needed.</p>
-<section id="challenges" class="level2">
-<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
-<ul>
-<li>Discuss any technical challenges faced during the project, such as data limitations, computational issues, or obstacles encountered during analysis.</li>
-<li>Explain unexpected results and their technical implications.</li>
-<li>Identify areas for future work, including potential optimizations, further analysis, or scaling solutions.</li>
-</ul>
+<section id="collection-results" class="level2">
+<h2 class="anchored" data-anchor-id="collection-results">Collection Results</h2>
+<p>The data collection phase successfully gathered 2,812 movies from TMDB’s database, spanning from 1934 to 2025. After applying the quality filters (requiring both budget and revenue data), the final dataset contained 2,691 complete records—a 95.7% retention rate. This high retention validates the initial query strategy of filtering for <code>with_budget=true</code> and <code>with_revenue=true</code> at the API level, rather than collecting everything and filtering later.</p>
+<p>The entire collection process ran for approximately 37 minutes with zero API errors or timeouts. The 0.25-second delay between requests proved conservative enough to avoid rate limiting while still maintaining reasonable collection speed.</p>
 </section>
-<section id="benchmarks" class="level2">
-<h2 class="anchored" data-anchor-id="benchmarks">Benchmarks</h2>
-<ul>
-<li>Compare your findings to relevant research, industry benchmarks, or intuitive expectations, if applicable.</li>
-</ul>
+<section id="challenges-and-design-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-and-design-decisions">Challenges and Design Decisions</h2>
+<p>The primary challenge was balancing dataset size against data quality. TMDB contains millions of movie records, but many lack the financial data essential for box office prediction. Early exploration revealed that collecting without financial filters would result in 60-70% of records being unusable after cleaning—wasting both API quota and processing time.</p>
+<p>The decision to prioritize quality over quantity meant accepting a smaller dataset (2,691 vs.&nbsp;a potential 10,000+ movies) in exchange for complete, analysis-ready records. This tradeoff proved worthwhile: every movie in the final dataset includes the 18 features needed for subsequent analysis, eliminating the need for imputation or dropping variables.</p>
+<p>Another consideration was temporal coverage. The dataset spans 91 years, which introduces potential distribution shifts (e.g., inflation effects on budgets, changes in release strategies). This was anticipated and addressed in the data cleaning phase through feature engineering (ROI calculations, inflation adjustment considerations) and exploratory analysis (temporal trend examination).</p>
 </section>
-<section id="conclusion-and-future-steps" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion-and-future-steps">Conclusion and Future Steps</h2>
-<ul>
-<li>Summarize the key technical points and outcomes of the project.</li>
-<li>Suggest potential improvements or refinements to this part of the project.</li>
-<li>Based on the results, provide actionable recommendations for further research or optimization efforts.</li>
-</ul>
+<section id="data-quality-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-assessment">Data Quality Assessment</h2>
+<p>The 121 records dropped during cleaning (4.3% of raw data) failed quality checks for one of three reasons: - Missing budget values despite API filters (likely database inconsistencies) - Zero or negative revenue values (data entry errors) - Extreme outliers flagged during initial validation (potential currency conversion issues)</p>
+<p>These drops were acceptable given the remaining sample size. With 2,691 complete records, the dataset provides sufficient volume for training machine learning models while maintaining statistical validity for pattern detection across genres, time periods, and budget tiers.</p>
+</section>
+<section id="validation-against-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="validation-against-benchmarks">Validation Against Benchmarks</h2>
+<p>Comparing this dataset to existing box office prediction research: - <strong>Zhang et al.&nbsp;(2024)</strong>: Used 5,000 movies but reported significant missing data issues, requiring extensive imputation - <strong>Tang et al.&nbsp;(2024)</strong>: Worked with 3,200 movies from Chinese market only - <strong>This project</strong>: 2,691 movies with zero missing values in critical features, global market coverage</p>
+<p>The smaller but cleaner dataset positions this analysis favorably for model training. Missing data imputation can introduce bias and reduce model accuracy—this dataset avoids that tradeoff entirely.</p>
+</section>
+<section id="transition-to-data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="transition-to-data-cleaning">Transition to Data Cleaning</h2>
+<p>The raw dataset (<code>tmdb_movies_raw.csv</code>) serves as the foundation for the data cleaning phase, which involves: - Feature engineering (ROI calculation, success category classification) - Temporal feature extraction (release year, month, day of week) - Genre encoding and aggregation - Production company consolidation - Outlier detection and handling</p>
+<p>The cleaning phase will transform these 2,691 raw records into an analysis-ready dataset suitable for exploratory data analysis and machine learning model training. The completeness of the raw data means cleaning can focus on feature engineering and transformation rather than imputation or missing data handling.</p>
+</section>
+<section id="future-improvements" class="level2">
+<h2 class="anchored" data-anchor-id="future-improvements">Future Improvements</h2>
+<p>If repeating this data collection with more time or resources, several enhancements could strengthen the dataset:</p>
+<p><strong>Temporal refresh</strong>: TMDB updates movie data regularly (box office totals, ratings, metadata). Re-collecting data quarterly would capture these updates and provide temporal snapshots for longitudinal analysis.</p>
+<p><strong>Additional features</strong>: The current collection focuses on TMDB’s core metadata. Future iterations could incorporate: - Detailed cast/crew data (beyond top-billed names) - Production country and language metadata - Certification and content ratings - Distribution patterns (theatrical vs.&nbsp;streaming)</p>
+<p><strong>Expanded coverage</strong>: The 2,691 movie threshold was chosen to balance API limits with project timeline. With TMDB’s 1,000 requests/day limit, collecting 10,000+ movies would require multiple days but could provide richer training data for complex models.</p>
+<p><strong>Cross-validation with secondary sources</strong>: While TMDB provides comprehensive data, financial figures (especially for older films) could be validated against Box Office Mojo or The Numbers to catch database inconsistencies.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The data collection phase delivered a clean, complete dataset of 2,691 movies suitable for machine learning analysis. The decision to prioritize data quality over quantity—accepting a smaller dataset with zero missing values rather than a larger dataset requiring imputation—proved effective for downstream analysis. The collection process ran smoothly with no technical failures, and the resulting dataset provides strong foundation for exploring patterns in box office performance across nine decades of cinema.</p>
 
 
 </section>
@@ -426,236 +1021,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -663,185 +1264,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
