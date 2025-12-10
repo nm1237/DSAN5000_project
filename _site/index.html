@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -155,10 +175,14 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link active" data-scroll-target="#why-this-matters">Why This Matters</a></li>
   <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
-  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a>
+  <ul class="collapse">
+  <li><a href="#what-the-research-says" id="toc-what-the-research-says" class="nav-link" data-scroll-target="#what-the-research-says">What the Research Says</a></li>
+  <li><a href="#the-industry-reality" id="toc-the-industry-reality" class="nav-link" data-scroll-target="#the-industry-reality">The Industry Reality</a></li>
+  <li><a href="#the-forecasting-business" id="toc-the-forecasting-business" class="nav-link" data-scroll-target="#the-forecasting-business">The Forecasting Business</a></li>
+  <li><a href="#bridging-research-and-reality" id="toc-bridging-research-and-reality" class="nav-link" data-scroll-target="#bridging-research-and-reality">Bridging Research and Reality</a></li>
+  <li><a href="#what-data-cant-predict" id="toc-what-data-cant-predict" class="nav-link" data-scroll-target="#what-data-cant-predict">What Data Can’t Predict</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -168,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Hollywood’s $100 Million Gamble: Can AI Predict Box Office Hits?</h1>
-<p class="subtitle lead">A Machine Learning Analysis of Movie Success</p>
+<p class="subtitle lead">What Data Reveals About Movie Success</p>
 </div>
 
 
@@ -191,61 +215,101 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Hollywood invests billions in film production every year, yet predicting which movies will succeed remains incredibly difficult. Studios routinely greenlight $100+ million productions with no guarantee of returns, while low-budget indies occasionally become massive hits. This project examines whether machine learning can identify patterns in box office success by analyzing 2,691 films from The Movie Database (TMDB).</p>
-<p>Using features available before release (budget, cast popularity, genre, and release timing), I built classification models to predict profitability with 77.7% accuracy. Beyond just prediction, this analysis reveals what actually drives success in the film industry and how studios might make smarter investment decisions.</p>
+<p><img src="assets/images/header.webp" class="img-fluid" style="width:100.0%"></p>
+<p>Have you ever walked out of a movie theater thinking “that was incredible”? Or maybe left wondering how a studio greenlit something so awful it made you want a refund? If you’ve had either experience, you’re not alone. Hollywood invests billions in film production every year trying to capture that magic, yet predicting which movies will succeed remains incredibly difficult. You’d think an industry that’s survived over a century would have cracked the code by now.</p>
+<p>Studios routinely bet $100+ million on productions with no guarantee anyone will show up, while low-budget indies shot for pennies occasionally become cultural phenomena. There has to be a pattern somewhere, right? This project digs into that question using machine learning to analyze 2,691 films from The Movie Database. The goal wasn’t just to build a prediction model, but to understand what actually separates the blockbusters from the box office bombs.</p>
+<p>Turns out, machine learning can predict movie profitability with 77.7% accuracy using only information available before release: budget, cast popularity, genre, and release timing. More importantly, the analysis reveals patterns that challenge some common assumptions about what makes movies work. Bigger budgets don’t always mean better returns. A-list casts matter as much as production value. And timing a release can boost success probability by 14%.</p>
 <section id="why-this-matters" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
-<p>Understanding what drives box office success has practical value for studios making investment decisions, producers planning releases, and investors assessing risk. But beyond industry applications, this project demonstrates how machine learning can extract insights from messy, real-world data where traditional methods fall short. Box office performance depends on complex interactions between artistic merit, marketing, competitive landscape, and cultural timing. These factors don’t fit into simple formulas.</p>
-<p>By leveraging data science techniques for data collection, cleaning, visualization, and analysis, as well as methods in unsupervised and supervised machine learning, this project aims to shed light on what factors predict movie success and whether patterns exist that human intuition might miss.</p>
+<p>This isn’t just an academic exercise. Understanding what drives box office success has real implications for how studios allocate hundreds of millions of dollars, which films get made, and ultimately what ends up on our screens. When studios make better investment decisions, they can take more creative risks because they’re not betting the company on every tentpole.</p>
+<p>For moviegoers, this matters too. If studios better understand what makes films successful, maybe we get more variety instead of the seventh Marvel sequel or fourth unnecessary reboot. Maybe mid-budget original films get greenlit more often. This analysis suggests they’re actually the sweet spot for returns.</p>
+<p>Beyond the industry implications, this project demonstrates something broader about data science. Box office performance depends on complex interactions between art, commerce, timing, and culture. These factors don’t fit into neat formulas, yet machine learning can still extract meaningful patterns from the messiness. If we can predict movie success, what else that seems unpredictable might actually have hidden structure?</p>
+<p><img src="assets/images/tbtheatre.jpg" class="img-fluid" style="width:100.0%"></p>
 </section>
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
-<p>This project was guided by five key questions:</p>
+<p>This analysis addresses five specific questions:</p>
 <ol type="1">
-<li><p><strong>Can we accurately predict movie profitability using only pre-release information?</strong> What prediction accuracy is achievable with features known during production planning?</p></li>
-<li><p><strong>Which factors matter most for box office success?</strong> Is budget the dominant predictor, or do other features like cast popularity, genre, and release timing play equally important roles?</p></li>
-<li><p><strong>Does the budget-revenue relationship follow a linear pattern?</strong> Do bigger budgets consistently generate proportionally higher returns, or is there a sweet spot where ROI peaks?</p></li>
-<li><p><strong>Are there distinct “types” of successful movies?</strong> Can unsupervised learning reveal natural clusters of films with different risk-return profiles?</p></li>
-<li><p><strong>How do temporal factors influence performance?</strong> Do seasonal release patterns and genre interact in predictable ways?</p></li>
+<li><p><strong>Can we actually predict movie profitability using only pre-release information?</strong> Not after marketing campaigns launch or opening weekend happens, but during production when decisions actually get made?</p></li>
+<li><p><strong>Which factors matter most?</strong> Everyone says budget and stars matter, but how much? Is there a hierarchy?</p></li>
+<li><p><strong>Does spending more always mean earning more?</strong> Or is there a budget sweet spot where returns peak?</p></li>
+<li><p><strong>Are there distinct “types” of successful movies?</strong> Do blockbusters, mid-budget films, and indies follow completely different playbooks?</p></li>
+<li><p><strong>How much does timing actually matter?</strong> We all know summer blockbusters exist, but can we quantify the advantage?</p></li>
 </ol>
-</section>
-<section id="dataset" class="level2">
-<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
-<p><strong>Source:</strong> The Movie Database (TMDB) API<br>
-<strong>Size:</strong> 2,691 movies with complete budget and revenue data<br>
-<strong>Time Span:</strong> 1934 - 2025<br>
-<strong>Features:</strong> 23 variables including budget, revenue, genres, cast popularity, crew, release dates, user ratings, and runtime</p>
-<p>I focused on movies with verified budget and revenue information, removing entries with missing or obviously incorrect values. The cleaning process prioritized data quality over quantity, resulting in a smaller but more reliable dataset for modeling.</p>
-</section>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
-<p>Through comprehensive analysis, several patterns emerged:</p>
-<p><strong>Model Performance:</strong><br>
-Random Forest achieved 77.7% accuracy in predicting profitability, outperforming Logistic Regression (75.3%) and Gradient Boosting (77.6%). Feature importance analysis revealed cast popularity and budget as co-dominant predictors, each contributing approximately 25% of the model’s predictive power.</p>
-<p><strong>Budget-Revenue Relationship:</strong><br>
-While budget and revenue show strong correlation (r = 0.711), the relationship isn’t linear. Mid-budget films ($80-150M) achieve the highest median ROI at 2.9x, suggesting diminishing returns beyond a certain threshold. Ultra-low-budget films occasionally hit massive returns (39x ROI) but represent only 3% of the dataset.</p>
-<p><strong>Four Movie Archetypes:</strong><br>
-K-means clustering revealed four distinct categories of films, each with different risk-return profiles: - <strong>Blockbusters</strong> (13%): budgets over $150M, 97% success rate, 5.5x ROI - <strong>Mid-Budget Hits</strong> (35%): $38M average budget, 85% success rate, 4.2x ROI - <strong>Standard Indies</strong> (49%): $18M budgets, 61% success rate, 2.4x ROI - <strong>Breakout Indies</strong> (3%): $4.5M budgets, 100% success rate, 39x ROI</p>
-<p><strong>Genre and Timing Effects:</strong><br>
-Adventure and Family genres show 80%+ success rates, substantially higher than Drama (58%). Holiday and Summer releases outperform Fall releases by approximately 14%, though the magnitude varies by genre.</p>
 </section>
 <section id="literature-review" class="level2">
 <h2 class="anchored" data-anchor-id="literature-review">Literature Review</h2>
-<p>Prior research on box office prediction identifies consistent patterns across methodological approaches. Ahmed et al.&nbsp;(2019) conducted systematic feature engineering on 2,000+ movies, finding cast popularity as the single strongest predictor while noting diminishing returns for budgets above $150M. Their Random Forest models achieved 79% accuracy, comparable to my 77.7%, validating the robustness of tree-based methods for this problem. The study also revealed that release timing significantly impacts performance, with holiday and summer releases substantially outperforming other periods.</p>
-<p>Kim et al.&nbsp;(2021) extended traditional prediction by incorporating social media sentiment from 1,500 movies released 2015-2019, achieving 82% accuracy with deep learning. While their social media features provided incremental improvement, the gains came at substantial cost in data collection complexity. Importantly, they found genre-specific patterns where negative sentiment could boost performance for horror films, highlighting how feature interactions matter more than individual predictors.</p>
-<p>Li and Liu (2022) took a market-level approach, predicting total box office revenues for countries rather than individual films. Using Support Vector Machines with economic indicators like GDP, they achieved strong forecasting accuracy while emphasizing that simpler models with fewer high-quality predictors often outperform complex approaches. Their work validates budget as a fundamental predictor while demonstrating that tree-based machine learning methods consistently outperform traditional econometric models.</p>
-<p>These studies converge on several findings: cast and budget are primary predictors, tree-based algorithms achieve 75-82% accuracy, and release timing matters. However, most research uses data through 2019-2020, predating pandemic impacts on theatrical performance. This project addresses that gap with current data while adding interpretability through cluster analysis.</p>
+<p>Here’s the thing about predicting box office success: people have been trying to crack this code for decades. Studios have always wanted to know which projects will print money and which will tank spectacularly. For most of Hollywood history, that came down to executive instinct, star power assessments, and looking at what worked last summer. But can data actually do better than gut feeling?</p>
+<section id="what-the-research-says" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-research-says">What the Research Says</h3>
+<p>Turns out, researchers have been asking the same question. Ahmed et al.&nbsp;analyzed over 2,000 movies to figure out what really matters<span class="citation" data-cites="ahmed2019"><sup><a href="#ref-ahmed2019" role="doc-biblioref">1</a></sup></span>. They tested 50+ different features and landed on something interesting. Cast popularity was the single strongest predictor. Not budget, not genre, but whether audiences actually cared about who was in the movie. They also found that budgets have diminishing returns above $150M. Throwing more money at production doesn’t guarantee proportionally better results. Their Random Forest model hit 79% accuracy, which is pretty close to the 77.7% this analysis achieved. That consistency across different datasets suggests we might actually be approaching the real ceiling for how predictable movies can be.</p>
+<p>The timing piece matters too. Ahmed’s research showed holiday and summer releases significantly outperform other periods<span class="citation" data-cites="ahmed2019"><sup><a href="#ref-ahmed2019" role="doc-biblioref">1</a></sup></span>. Not shocking if you think about it. People have more free time, they’re in the mood to go out, and families are looking for activities. But quantifying that advantage helps studios make smarter release decisions rather than just following tradition. The advantage is substantial.</p>
+<p>Kim et al.&nbsp;pushed things further by adding social media sentiment to the mix<span class="citation" data-cites="kim2021"><sup><a href="#ref-kim2021" role="doc-biblioref">2</a></sup></span>. They scraped Twitter and review sites for 1,500 movies released between 2015-2019, feeding all that buzz into a deep learning model. The result? 82% accuracy. Better than Ahmed’s model, but not dramatically so. And here’s the catch: getting all that social media data requires real-time collection during marketing campaigns. You can’t predict success during pre-production if you need to wait for Twitter reactions to the first trailer. Still, their work revealed something useful. Genre matters for how sentiment plays. Negative buzz can actually help horror films because controversy drives ticket sales, while it kills romantic comedies. The relationship between marketing buzz and box office isn’t universal.</p>
+<p>Li and Liu took a completely different angle<span class="citation" data-cites="li2022"><sup><a href="#ref-li2022" role="doc-biblioref">3</a></sup></span>. Instead of predicting individual movies, they forecasted entire markets. How much will the US box office total next year? What about China? They used economic indicators like GDP and theater capacity, building Support Vector Machine models that proved surprisingly accurate. Their big takeaway: simpler models with fewer high-quality predictors often beat complex ones. You don’t need 50 features if you pick the right 5. They also validated something important for this project. Budget remains fundamental across every approach. Whether you’re predicting one movie or an entire market, production budget keeps showing up as critical.</p>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Ahmed, M., Jahangir, M., Afzal, H., Majeed, A., &amp; Siddiqi, I. (2019). Using crowd-source based features from social media and conventional features to predict the movies popularity. <em>Smart Cities, Green Technologies, and Intelligent Transport Systems</em>, 554, 273-290.</p>
-<p>Kim, T., Hong, J., &amp; Kang, P. (2021). Box office forecasting considering competitive environment and social media hype. <em>Expert Systems with Applications</em>, 171, 114593.</p>
-<p>Li, D., &amp; Liu, Z.-P. (2022). Predicting box-office markets with machine learning methods. <em>Entropy</em>, 24(5), 711.</p>
+<section id="the-industry-reality" class="level3">
+<h3 class="anchored" data-anchor-id="the-industry-reality">The Industry Reality</h3>
+<p><img src="assets/images/hwart.webp" class="img-fluid" style="width:100.0%"></p>
+<p>Academic papers are great, but Hollywood operates in the real world where actual millions are on the line. The gap between theory and practice tells its own story.</p>
+<p>Take Cinelytic, an analytics platform studios actually use. They claim 99% accuracy forecasting the US box office a year in advance by analyzing 19 key variables<span class="citation" data-cites="cinelytic2024"><sup><a href="#ref-cinelytic2024" role="doc-biblioref">4</a></sup></span>. That’s way higher than academic benchmarks. Of course, their methodology is proprietary. They’re selling a service, not publishing research, and they have access to data academics don’t. Studio executives using Cinelytic know actual marketing budgets, theater commitments, and distributor relationships before films release. That granular information probably explains some of the accuracy gap.</p>
+<p>But even with fancy prediction tools, Hollywood is struggling right now. Variety’s coverage of the 2025 box office paints a sobering picture<span class="citation" data-cites="variety2025box"><sup><a href="#ref-variety2025box" role="doc-biblioref">5</a></sup></span>. Domestic revenues are projected at $9.3-9.5 billion compared to the $10.5-11 billion that used to be routine before COVID. Box office analyst Shawn Robbins calls this “the new normal” rather than continued recovery. The industry isn’t bouncing back. It’s stabilizing at a lower level.</p>
+<p>The long-term outlook is even more concerning. PwC’s Global Entertainment &amp; Media Outlook forecasts that box office won’t return to pre-COVID levels even by 2029<span class="citation" data-cites="pwc2025"><sup><a href="#ref-pwc2025" role="doc-biblioref">6</a></sup></span>. Full recovery might not happen until 2030. This isn’t just pandemic hangover. It’s structural change driven by streaming competition. As PwC analyst Bart Spiegel puts it, “While ticket prices are rising, admissions (volume) are not expected to return to pre-pandemic levels.” Studios are charging more per ticket to make up for fewer butts in seats. That’s not a growth strategy. That’s damage control.</p>
+</section>
+<section id="the-forecasting-business" class="level3">
+<h3 class="anchored" data-anchor-id="the-forecasting-business">The Forecasting Business</h3>
+<p>Professional box office forecasting has become its own industry, which tells you something about how valuable accurate predictions are. Firms like Gower Street Analytics and Box Office Theory provide subscription services to studios, exhibitors, and investors who need projections for planning<span class="citation" data-cites="gowerstreet2024"><sup><a href="#ref-gowerstreet2024" role="doc-biblioref">7</a></sup></span>. Should we move this release date? How many theaters should we book? What marketing spend does this film justify? These aren’t academic questions. They’re multimillion-dollar decisions that need answers.</p>
+<p>What’s interesting is that professional forecasters solve a different problem than academic researchers. Academics optimize for explainability and reproducibility across large datasets. They want models that make sense and can be validated. Industry forecasters optimize for accuracy on specific high-stakes decisions. They want the right answer for this particular movie releasing next month, even if the model is a black box. The goals diverge.</p>
+<p>Gower Street CEO Dimitrios Mitsinikos describes tracking everything from GDP growth to the number of movie screens in each market to predict performance months in advance<span class="citation" data-cites="gowerstreet2024"><sup><a href="#ref-gowerstreet2024" role="doc-biblioref">7</a></sup></span>. That level of detail goes way beyond what most academic models use. But it also makes the models less generalizable. A forecast optimized for the Chinese market in Q4 2025 might not teach us much about universal patterns in box office success.</p>
+<p>The Numbers, a leading box office data aggregator, recently made a revealing change<span class="citation" data-cites="thenumbers2025"><sup><a href="#ref-thenumbers2025" role="doc-biblioref">8</a></sup></span>. They redefined “wide release” from 600 theaters to 2,000 theaters. Why? Because getting a movie into 600 locations has become logistically trivial with digital distribution. The old threshold didn’t mean anything anymore. This seemingly technical adjustment actually reveals something about the industry. The middle ground between limited release and true wide release has expanded. Films playing in 600-1,999 theaters now occupy a space that didn’t really exist pre-pandemic, often using hybrid theatrical-streaming strategies that historical models never had to account for.</p>
+</section>
+<section id="bridging-research-and-reality" class="level3">
+<h3 class="anchored" data-anchor-id="bridging-research-and-reality">Bridging Research and Reality</h3>
+<p>So what do we actually know? Academic research and industry practice converge on a few core findings. Cast and budget matter most. Tree-based machine learning methods like Random Forest and Gradient Boosting consistently outperform traditional regression. Release timing creates measurable advantages. And prediction accuracy seems to plateau around 75-82% for academic models, though industry claims higher with proprietary data.</p>
+<p>But here’s what’s changed. Most academic research uses data through 2019-2020. The world is different now. Streaming competition has intensified. Theatrical windows have shrunk from months to weeks. Marketing has shifted heavily toward social media and viral moments. International markets, especially China, have become less reliable for Hollywood product. And audience behavior has fundamentally shifted. People are pickier about what justifies a theater visit versus waiting for streaming.</p>
+<p>This project bridges that gap by using current data that reflects post-pandemic reality. The 77.7% accuracy landing right in the established academic range suggests something important: the fundamental patterns remain stable even as the industry evolves. What changes isn’t whether cast and budget predict success. It’s the baseline success rate itself. Fewer movies succeed overall in the new landscape, but the factors determining which ones do remain consistent.</p>
+<p>The cluster analysis adds something academic papers typically don’t provide. Instead of treating all films as equivalent and just predicting success or failure, the clustering reveals four distinct types of movies with completely different risk-return profiles. Blockbusters, mid-budget hits, standard indies, and breakout indies each follow different playbooks. Studios making $150M tentpoles face different challenges than producers shooting $5M indies. Recognizing those differences matters for practical decision-making.</p>
+</section>
+<section id="what-data-cant-predict" class="level3">
+<h3 class="anchored" data-anchor-id="what-data-cant-predict">What Data Can’t Predict</h3>
+<p>There’s a limit to all this, though. Data science can identify patterns in what usually works, but it can’t manufacture cultural phenomena. Nobody’s algorithm predicted “Barbenheimer,” where two totally unrelated films drove each other’s success through organic social media synergy<span class="citation" data-cites="variety2024barbenheimer"><sup><a href="#ref-variety2024barbenheimer" role="doc-biblioref">9</a></sup></span>. <em>Barbie</em> and <em>Oppenheimer</em> created lightning in a bottle. Same with <em>Paranormal Activity</em> turning a $15,000 budget into $193M through word-of-mouth that couldn’t be engineered.</p>
+<p>The best prediction models provide one input into decision-making, not the whole answer. As Variety’s analysis of the 2025 box office noted, studios need films that “start with a bang, end with a bang” to reengage global audiences<span class="citation" data-cites="variety2025box"><sup><a href="#ref-variety2025box" role="doc-biblioref">5</a></sup></span>. Data can tell you which projects have that potential based on historical patterns. But it can’t tell you when to take a creative risk on something that breaks all the rules. Sometimes you need the algorithm. Sometimes you need to ignore it and trust your gut.</p>
+<p>The real value isn’t replacing human judgment. It’s making that judgment more informed. When a studio executive looks at a script and thinks “this could be special,” prediction models can reality-check whether “special” translates to “profitable.” They can flag when a gut feeling aligns with historical patterns versus when it’s wishful thinking. That combination of intuition backed by data is probably more powerful than either alone.</p>
+<p><img src="assets/images/bts.webp" class="img-fluid" style="width:100.0%"></p>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-ahmed2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Ahmed, M., Jahangir, M., Afzal, H., Majeed, A. &amp; Siddiqi, I. Using crowd-source based features from social media and conventional features to predict the movies popularity. <em>Smart Cities, Green Technologies, and Intelligent Transport Systems</em> <strong>554</strong>, 273–290 (2019).</div>
+</div>
+<div id="ref-kim2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Kim, T., Hong, J. &amp; Kang, P. Box office forecasting considering competitive environment and social media hype. <em>Expert Systems with Applications</em> <strong>171</strong>, 114593 (2021).</div>
+</div>
+<div id="ref-li2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Li, D. &amp; Liu, Z.-P. Predicting box-office markets with machine learning methods. <em>Entropy</em> <strong>24</strong>, 711 (2022).</div>
+</div>
+<div id="ref-cinelytic2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">K-Vibe. AI revolutionizes box office predictions. <a href="https://www.kvibe.com/post/ai-revolutionizes-box-office-predictions">https://www.kvibe.com/post/ai-revolutionizes-box-office-predictions</a> (2024).</div>
+</div>
+<div id="ref-variety2025box" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Variety. Hollywood is banking on ’mission: Impossible,’ ’jurassic world’ and ’zootopia 2’ to bring back the box office. <a href="https://variety.com/2025/film/box-office/mission-impossible-jurassic-world-superman-box-office-1236312839/">https://variety.com/2025/film/box-office/mission-impossible-jurassic-world-superman-box-office-1236312839/</a> (2025).</div>
+</div>
+<div id="ref-pwc2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">PwC. Box office grosses won’t return to pre-COVID levels even by 2029. <em>Hollywood Reporter</em> <a href="https://www.hollywoodreporter.com/business/business-news/box-office-revenue-below-pre-covid-2029-pwc-outlook-report-1236324470/">https://www.hollywoodreporter.com/business/business-news/box-office-revenue-below-pre-covid-2029-pwc-outlook-report-1236324470/</a> (2025).</div>
+</div>
+<div id="ref-gowerstreet2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Gower Street Analytics. Global box office analysis. <a href="https://gower.st/">https://gower.st/</a> (2024).</div>
+</div>
+<div id="ref-thenumbers2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">The Numbers. Box office analysis and forecasting. <a href="https://www.the-numbers.com/">https://www.the-numbers.com/</a> (2025).</div>
+</div>
+<div id="ref-variety2024barbenheimer" class="csl-entry" role="listitem">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Variety. Hollywood bets on thanksgiving rebound: Will ’wicked,’ ’gladiator II’ and ’moana 2’ revive the sluggish fall box office? <a href="https://variety.com/2024/film/news/wicked-gladiator-2-moana-2-box-office-boost-thanksgiving-1236199494/">https://variety.com/2024/film/news/wicked-gladiator-2-moana-2-box-office-boost-thanksgiving-1236199494/</a> (2024).</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
