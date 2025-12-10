@@ -1,47 +1,91 @@
 ---
-title: "Progress log"
+title: "Progress Log"
 ---
 
-Use this page to track your progress and keep a log of your contributions to the project, please update this each time you work on your project, it is generally a good habit to adopt.
+## To-Do
 
-If you are working as a team, at the end, you can duplicate the project and add it to your individual portfolio websites. If you do, you **MUST** retain attribution to your teammates. Removing attribution would constitute plagiarism.
+* [ ] Explore possible topics 
+* [ ] Background research and lit review
+   * [ ] Find academic papers on box office prediction
+   * [ ] Look at industry reports and real-world forecasting
+   * [ ] Get at least 3 peer-reviewed sources
+* [ ] Figure out what data I need
+* [ ] Data collection
+   * [ ] Set up TMDB API access
+   * [ ] Write script to pull movie data
+   * [ ] Get budget, revenue, cast, genre, release dates
+* [ ] Data cleaning
+   * [ ] Deal with missing values
+   * [ ] Remove bad data points
+   * [ ] Create new features 
+* [ ] EDA
+   * [ ] Make visualizations
+   * [ ] Look at correlations
+   * [ ] Analyze patterns by genre, budget, timing
+* [ ] Unsupervised learning
+   * [ ] Try K-means clustering
+   * [ ] Do PCA for visualization
+   * [ ] Figure out optimal number of clusters
+* [ ] Supervised learning
+   * [ ] Train classification models
+   * [ ] Compare Logistic Regression, Random Forest, Gradient Boosting
+   * [ ] Pick best model
+   * [ ] Analyze feature importance
+* [ ] Build website
+   * [ ] Set up Quarto structure
+   * [ ] Write landing page
+   * [ ] Write report for non-technical audience
+   * [ ] Add images
+   * [ ] Set up citations properly
+* [ ] Write LLM usage log
+* [ ] Write progress log
+* [ ] Final polish and deploy
 
-## To-do
+---
 
-* [ ] Explore possible topics by brainstorming with GPT 
-* [ ] write a technical methods sections for K-means
-* [ ] write a technical methods sections for PCA
+## Progress Timeline
 
-... etc 
+**11-20-2024**
 
-## Member-1:
+* [x] Selected movie box office prediction as project topic
+* [x] Chose TMDB API as data source
 
-Provide their name, a link to their "About Me" page.
+**11-22-2024**
 
-Also, describe a log of their project roles.
+* [x] Started literature review 
 
-**Weekly project contribution log:**
+**11-27-2024**
 
+* [x] Wrote Python script to collect TMDB data
+* [x] **GOAL: Finish data collection**
 
-**T: 10-15-2024** 
+**11-30-2024**
 
-* [x] Coordinate with team member to set up weekly meeting time 
+* [x] Cleaned data 
+* [x] Engineered features 
 
+**12-05-2024**
 
-**M: 10-14-2024** 
+* [x] Completed EDA with visualizations
+* [x] Found budget-revenue correlation 
+* [x] **GOAL: Finish EDA**
 
-* [x] Do a first draft of the project landing page 
+**12-08-2024**
 
+* [x] Performed K-means clustering (k=4) and PCA
+* [x] Identified four movie archetypes
+* [x] **GOAL: Finish unsupervised learning**
 
-## Member-2
+**12-09-2024**
 
-Provide their name, a link to their "About Me" page.
+* [x] Trained classification models 
+* [x] Analyzed feature importance
+* [x] Deployed initial website
+* [x] **GOAL: Finish supervised learning**
 
-Also, describe a log of their project roles.
+**12-10-2024**
 
-**Weekly project contribution log:**
-
-
-**W: 10-16-2024** 
-
-* [x] Attend first group meeting
+* [x] COMPLETED literature review writing
+* [x] Wrote landing page and report
+* [x] Final deployment
+* [x] **GOAL: Submit project**
