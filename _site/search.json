@@ -135,30 +135,30 @@
   {
     "objectID": "technical-details/llm-usage-log.html",
     "href": "technical-details/llm-usage-log.html",
-    "title": "LLM usage log",
+    "title": "LLM Usage Log",
     "section": "",
-    "text": "This page can serve as a “catch-all” for LLM use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.\nLLM tools were used in the following way for the tasks below"
+    "text": "LLM tools were used in the following way for the tasks below"
   },
   {
     "objectID": "technical-details/llm-usage-log.html#brainstorming",
     "href": "technical-details/llm-usage-log.html#brainstorming",
-    "title": "LLM usage log",
+    "title": "LLM Usage Log",
     "section": "Brainstorming",
-    "text": "Brainstorming\n\nTo create the initial idea, LLM tools were used to brainstorm ideas and provide feedback and refine the project plan."
+    "text": "Brainstorming\n\nTalked through different title options\nDiscussed project scope and whether to focus on movies vs other entertainment data\nWorked through research questions to make them clearer\nFigured out how to structure the website navigation"
   },
   {
     "objectID": "technical-details/llm-usage-log.html#writing",
     "href": "technical-details/llm-usage-log.html#writing",
-    "title": "LLM usage log",
-    "section": "Writing:",
-    "text": "Writing:\n\nReformating text from bulleted lists into proses\nProofreading\nText summarization for literature review"
+    "title": "LLM Usage Log",
+    "section": "Writing",
+    "text": "Writing\n\nHelped summarize long academic papers for literature review\nCleaned up my writing to sound more natural but still academic\nGrammar checks and consistency edits\nSet up proper .bib file format for citations"
   },
   {
     "objectID": "technical-details/llm-usage-log.html#code",
     "href": "technical-details/llm-usage-log.html#code",
-    "title": "LLM usage log",
-    "section": "Code:",
-    "text": "Code:\n\nCode commenting and explanatory documentation"
+    "title": "LLM Usage Log",
+    "section": "Code",
+    "text": "Code\n\nClaude was consulted for:\n\nTMDB API pagination logic\nDebugging data cleaning issues with missing values\nscikit-learn syntax for train-test split and StandardScaler\nInterpreting K-means evaluation metrics\nQuarto YAML configuration for navigation\nMarkdown syntax for citations and images\nDeployment commands for Georgetown domains\nDebugging MANY errors throughout\nBest approaches for coding certain things\nFed Claude sections of my code to identify syntax errors and logic issues\nCreated EDA visualizations with guidance on:\n\nColor scheme selection for readability\nChoosing appropriate plot types for different analyses\nmatplotlib/seaborn syntax for specific chart types"
   },
   {
     "objectID": "technical-details/data-collection/overview.html",
@@ -1174,5 +1174,19 @@
     "title": "Progress Log",
     "section": "Quick Stats",
     "text": "Quick Stats\n\nMovies analyzed: 2,691\nBest model: Random Forest (77.7% accuracy)\nTop predictors: Cast popularity & budget (25% each)\nClusters found: 4 movie archetypes\nTotal pages created: Landing, Report, + technical docs\nDays until deadline I started panicking: 2"
+  },
+  {
+    "objectID": "technical-details/llm-usage-log.html#technical-explanations",
+    "href": "technical-details/llm-usage-log.html#technical-explanations",
+    "title": "LLM Usage Log",
+    "section": "Technical Explanations",
+    "text": "Technical Explanations\n\nClarified differences between classification algorithms\nBetter explained model evaluation metrics\nHelped interpret PCA variance with explaination\nDiscussed clustering quality assessment"
+  },
+  {
+    "objectID": "technical-details/llm-usage-log.html#general",
+    "href": "technical-details/llm-usage-log.html#general",
+    "title": "LLM Usage Log",
+    "section": "General",
+    "text": "General\n\nTimeline planning for realistic project schedule\nDocumentation structure suggestions"
   }
 ]

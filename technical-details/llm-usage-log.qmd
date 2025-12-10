@@ -1,21 +1,51 @@
 ---
-title: "LLM usage log"
+title: "LLM Usage Log"
 ---
-
-This page can serve as a "catch-all" for LLM use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.
 
 LLM tools were used in the following way for the tasks below
 
 ## Brainstorming
 
-* To create the initial idea, LLM tools were used to brainstorm ideas and provide feedback and refine the project plan.
+* Talked through different title options
+* Discussed project scope and whether to focus on movies vs other entertainment data
+* Worked through research questions to make them clearer
+* Figured out how to structure the website navigation
 
-## Writing: 
+## Writing
 
-* Reformating text from bulleted lists into proses 
-* Proofreading
-* Text summarization for literature review 
+* Helped summarize long academic papers for literature review
+* Cleaned up my writing to sound more natural but still academic
+* Grammar checks and consistency edits
+* Set up proper .bib file format for citations
 
-## Code: 
+## Code
 
-* Code commenting and explanatory documentation 
+* **Claude was consulted for:**
+   * TMDB API pagination logic
+   * Debugging data cleaning issues with missing values
+   * scikit-learn syntax for train-test split and StandardScaler
+   * Interpreting K-means evaluation metrics
+   * Quarto YAML configuration for navigation
+   * Markdown syntax for citations and images
+   * Deployment commands for Georgetown domains
+   * Debugging MANY errors throughout
+   * Best approaches for coding certain things
+   * Fed Claude sections of my code to identify syntax errors and logic issues
+   * Created EDA visualizations with guidance on:
+     * Color scheme selection for readability
+     * Choosing appropriate plot types for different analyses
+     * matplotlib/seaborn syntax for specific chart types
+
+## Technical Explanations
+
+* Clarified differences between classification algorithms
+* Better explained model evaluation metrics 
+* Helped interpret PCA variance with explaination
+* Discussed clustering quality assessment
+
+## General
+
+* Timeline planning for realistic project schedule
+* Documentation structure suggestions
+
+
