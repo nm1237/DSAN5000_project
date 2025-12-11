@@ -45,45 +45,45 @@ title: "Progress Log"
 
 ## Progress Timeline
 
-**11-20-2024**
+**11-20-2025**
 
 * [x] Selected movie box office prediction as project topic
 * [x] Chose TMDB API as data source
 
-**11-22-2024**
+**11-22-2025**
 
 * [x] Started literature review 
 
-**11-27-2024**
+**11-27-2025**
 
 * [x] Wrote Python script to collect TMDB data
 * [x] **GOAL: Finish data collection**
 
-**11-30-2024**
+**11-30-2025**
 
 * [x] Cleaned data 
 * [x] Engineered features 
 
-**12-05-2024**
+**12-05-2025**
 
 * [x] Completed EDA with visualizations
 * [x] Found budget-revenue correlation 
 * [x] **GOAL: Finish EDA**
 
-**12-08-2024**
+**12-08-2025**
 
 * [x] Performed K-means clustering (k=4) and PCA
 * [x] Identified four movie archetypes
 * [x] **GOAL: Finish unsupervised learning**
 
-**12-09-2024**
+**12-09-2025**
 
 * [x] Trained classification models 
 * [x] Analyzed feature importance
 * [x] Deployed initial website
 * [x] **GOAL: Finish supervised learning**
 
-**12-10-2024**
+**12-10-2025**
 
 * [x] COMPLETED literature review writing
 * [x] Wrote landing page and report
