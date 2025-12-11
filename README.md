@@ -1,7 +1,2 @@
 # Hollywood's $100 Million Gamble: Can AI Predict Box Office Hits?
-
-**Author:** Noelle Martell  
-
-## Overview
-
 This project uses machine learning to predict movie profitability using pre-release information. The analysis examines 2,691 films from TMDB, applying supervised learning and unsupervised learning to understand what drives box office success.
