@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>instructions – DSAN-5000: Project</title>
+<title>Data Collection – DSAN-5000: Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -147,113 +143,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
-  <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
-  <li><a href="#start-collecting-data" id="toc-start-collecting-data" class="nav-link" data-scroll-target="#start-collecting-data">Start collecting data:</a></li>
-  <li><a href="#saving-the-raw-data" id="toc-saving-the-raw-data" class="nav-link" data-scroll-target="#saving-the-raw-data">Saving the raw data</a></li>
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements:</a></li>
-  </ul></li>
-  <li><a href="#what-do-include-on-this-page" id="toc-what-do-include-on-this-page" class="nav-link" data-scroll-target="#what-do-include-on-this-page">What do include on this page</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Collection</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instruction once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
-<p>In the provide repo, these subsections have been included in the <code>data-collection</code> file as separate <code>.qmd</code> files that can be embedded using the <code>{{&lt; include &gt;}}</code> tag.</p>
-</section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>On this page, you will focus on <strong>data collection</strong>, which is an essential step for future analysis. You should have already selected a specific data-science question that can be addressed in a data-driven way.</p>
-<p>It is recommended that you focus on one or two of the following data formats, <strong>text</strong>, <strong>tabular</strong>, <strong>image</strong>, <strong>geospatial</strong>, or <strong>network</strong> data.</p>
-<p><strong>Tabular</strong> (e.g.&nbsp;CSV files) and <strong>text</strong> formats are highly recommended, as these are covered most thoroughly in the course. Deviating from these formats may require additional work on your end. Please avoid <strong>timeseries</strong> data formats, as these require special methods not covered in the course. You can include as many additional formats as you want. Your project will revolve around the data you gather and will include data collection, analysis, visualization, and storytelling.</p>
-</section>
-<section id="start-collecting-data" class="level2">
-<h2 class="anchored" data-anchor-id="start-collecting-data">Start collecting data:</h2>
-<p>Begin gathering your data and document the methods and sources on the <strong>Data Collection</strong> page of your project. Include screenshots or example tables to illustrate the data collection process without displaying entire datasets. Ensure <strong>transparency</strong> so anyone can replicate your work.</p>
-</section>
-<section id="saving-the-raw-data" class="level2">
-<h2 class="anchored" data-anchor-id="saving-the-raw-data">Saving the raw data</h2>
-<ul>
-<li>During the collection phase, save the collected data locally to the <code>data/raw-data</code> folder, in the root of the project, for later processing. (Do not sync this folder to GitHub.)</li>
-<li>Remember, the “raw data” should typically be left “pristine”, to ensure replicability.</li>
-<li>Later when you clean the data, you should save the cleaned data to the <code>data/processed-data</code> folder, in the root of the project.</li>
-<li>You should also save files you download manually from online to this folder</li>
-</ul>
-</section>
-<section id="requirements" class="level2">
-<h2 class="anchored" data-anchor-id="requirements">Requirements:</h2>
-<ul>
-<li>Your data must be relevant to the project’s overall goals and help solve your research questions.</li>
-<li>You must use <strong>at least one API</strong> to collect your data.</li>
-<li>Ensure you have at least one <strong>regression target</strong>: a continuous quantity that can be used for regression prediction with other features.</li>
-<li>Ensure you have at least one <strong>binary classification target</strong>: a two-class (A,B) label that can be predicted using other features.</li>
-<li>Ensure you have at least one <strong>multiclass-classification target</strong>: a multi-class (A,B,C …) label that can be predicted using other features.</li>
-<li><strong>Do not use a Kaggle topic</strong>—this project is meant to simulate a real-world project. Kaggle datasets are typically too clean and have already been prepped for analysis, which doesn’t align with the project’s goals.</li>
-</ul>
-<p>Focus on data that tells a compelling story and supports the techniques covered in the class (e.g., clustering, classification, regression).</p>
-</section>
-</section>
-<section id="what-do-include-on-this-page" class="level1">
-<h1>What do include on this page</h1>
-<p>To ensure clarity and transparency throughout your project, your data collection documentation should include the following:</p>
-<ol start="0" type="1">
-<li><p><strong>Include all code used for data collection</strong> in the notebook below</p></li>
-<li><p><strong>Data Source Information</strong></p>
-<ul>
-<li>Specify where the data comes from, whether public datasets, APIs, or original collection.</li>
-<li>Provide links to datasets or API documentation and explain their relevance to the project.</li>
-</ul></li>
-<li><p><strong>Data Collection Methods</strong></p>
-<ul>
-<li>If you used an API or web scraping, explain the tools (e.g., <code>BeautifulSoup</code>, <code>Selenium</code>) and the process.</li>
-<li>Include links to your code for replicating data collection.</li>
-</ul></li>
-<li><p><strong>Data Structure and Format</strong></p>
-<ul>
-<li>Describe the structure of your raw data (e.g., rows, columns, data types) and its format (CSV, JSON, etc.).</li>
-</ul></li>
-<li><p><strong>Linking to Data</strong></p>
-<ul>
-<li>Include links to the <strong>raw dataset</strong>, ensuring transparency and allowing replication.</li>
-</ul></li>
-<li><p><strong>Code and Reproducibility</strong></p>
-<ul>
-<li>Link to all relevant code, including data collection , with clear documentation to enable replication.</li>
-</ul></li>
-<li><p><strong>Transparency and Replicability</strong></p>
-<ul>
-<li>Ensure your entire workflow is transparent and reproducible by linking all data, code, and documentation. This allows others to follow your process from start to finish.</li>
-</ul></li>
-</ol>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

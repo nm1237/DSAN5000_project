@@ -20,10 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +103,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -92,10 +130,6 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
@@ -152,13 +186,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#general-comments" id="toc-general-comments" class="nav-link" data-scroll-target="#general-comments">General comments:</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
+  <li><a href="#data-quality-issues" id="toc-data-quality-issues" class="nav-link" data-scroll-target="#data-quality-issues">Data Quality Issues</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
+  <li><a href="#validation-filtering" id="toc-validation-filtering" class="nav-link" data-scroll-target="#validation-filtering">Validation Filtering</a></li>
   </ul></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#loading-raw-data" id="toc-loading-raw-data" class="nav-link" data-scroll-target="#loading-raw-data">Loading Raw Data</a></li>
+  <li><a href="#checking-data-quality" id="toc-checking-data-quality" class="nav-link" data-scroll-target="#checking-data-quality">Checking Data Quality</a></li>
+  <li><a href="#feature-engineering-1" id="toc-feature-engineering-1" class="nav-link" data-scroll-target="#feature-engineering-1">Feature Engineering</a></li>
+  <li><a href="#filtering-invalid-records" id="toc-filtering-invalid-records" class="nav-link" data-scroll-target="#filtering-invalid-records">Filtering Invalid Records</a></li>
+  <li><a href="#saving-cleaned-dataset" id="toc-saving-cleaned-dataset" class="nav-link" data-scroll-target="#saving-cleaned-dataset">Saving Cleaned Dataset</a></li>
+  </ul></li>
+  <li><a href="#summary-and-results" id="toc-summary-and-results" class="nav-link" data-scroll-target="#summary-and-results">Summary and Results</a></li>
   </ul>
 </nav>
     </div>
@@ -185,84 +230,603 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you on this page will be specific you your project and data. Some things might “make more sense” on other pages, depending on your workflow, for example, you might feel that normalization and scaling should be included in a later section, dealing with machine learning, rather than here, that is totally fine. Organize your project in the way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Data cleaning is the process of identifying and correcting quality issues in raw data to prepare it for analysis. The purpose of performing data cleaning on this dataset is to remove invalid records, handle missing information, and engineer features necessary for machine learning models.</p>
+<p>The raw data from TMDB contained 2,812 movies, but several data quality issues made portions unsuitable for analysis. I identified unrealistic financial values, missing cast information, and statistical outliers requiring removal. Beyond addressing quality issues, I engineered five new features that didn’t exist in the raw data but are essential for profitability analysis.</p>
+<p>The goal was to transform the raw dataset into a clean, analysis-ready format with complete records and meaningful features. The cleaning process involved validating financial data, filtering problematic records, and creating derived features like ROI, success categories, budget tiers, and seasonal indicators.</p>
+<p>Below is an outline of the cleaning approach:</p>
+<section id="data-quality-issues" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-issues">Data Quality Issues</h2>
+<p>The raw dataset had several problems requiring attention:</p>
+<p><strong>Unrealistic Financial Values:</strong> Some movies showed budgets under $1 million or revenues under $1,000, likely representing data entry errors or incomplete records.</p>
+<p><strong>Statistical Outliers:</strong> A handful of records showed ROI values exceeding 100x, representing extreme outliers that would distort analysis.</p>
+<p><strong>Missing Information:</strong> Some records lacked complete cast or production company information needed for popularity-based analysis.</p>
 </section>
-<section id="general-comments" class="level2">
-<h2 class="anchored" data-anchor-id="general-comments">General comments:</h2>
-<ul>
-<li><strong>Iterative Process</strong>: Data cleaning is often not a one-time process. As your analysis progresses, you may need to revisit the cleaning phase, and re-run the code, to adjust to new insights or requirements.</li>
-<li><strong>Clarity and Reproducibility</strong>: Ensure your documentation is clear and thorough. Others should be able to follow your steps and achieve the same results.</li>
-<li><strong>Visualizations</strong>: Use before-and-after visualizations to illustrate the impact of your cleaning steps, making the process more intuitive and transparent.</li>
-</ul>
-<p>By the end of this phase, your cleaned data should be well-documented and ready for further stages, such as <strong>Exploratory Data Analysis (EDA)</strong> and <strong>Machine Learning</strong>.</p>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h3>
+<p>I created five new features before applying validation filters, ensuring derived metrics were available for filtering criteria.</p>
+<p><strong>ROI Calculation:</strong> I calculated return on investment by dividing revenue by budget, providing the primary profitability metric.</p>
+<p><strong>Binary Profitability:</strong> I created a binary indicator marking whether films earned more than they cost.</p>
+<p><strong>Success Categories:</strong> I classified films into four performance tiers (Bomb, Modest, Hit, Blockbuster) based on ROI thresholds.</p>
+<p><strong>Budget Tiers:</strong> I grouped films by production budget into four spending categories (Low, Medium, High, Blockbuster) reflecting industry breakpoints.</p>
+<p><strong>Release Seasons:</strong> I categorized release months into three seasonal periods (Fall, Holiday, Summer) reflecting industry release patterns.</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>The <strong>Data Cleaning</strong> page of your portfolio is where you document the process of transforming your raw data into a usable format. Data cleaning is essential for ensuring the quality of your analysis, and this page should serve as a clear and reproducible guide for anyone reviewing your work. It also provides transparency, allowing others to trace the steps you took to prepare your data.</p>
-<p>The following is a guide to help you get started with possible thing to address on this page .</p>
-<ul>
-<li><strong>Description of the Data Cleaning Process</strong>: Explain the steps you took to clean and preprocess the data.</li>
-<li><strong>Code Documentation</strong>: Provide the code used in the data cleaning process (link to GitHub or embed the code directly).</li>
-<li><strong>Provide examples of data before and after cleaning</strong>: e.g.&nbsp;with df.head() or df.describe()</li>
-<li><strong>Raw and Cleaned Data Links</strong>: Ensure your page links to both the original (raw) dataset and the cleaned dataset. (please keep organized and store the cleaned data in <code>data/processed-data</code>, or similar location which doesn’t get synced to GitHub)</li>
-</ul>
-<p>Possible things to include:</p>
-<p><strong>Introduction to Data Cleaning</strong>:</p>
-<ul>
-<li>Provide a brief explanation of the data cleaning phase, its importance in preparing the data for further analysis (EDA, modeling), and its iterative nature.</li>
-<li>Mention that data cleaning may need to be revisited as the project evolves and analysis goals change.</li>
-</ul>
-<p><strong>Managing Missing Data</strong>:</p>
-<ul>
-<li><strong>Identify Missing Values</strong>: Explain how you identified missing data and where it occurred.</li>
-<li><strong>Handling Missing Data</strong>: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).</li>
-<li><strong>Visualize Missing Data</strong>: Include visualizations (e.g., heatmaps) showing missing values before and after handling them.</li>
-</ul>
-<p><strong>Outlier Detection and Treatment</strong>:</p>
-<ul>
-<li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
-<li><strong>Addressing Outliers</strong>: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).</li>
-<li><strong>Visualize Outliers</strong>: Use visualizations (e.g., box plots) to show how outliers were managed.</li>
-</ul>
-<p><strong>Data Type Correction and Formatting</strong>:</p>
-<ul>
-<li><strong>Review Data Types</strong>: Summarize the types of variables (numerical, categorical, date-time, etc.) and ensure they are correctly formatted.</li>
-<li><strong>Transformation</strong>: Document any transformations performed, such as converting date formats, handling categorical variables, or encoding labels.</li>
-<li><strong>Impact of Changes</strong>: Briefly explain why these changes were necessary for accurate analysis.</li>
-</ul>
-<p><strong>Normalization and Scaling</strong>:</p>
-<ul>
-<li><strong>Data Distribution Analysis</strong>: Check and discuss the distribution of numerical variables (e.g., skewness).</li>
-<li><strong>Normalization Techniques</strong>: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).</li>
-<li><strong>Before-and-After Visualizations</strong>: Provide visualizations comparing the data before and after scaling or normalization.</li>
-</ul>
-<p><strong>Subsetting the Data</strong>:</p>
-<ul>
-<li><strong>Data Filtering</strong>: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).</li>
-<li><strong>Rationale</strong>: Justify why you chose to work with a particular subset of the data.</li>
-</ul>
+<section id="validation-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="validation-filtering">Validation Filtering</h3>
+<p>I applied quality thresholds to remove problematic records while maintaining sufficient sample size.</p>
+<p><strong>Budget Threshold:</strong> Films with budgets below $1 million were excluded as these likely represent incomplete data rather than theatrical releases.</p>
+<p><strong>Revenue Threshold:</strong> Revenue below $1,000 indicated data quality issues and was filtered out.</p>
+<p><strong>ROI Threshold:</strong> ROI above 100x represented statistical outliers and was removed.</p>
+<p><strong>Completeness Requirement:</strong> Records missing cast or production company information were dropped as these features are required for analysis.</p>
+</section>
 </section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
+<section id="loading-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-raw-data">Loading Raw Data</h2>
+<p>I collected 2,812 movies from TMDB with complete budget and revenue data. First, I loaded the raw data to examine its structure and identify any issues.</p>
+<div id="cell-4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/tmdb_movies_raw.csv'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># basic exploration</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset shape:"</span>, df.shape)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist())</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few rows:"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset shape: (2812, 18)
+
+Column names:
+['movie_id', 'title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'overview', 'genres', 'primary_genre', 'production_companies', 'cast', 'cast_popularity', 'director', 'release_year', 'release_month']
+
+First few rows:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">movie_id</th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">release_date</th>
+<th data-quarto-table-cell-role="th">budget</th>
+<th data-quarto-table-cell-role="th">revenue</th>
+<th data-quarto-table-cell-role="th">runtime</th>
+<th data-quarto-table-cell-role="th">vote_average</th>
+<th data-quarto-table-cell-role="th">vote_count</th>
+<th data-quarto-table-cell-role="th">popularity</th>
+<th data-quarto-table-cell-role="th">overview</th>
+<th data-quarto-table-cell-role="th">genres</th>
+<th data-quarto-table-cell-role="th">primary_genre</th>
+<th data-quarto-table-cell-role="th">production_companies</th>
+<th data-quarto-table-cell-role="th">cast</th>
+<th data-quarto-table-cell-role="th">cast_popularity</th>
+<th data-quarto-table-cell-role="th">director</th>
+<th data-quarto-table-cell-role="th">release_year</th>
+<th data-quarto-table-cell-role="th">release_month</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1084242</td>
+<td>Zootopia 2</td>
+<td>2025-11-26</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>107</td>
+<td>7.725</td>
+<td>344</td>
+<td>512.6445</td>
+<td>After cracking the biggest case in Zootopia's ...</td>
+<td>Animation|Family|Comedy|Adventure</td>
+<td>Animation</td>
+<td>Walt Disney Animation Studios</td>
+<td>Ginnifer Goodwin|Jason Bateman|Ke Huy Quan|For...</td>
+<td>5.07572</td>
+<td>Jared Bush</td>
+<td>2025</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>533533</td>
+<td>TRON: Ares</td>
+<td>2025-10-08</td>
+<td>220000000</td>
+<td>142073994</td>
+<td>119</td>
+<td>6.489</td>
+<td>539</td>
+<td>458.1744</td>
+<td>A highly sophisticated Program called Ares is ...</td>
+<td>Science Fiction|Adventure|Action</td>
+<td>Science Fiction</td>
+<td>Walt Disney Pictures|Sean Bailey Productions</td>
+<td>Jared Leto|Greta Lee|Evan Peters|Gillian Ander...</td>
+<td>4.80276</td>
+<td>Joachim Rønning</td>
+<td>2025</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1246049</td>
+<td>Dracula</td>
+<td>2025-07-30</td>
+<td>52000000</td>
+<td>25788866</td>
+<td>130</td>
+<td>7.100</td>
+<td>518</td>
+<td>248.9951</td>
+<td>When a 15th-century prince denounces God after...</td>
+<td>Horror|Fantasy|Romance</td>
+<td>Horror</td>
+<td>EuropaCorp|Luc Besson Production|TF1 Films Pro...</td>
+<td>Caleb Landry Jones|Zoë Bleu Sidel|Christoph Wa...</td>
+<td>3.63440</td>
+<td>Luc Besson</td>
+<td>2025</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1242898</td>
+<td>Predator: Badlands</td>
+<td>2025-11-05</td>
+<td>105000000</td>
+<td>175186920</td>
+<td>107</td>
+<td>7.379</td>
+<td>548</td>
+<td>190.6551</td>
+<td>Cast out from his clan, a young Predator finds...</td>
+<td>Action|Science Fiction|Adventure</td>
+<td>Action</td>
+<td>20th Century Studios|Lawrence Gordon Productio...</td>
+<td>Elle Fanning|Dimitrius Schuster-Koloamatangi|R...</td>
+<td>6.45618</td>
+<td>Dan Trachtenberg</td>
+<td>2025</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>967941</td>
+<td>Wicked: For Good</td>
+<td>2025-11-19</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>137</td>
+<td>6.700</td>
+<td>366</td>
+<td>142.4678</td>
+<td>As an angry mob rises against the Wicked Witch...</td>
+<td>Fantasy|Adventure|Romance</td>
+<td>Fantasy</td>
+<td>Universal Pictures|Marc Platt Productions|dentsu</td>
+<td>Ariana Grande|Cynthia Erivo|Jonathan Bailey|Je...</td>
+<td>6.13622</td>
+<td>Jon M. Chu</td>
+<td>2025</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="checking-data-quality" class="level2">
+<h2 class="anchored" data-anchor-id="checking-data-quality">Checking Data Quality</h2>
+<p>I checked for missing values and data quality issues that would need to be addressed during cleaning.</p>
+<div id="cell-6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing Values by Column:"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> df.isnull().<span class="bu">sum</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>missing_pct <span class="op">=</span> (df.isnull().<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(df)) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>missing_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missing Count'</span>: missing,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Percentage'</span>: missing_pct</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(missing_df[missing_df[<span class="st">'Missing Count'</span>] <span class="op">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Budget Statistics:"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'budget'</span>].describe())</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Revenue Statistics:"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'revenue'</span>].describe())</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Runtime Statistics:"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'runtime'</span>].describe())</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies by Year (last 10 years):"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'release_year'</span>].value_counts().sort_index().tail(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Missing Values by Column:
+============================================================
+                      Missing Count  Percentage
+production_companies              1    0.035562
+cast                              1    0.035562
+
+============================================================
+Budget Statistics:
+count    2.812000e+03
+mean     4.536952e+07
+std      5.817536e+07
+min      5.000000e+00
+25%      8.289067e+06
+50%      2.500000e+07
+75%      6.000000e+07
+max      5.839000e+08
+Name: budget, dtype: float64
+
+============================================================
+Revenue Statistics:
+count    2.812000e+03
+mean     1.590962e+08
+std      2.650542e+08
+min      1.000000e+00
+25%      1.155852e+07
+50%      5.614315e+07
+75%      1.788447e+08
+max      2.923706e+09
+Name: revenue, dtype: float64
+
+============================================================
+Runtime Statistics:
+count    2812.000000
+mean      112.612731
+std        22.772921
+min        56.000000
+25%        97.000000
+50%       108.000000
+75%       124.000000
+max       254.000000
+Name: runtime, dtype: float64
+
+============================================================
+Movies by Year (last 10 years):
+release_year
+2016     63
+2017     74
+2018     82
+2019     85
+2020     40
+2021     81
+2022     74
+2023     85
+2024    113
+2025    113
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="feature-engineering-1" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering-1">Feature Engineering</h2>
+<p>Before cleaning, I created the key features needed for analysis: ROI and profitability indicators to classify whether movies made money.</p>
+<div id="cell-8" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create ROI </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'roi'</span>] <span class="op">=</span> df[<span class="st">'revenue'</span>] <span class="op">/</span> df[<span class="st">'budget'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create profitability label</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'profitable'</span>] <span class="op">=</span> (df[<span class="st">'revenue'</span>] <span class="op">&gt;</span> df[<span class="st">'budget'</span>]).astype(<span class="bu">int</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create success categories</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_success(row):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    roi <span class="op">=</span> row[<span class="st">'roi'</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> roi <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Bomb'</span>  <span class="co"># lost money</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roi <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Modest'</span>  <span class="co"># made money but not much</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roi <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Hit'</span>  <span class="co"># strong performer</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Blockbuster'</span>  <span class="co"># massive success</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'success_category'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(categorize_success, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># create budget tiers</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_budget(budget):</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> budget <span class="op">&lt;</span> <span class="dv">20_000_000</span>:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Low'</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> budget <span class="op">&lt;</span> <span class="dv">80_000_000</span>:</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Medium'</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> budget <span class="op">&lt;</span> <span class="dv">150_000_000</span>:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'High'</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Blockbuster'</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'budget_tier'</span>] <span class="op">=</span> df[<span class="st">'budget'</span>].<span class="bu">apply</span>(categorize_budget)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># create release season</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_season(month):</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> month <span class="kw">in</span> [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]:</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Summer'</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> month <span class="kw">in</span> [<span class="dv">11</span>, <span class="dv">12</span>]:</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Holiday'</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> month <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Spring'</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Fall'</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'release_season'</span>] <span class="op">=</span> df[<span class="st">'release_month'</span>].<span class="bu">apply</span>(get_season)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"New Features Created:"</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROI range: </span><span class="sc">{</span>df[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Success Distribution:"</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'success_category'</span>].value_counts())</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Profitable: </span><span class="sc">{</span>df[<span class="st">'profitable'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>df[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Budget Tiers:"</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'budget_tier'</span>].value_counts())</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Release Seasons:"</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'release_season'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>New Features Created:
+ROI range: 0.00 to 12890.39
+
+Success Distribution:
+success_category
+Hit            936
+Blockbuster    706
+Bomb           690
+Modest         480
+Name: count, dtype: int64
+
+Profitable: 2118 (75.3%)
+
+Budget Tiers:
+budget_tier
+Low            1229
+Medium         1060
+High            299
+Blockbuster     224
+Name: count, dtype: int64
+
+Release Seasons:
+release_season
+Fall       911
+Summer     711
+Spring     649
+Holiday    541
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="filtering-invalid-records" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-invalid-records">Filtering Invalid Records</h2>
+<p>I noticed some extreme values likely representing data errors, such as budgets under $1,000 or revenues under $1,000. I filtered these out along with statistical outliers to ensure data quality.</p>
+<div id="cell-10" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before cleaning:"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min budget: $</span><span class="sc">{</span>df[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min revenue: $</span><span class="sc">{</span>df[<span class="st">'revenue'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remove unrealistic budget/revenue values</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'budget'</span>] <span class="op">&gt;=</span> <span class="dv">1_000_000</span>) <span class="op">&amp;</span>  <span class="co"># at least $1M budget</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'revenue'</span>] <span class="op">&gt;=</span> <span class="dv">1_000</span>) <span class="op">&amp;</span>      <span class="co"># at least $1k revenue</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'roi'</span>] <span class="op">&lt;</span> <span class="dv">100</span>)                <span class="co"># ROI less than 100x </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>].copy()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drop rows with missing cast or production companies</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df_clean.dropna(subset<span class="op">=</span>[<span class="st">'cast'</span>, <span class="st">'production_companies'</span>])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># recalculate features after cleaning</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'profitable'</span>] <span class="op">=</span> (df_clean[<span class="st">'revenue'</span>] <span class="op">&gt;</span> df_clean[<span class="st">'budget'</span>]).astype(<span class="bu">int</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">After cleaning:"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Movies removed: </span><span class="sc">{</span><span class="bu">len</span>(df) <span class="op">-</span> <span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min budget: $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min revenue: $</span><span class="sc">{</span>df_clean[<span class="st">'revenue'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max ROI: </span><span class="sc">{</span>df_clean[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">New Success Distribution:"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean[<span class="st">'success_category'</span>].value_counts())</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">New Profitable Rate: </span><span class="sc">{</span>df_clean[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before cleaning:
+Total movies: 2812
+Min budget: $5
+Min revenue: $1
+
+After cleaning:
+Total movies: 2691
+Movies removed: 121
+Min budget: $1,000,000
+Min revenue: $1,361
+Max ROI: 94.50
+
+New Success Distribution:
+success_category
+Hit            913
+Bomb           668
+Blockbuster    642
+Modest         468
+Name: count, dtype: int64
+
+New Profitable Rate: 75.1%</code></pre>
+</div>
+</div>
+</section>
+<section id="saving-cleaned-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="saving-cleaned-dataset">Saving Cleaned Dataset</h2>
+<p>With features engineered and outliers removed, I saved the cleaned dataset for use in exploratory analysis and modeling phases.</p>
+<div id="cell-12" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save cleaned data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">'../../data/processed-data/tmdb_movies_clean.csv'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_clean.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Clean data saved to: </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Final Dataset Summary:"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features: </span><span class="sc">{</span><span class="bu">len</span>(df_clean.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Date range: </span><span class="sc">{</span>df_clean[<span class="st">'release_year'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>df_clean[<span class="st">'release_year'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Budget range: $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss"> - $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Profitable rate: </span><span class="sc">{</span>df_clean[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All columns:"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean.columns.tolist())</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># show sample</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Sample of cleaned data:"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>df_clean[[<span class="st">'title'</span>, <span class="st">'budget'</span>, <span class="st">'revenue'</span>, <span class="st">'roi'</span>, <span class="st">'success_category'</span>, <span class="st">'budget_tier'</span>]].head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Clean data saved to: ../../data/processed-data/tmdb_movies_clean.csv
+
+Final Dataset Summary:
+Total movies: 2,691
+Features: 23
+Date range: 1934-2025
+Budget range: $1,000,000 - $583,900,000
+Profitable rate: 75.1%
+
+All columns:
+['movie_id', 'title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'overview', 'genres', 'primary_genre', 'production_companies', 'cast', 'cast_popularity', 'director', 'release_year', 'release_month', 'roi', 'profitable', 'success_category', 'budget_tier', 'release_season']
+
+Sample of cleaned data:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">budget</th>
+<th data-quarto-table-cell-role="th">revenue</th>
+<th data-quarto-table-cell-role="th">roi</th>
+<th data-quarto-table-cell-role="th">success_category</th>
+<th data-quarto-table-cell-role="th">budget_tier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Zootopia 2</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>4.280000</td>
+<td>Hit</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>TRON: Ares</td>
+<td>220000000</td>
+<td>142073994</td>
+<td>0.645791</td>
+<td>Bomb</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Dracula</td>
+<td>52000000</td>
+<td>25788866</td>
+<td>0.495940</td>
+<td>Bomb</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Predator: Badlands</td>
+<td>105000000</td>
+<td>175186920</td>
+<td>1.668447</td>
+<td>Modest</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Wicked: For Good</td>
+<td>150000000</td>
+<td>642000000</td>
+<td>4.280000</td>
+<td>Hit</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Frankenstein</td>
+<td>120000000</td>
+<td>480678</td>
+<td>0.004006</td>
+<td>Bomb</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Zootopia</td>
+<td>150000000</td>
+<td>1025521689</td>
+<td>6.836811</td>
+<td>Blockbuster</td>
+<td>Blockbuster</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Bugonia</td>
+<td>50000000</td>
+<td>34817177</td>
+<td>0.696344</td>
+<td>Bomb</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Demon Slayer: Kimetsu no Yaiba Infinity Castle</td>
+<td>20000000</td>
+<td>740400000</td>
+<td>37.020000</td>
+<td>Blockbuster</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Now You See Me: Now You Don't</td>
+<td>90000000</td>
+<td>159000154</td>
+<td>1.766668</td>
+<td>Modest</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="summary-and-results" class="level1">
+<h1>Summary and Results</h1>
+<p>The cleaning process successfully prepared the dataset for analysis.</p>
+<p><strong>Cleaning Statistics:</strong> - Starting records: 2,812 movies - Final records: 2,691 movies - Records removed: 121 (4.3%) - Original features: 18 - Engineered features: 5 - Total features: 23</p>
+<p><strong>Data Quality Improvements:</strong> - Budget range: $1 million to $584 million (realistic theatrical releases) - Revenue range: $1,000 to $2.8 billion (valid box office figures) - ROI range: 0.004 to 37.02 (removed extreme outliers) - Completeness: 100% of records have all required features</p>
+<p><strong>Engineered Features Created:</strong> - ROI provides the primary profitability metric for analysis - Binary profitability enables classification modeling - Success categories support multiclass classification - Budget tiers reveal spending level patterns - Release seasons capture timing effects</p>
+<p><strong>Dataset Characteristics:</strong> - Profitability rate: 75.1% (2,021 profitable films) - Date range: 1934-2025 (historical and recent releases) - Complete information: All records</p>
 
 
 </section>

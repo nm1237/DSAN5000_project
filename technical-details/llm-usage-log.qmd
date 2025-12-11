@@ -14,14 +14,14 @@ LLM tools were used in the following way for the tasks below
 ## Writing
 
 * Helped summarize long academic papers for literature review
-* Cleaned up my writing to sound more natural but still academic
-* Grammar checks and consistency edits
+* Cleaned up my writing
+* Grammar checks
 * Set up proper .bib file format for citations
 
 ## Code
 
 * **Claude was consulted for:**
-   * TMDB API pagination logic
+   * TMDB API key
    * Debugging data cleaning issues with missing values
    * scikit-learn syntax for train-test split and StandardScaler
    * Interpreting K-means evaluation metrics
@@ -30,8 +30,8 @@ LLM tools were used in the following way for the tasks below
    * Deployment commands for Georgetown domains
    * Debugging MANY errors throughout
    * Best approaches for coding certain things
-   * Fed Claude sections of my code to identify syntax errors and logic issues
-   * Created EDA visualizations with guidance on:
+   * Sections of my code to identify syntax errors and logic issues
+   * Creating EDA visualizations with guidance on:
      * Color scheme selection for readability
      * Choosing appropriate plot types for different analyses
      * matplotlib/seaborn syntax for specific chart types

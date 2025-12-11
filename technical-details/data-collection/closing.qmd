@@ -1,64 +1,32 @@
 # Summary
 
-## Collection Results
+The data collection process successfully gathered information on 2,812 movies from TMDB with complete budget and revenue data. The collection script queried 250 pages of results, processing thousands of individual movie records over approximately 3-4 hours.
 
-The data collection phase successfully gathered 2,812 movies from TMDB's database, spanning from 1934 to 2025. After applying the quality filters (requiring both budget and revenue data), the final dataset contained 2,691 complete records—a 95.7% retention rate. This high retention validates the initial query strategy of filtering for `with_budget=true` and `with_revenue=true` at the API level, rather than collecting everything and filtering later.
+**Collection Statistics:**
 
-The entire collection process ran for approximately 37 minutes with zero API errors or timeouts. The 0.25-second delay between requests proved conservative enough to avoid rate limiting while still maintaining reasonable collection speed.
+- Total movies collected: 2,812
+- Features per movie: 18
+- Date range: 1934-2025
+- API requests made: approximately 5,000+ (250 pages + individual details)
+- Collection time: approximately 37 mins
+- Error rate: Minimal (less than 1%)
 
-## Challenges and Design Decisions
+**Data Quality:**
 
-The primary challenge was balancing dataset size against data quality. TMDB contains millions of movie records, but many lack the financial data essential for box office prediction. Early exploration revealed that collecting without financial filters would result in 60-70% of records being unusable after cleaning—wasting both API quota and processing time.
+- All movies have non-zero budget and revenue values
+- All movies have at least 100 user votes
+- Cast information includes top 5 billed actors
+- Release dates successfully parsed into year and month
 
-The decision to prioritize quality over quantity meant accepting a smaller dataset (2,691 vs. a potential 10,000+ movies) in exchange for complete, analysis-ready records. This tradeoff proved worthwhile: every movie in the final dataset includes the 18 features needed for subsequent analysis, eliminating the need for imputation or dropping variables.
+**Files Created:**
 
-Another consideration was temporal coverage. The dataset spans 91 years, which introduces potential distribution shifts (e.g., inflation effects on budgets, changes in release strategies). This was anticipated and addressed in the data cleaning phase through feature engineering (ROI calculations, inflation adjustment considerations) and exploratory analysis (temporal trend examination).
+- Raw data saved to: `data/raw-data/tmdb_movies_raw.csv`
+- Format: CSV with 2,812 rows × 18 columns
 
-## Data Quality Assessment
+## Challenges
 
-The 121 records dropped during cleaning (4.3% of raw data) failed quality checks for one of three reasons:
-- Missing budget values despite API filters (likely database inconsistencies)
-- Zero or negative revenue values (data entry errors)
-- Extreme outliers flagged during initial validation (potential currency conversion issues)
+The data collection process encountered a few technical challenges. API rate limiting required careful timing between requests to avoid hitting usage caps. Some movies had incomplete cast or crew information requiring error handling. The biggest challenge was determining appropriate filtering criteria. Including all movies regardless of data completeness would have produced a larger dataset but introduced significant missing values. Filtering strictly for complete budget and revenue data reduced the dataset size but ensured every record could be used for financial analysis.
 
-These drops were acceptable given the remaining sample size. With 2,691 complete records, the dataset provides sufficient volume for training machine learning models while maintaining statistical validity for pattern detection across genres, time periods, and budget tiers.
+## Next Steps
 
-## Validation Against Benchmarks
-
-Comparing this dataset to existing box office prediction research:
-- **Zhang et al. (2024)**: Used 5,000 movies but reported significant missing data issues, requiring extensive imputation
-- **Tang et al. (2024)**: Worked with 3,200 movies from Chinese market only
-- **This project**: 2,691 movies with zero missing values in critical features, global market coverage
-
-The smaller but cleaner dataset positions this analysis favorably for model training. Missing data imputation can introduce bias and reduce model accuracy—this dataset avoids that tradeoff entirely.
-
-## Transition to Data Cleaning
-
-The raw dataset (`tmdb_movies_raw.csv`) serves as the foundation for the data cleaning phase, which involves:
-- Feature engineering (ROI calculation, success category classification)
-- Temporal feature extraction (release year, month, day of week)
-- Genre encoding and aggregation
-- Production company consolidation
-- Outlier detection and handling
-
-The cleaning phase will transform these 2,691 raw records into an analysis-ready dataset suitable for exploratory data analysis and machine learning model training. The completeness of the raw data means cleaning can focus on feature engineering and transformation rather than imputation or missing data handling.
-
-## Future Improvements
-
-If repeating this data collection with more time or resources, several enhancements could strengthen the dataset:
-
-**Temporal refresh**: TMDB updates movie data regularly (box office totals, ratings, metadata). Re-collecting data quarterly would capture these updates and provide temporal snapshots for longitudinal analysis.
-
-**Additional features**: The current collection focuses on TMDB's core metadata. Future iterations could incorporate:
-- Detailed cast/crew data (beyond top-billed names)
-- Production country and language metadata
-- Certification and content ratings
-- Distribution patterns (theatrical vs. streaming)
-
-**Expanded coverage**: The 2,691 movie threshold was chosen to balance API limits with project timeline. With TMDB's 1,000 requests/day limit, collecting 10,000+ movies would require multiple days but could provide richer training data for complex models.
-
-**Cross-validation with secondary sources**: While TMDB provides comprehensive data, financial figures (especially for older films) could be validated against Box Office Mojo or The Numbers to catch database inconsistencies.
-
-## Conclusion
-
-The data collection phase delivered a clean, complete dataset of 2,691 movies suitable for machine learning analysis. The decision to prioritize data quality over quantity—accepting a smaller dataset with zero missing values rather than a larger dataset requiring imputation—proved effective for downstream analysis. The collection process ran smoothly with no technical failures, and the resulting dataset provides strong foundation for exploring patterns in box office performance across nine decades of cinema.
+The raw dataset provides a solid foundation for analysis. The next phase involves cleaning this data to address any remaining quality issues and engineering additional features for machine learning models.

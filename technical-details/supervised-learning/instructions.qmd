@@ -1,57 +1,54 @@
-# Instructions 
+---
+title: "Supervised Learning"
+---
 
-`Note`: You should remove these instruction once you have read and understood them. They should not be included in your final submission.
+# Overview
 
-`Remember:` Exactly what do you put on this page will be specific you your project and data. Some things might "make more sense" on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.  
+Supervised learning is a type of machine learning that aims to fit the best model for predicting values of a labeled variable. The purpose of performing supervised learning on this data is to determine whether movie profitability can be predicted using features available before release, and to understand which factors most strongly influence box office success.
 
-## Suggested page structure
+I performed binary classification to predict whether films will be profitable (revenue exceeds budget) or unprofitable. Three classification algorithms were trained and compared: Logistic Regression, Random Forest, and Gradient Boosting. The model selection methods, evaluation metrics, and results are discussed in the sections below.
 
-Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:
-
-`Audience`:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts. 
-
-- **Introduction and Motivation:** Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.
-- **Overview of Methods:** Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.
-- **Code:** Include the code you used to implement your workflow.
-- **Summary and Interpretation of Results:** Summarize your findings, interpret the results, and discuss their technical implications.
-
-## What to address 
-
-The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.
-
-Please do some form of "Feature selection" in your project and include a section on it. Discuss the process you went through to select the features that you used in your model, this should be done for both classification models and regression models. What did you include and why? What did you exclude? What was the reasoning behind your decisions? This section can be included here, or you can make a new page in the dropdown menu for it.
-
-Please break this page into a "regression" section, "binary classification" section, and a "Multi-class classification" section. For each case you should try multiple methods, including those discussed in class, and compare and contrast their preformance and results. 
+Below is an outline of general information applied to all models:
 
 ## Data Preprocessing
 
-1. **Normalization or Standardization**: Apply techniques to scale the data appropriately.
-2. **Feature Selection or Extraction**: Identify and select the most relevant features for your analysis.
-3. **Encoding Categorical Variables**: Convert categorical variables into a suitable format for modeling.
+In order to be used in supervised learning, data must be cleaned, processed, and standardized following specific criteria. The following techniques were performed on the data:
+
+**Feature Selection** - I selected features available before a film's release: budget, budget tier, cast popularity, primary genre, release season, release year, and runtime. Post-release metrics like vote average and vote count were excluded since they aren't available during pre-production when investment decisions get made.
+
+**Target Variable** - The binary `profitable` indicator served as the classification target, where 1 indicates revenue exceeded budget and 0 indicates the film lost money.
+
+**Handling Categorical Variables** - Categorical variables (primary genre, budget tier, release season) were one-hot encoded to be represented as numerical variables and included in the supervised learning models.
+  - **What is one-hot encoding?**: A machine learning technique that converts categorical data into numerical data, denoted as 0 or 1. The levels of the categorical variable are pivoted so that each level becomes a column. If the row satisfies the categorical variable level, a 1 is input under that level's column, while the remaining levels fill with 0.
+
+**Standardization** - The data was scaled using Scikit-learn's StandardScaler, which applies z-score standardization to the data. This ensures all features contribute equally to model training regardless of their original scale.
+
+## Testing and Training Strategy
+
+All models used an 80-20 training-testing split with stratified sampling to maintain class balance. The dataset was split using Scikit-learn's `train_test_split` function, which randomly assigns 80% of the data to training and 20% to testing while preserving the proportion of profitable vs unprofitable films in both sets.
+
+I used 5-fold cross-validation during training to assess model stability and reduce overfitting risk.
 
 ## Model Selection
 
-1. **Model Rationale**: Explain the reasons for selecting specific models or algorithms.
-2. **Overview of Algorithms**: Provide a brief overview of the algorithms used 
+I trained three classification algorithms to compare their performance:
 
-## Training and Testing Strategy
+**Logistic Regression** - A linear model that predicts the probability of profitability using a logistic function. It serves as the baseline model and provides interpretable coefficients.
 
-1. **Split Methods**: Detail the splitting methods used (e.g., train-test split, cross-validation).
-2. **Dataset Proportions**: Specify the proportions used for splitting the dataset.
+**Random Forest** - An ensemble method that builds multiple decision trees and aggregates their predictions. It handles non-linear relationships well and provides feature importance rankings.
 
-## Model Evaluation Metrics
+**Gradient Boosting** - An ensemble method that builds trees sequentially, with each tree correcting errors from previous trees. It often achieves high accuracy but requires careful tuning.
 
-1. **Binary Classification Metrics**: Discuss metrics such as accuracy, precision, recall, F1 score, and ROC-AUC.
-2. **Multiclass Classification Metrics**: Include metrics such as confusion matrix and macro/micro F1 score.
-3. **Regression Metrics**: Explain metrics such as RMSE, MAE, and R-squared, parity plots, etc.
+## Evaluation Metrics
 
-## Results
+Model performance was assessed using multiple classification metrics:
 
-1. **Model Performance Summary**: Provide a summary of the model's performance.
-2. **Visualizations**: Include visualizations of results (e.g., ROC curves, feature importance plots).
+**Accuracy** - The percentage of correct predictions across all movies.
 
-## Discussion
+**Precision** - The proportion of movies predicted as profitable that actually were profitable. High precision means few false positives.
 
-1. **Result Interpretation**: Interpret the results obtained from the analysis.
-2. **Model Performance Comparison**: Compare the performance of different models.
-3. **Insights Gained**: Share insights learned from the analysis.
+**Recall** - The proportion of actually profitable movies that were correctly identified. High recall means few false negatives.
+
+**F1-Score** - The harmonic mean of precision and recall, balancing both metrics into a single score.
+
+For this application, recall is more important than precision. Studios want to avoid passing on films that would succeed (false negatives) more than they want to avoid greenlighting films that will fail (false positives).

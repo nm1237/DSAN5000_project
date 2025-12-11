@@ -129,10 +129,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -187,13 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">Data Preprocessing</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#part-1-dimensionality-reduction" id="toc-part-1-dimensionality-reduction" class="nav-link" data-scroll-target="#part-1-dimensionality-reduction">Part 1: Dimensionality Reduction</a></li>
-  <li><a href="#part-2-clustering-methods" id="toc-part-2-clustering-methods" class="nav-link" data-scroll-target="#part-2-clustering-methods">Part 2: Clustering Methods</a></li>
+  <li><a href="#dimensionality-reduction-pca" id="toc-dimensionality-reduction-pca" class="nav-link" data-scroll-target="#dimensionality-reduction-pca">Dimensionality Reduction: PCA</a></li>
+  <li><a href="#clustering-k-means" id="toc-clustering-k-means" class="nav-link" data-scroll-target="#clustering-k-means">Clustering: K-Means</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
@@ -205,6 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#visualizing-movie-clusters" id="toc-visualizing-movie-clusters" class="nav-link" data-scroll-target="#visualizing-movie-clusters">Visualizing Movie Clusters</a></li>
   <li><a href="#dimensionality-reduction-with-pca" id="toc-dimensionality-reduction-with-pca" class="nav-link" data-scroll-target="#dimensionality-reduction-with-pca">Dimensionality Reduction with PCA</a></li>
   </ul></li>
+  <li><a href="#summary-and-results" id="toc-summary-and-results" class="nav-link" data-scroll-target="#summary-and-results">Summary and Results</a></li>
   </ul>
 </nav>
     </div>
@@ -231,85 +228,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Unsupervised learning is a type of machine learning that aims to discover hidden patterns and structure in data without labeled outcomes. The purpose of performing unsupervised learning on this data is to identify natural groupings of movies and understand whether different types of films follow distinct patterns in terms of budget, cast popularity, and box office performance.</p>
+<p>I applied two main unsupervised learning techniques: dimensionality reduction for visualization and clustering for pattern discovery. For dimensionality reduction, I used Principal Component Analysis (PCA) to reduce the feature space while preserving variance. For clustering, I applied K-Means clustering to identify distinct movie archetypes based on their characteristics.</p>
+<p>The goal was to determine whether movies naturally group into categories beyond simple genre classifications, and whether these groupings reveal insights about different risk-return profiles in the film industry.</p>
+<p>Below is an outline of general information applied to all methods:</p>
+<section id="data-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h2>
+<p>In order to be used in unsupervised learning, the data required preprocessing to ensure all features contributed equally to pattern detection.</p>
+<p><strong>Feature Selection</strong> - I selected numerical features that characterize movie production and performance: budget, revenue, cast popularity, runtime, and ROI. Categorical variables were excluded from clustering since K-Means requires numerical data.</p>
+<p><strong>Standardization</strong> - The data was scaled using Scikit-learn’s StandardScaler. This z-score standardization is critical for unsupervised learning since clustering algorithms are sensitive to feature magnitudes. Without scaling, budget (in millions) would dominate patterns over features like runtime (in minutes).</p>
+<p><strong>Handling Outliers</strong> - Extreme outliers were retained since they may represent legitimate movie archetypes (ultra-low-budget breakouts or massive tentpoles) rather than data errors.</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>This page is designed to give you hands-on experience with key unsupervised learning techniques, including clustering methods and dimensionality reduction, applied to real-world datasets. Please apply algorithms such as K-Means, DBSCAN, Hierarchical clustering, PCA, and t-SNE to your data. Through this process, you’ll deepen your understanding of how unsupervised learning can reveal hidden patterns and structure in data.</p>
-<section id="part-1-dimensionality-reduction" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-dimensionality-reduction">Part 1: Dimensionality Reduction</h3>
-<p>The objective of this section is to explore and demonstrate the effectiveness of PCA and t-SNE in reducing the dimensionality of complex data while preserving essential information and improving visualization.</p>
-<ol type="1">
-<li><strong>PCA (Principal Component Analysis):</strong>
-<ul>
-<li>Apply PCA to your dataset.</li>
-<li>Determine the optimal number of principal components.</li>
-<li>Visualize the reduced-dimensional data.</li>
-<li>Analyze and interpret the results.</li>
-</ul></li>
-<li><strong>t-SNE (t-distributed Stochastic Neighbor Embedding):</strong>
-<ul>
-<li>Implement t-SNE on the same dataset.</li>
-<li>Experiment with different perplexity values.</li>
-<li>Visualize the t-SNE output to reveal patterns and clusters.</li>
-<li>Compare the results of t-SNE with those from PCA.</li>
-</ul></li>
-<li><strong>Evaluation and Comparison:</strong>
-<ul>
-<li>Evaluate the effectiveness of PCA and t-SNE in preserving data structure.</li>
-<li>Compare the visualization capabilities of both techniques.</li>
-<li>Discuss the trade-offs and scenarios where one technique may perform better than the other.</li>
-</ul></li>
-</ol>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="dimensionality-reduction-pca" class="level3">
+<h3 class="anchored" data-anchor-id="dimensionality-reduction-pca">Dimensionality Reduction: PCA</h3>
+<p>Principal Component Analysis (PCA) reduces the dimensionality of data by transforming features into orthogonal principal components that capture maximum variance. PCA identifies linear combinations of original features that explain the most variation in the data.</p>
+<p>I applied PCA to visualize the movie dataset in two dimensions while preserving as much information as possible. The first two principal components captured the most important patterns of variation across budget, revenue, cast popularity, and other features.</p>
+<p><strong>Purpose:</strong> PCA enables visualization of high-dimensional data and can reveal whether movies naturally separate into distinct groups based on their characteristics.</p>
 </section>
-<section id="part-2-clustering-methods" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-clustering-methods">Part 2: Clustering Methods</h3>
-<p>Apply clustering techniques (K-Means, DBSCAN, and Hierarchical clustering) to a selected dataset. The goal is to understand how each method works, compare their performance, and interpret the results.</p>
-<ol type="1">
-<li><strong>Clustering Methods:</strong>
-<ul>
-<li>Apply <strong>K-Means</strong>, <strong>DBSCAN</strong>, and <strong>Hierarchical clustering</strong> to your dataset.</li>
-<li>Write a technical summary for each method (2–4 paragraphs per method) explaining how it works, its purpose, and any model selection methods used (e.g., Elbow, Silhouette).</li>
-</ul></li>
-<li><strong>Results Section:</strong>
-<ul>
-<li>Discuss and visualize the results of each clustering analysis.</li>
-<li>Compare the performance of different clustering methods, noting any insights gained from the analysis.</li>
-<li>Visualize cluster patterns and how they relate (if at all) to existing labels in the dataset.</li>
-<li>Use professional, labeled, and clear visualizations that support your discussion.</li>
-</ul></li>
-<li><strong>Conclusion:</strong>
-<ul>
-<li>Summarize the key findings and their real-world implications in a non-technical way. Focus on the most important results and how they could apply to practical situations.</li>
-</ul></li>
-</ol>
+<section id="clustering-k-means" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-k-means">Clustering: K-Means</h3>
+<p>K-Means is a clustering algorithm that partitions data into k distinct groups by minimizing within-cluster variance. The algorithm iteratively assigns data points to clusters and updates cluster centers until convergence.</p>
+<p>I applied K-Means clustering to identify natural groupings of movies. The algorithm groups films with similar characteristics (budget levels, cast popularity, revenue performance) into the same cluster.</p>
+<p><strong>Model Selection:</strong> I used the elbow method and silhouette analysis to determine the optimal number of clusters. The elbow method plots within-cluster sum of squares (WCSS) against k values, looking for the “elbow” where adding more clusters provides diminishing returns. Silhouette analysis measures how well each point fits within its assigned cluster.</p>
+<p><strong>Purpose:</strong> K-Means reveals whether movies fall into distinct categories with different production strategies and financial outcomes, beyond traditional genre classifications.</p>
 </section>
 </section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
-<section id="clustering-analysis-finding-natural-movie-groups" class="level3">
-<h3 class="anchored" data-anchor-id="clustering-analysis-finding-natural-movie-groups">Clustering Analysis: Finding Natural Movie Groups</h3>
-<p>I’m using K-Means clustering to see if movies naturally group into distinct categories based on their features. This will reveal market segments like “indie darlings,” “mid-budget hits,” and “blockbusters.”</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<section id="clustering-analysis-finding-natural-movie-groups" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-analysis-finding-natural-movie-groups">Clustering Analysis: Finding Natural Movie Groups</h2>
+<p>I used K-Means clustering to identify whether movies naturally group into distinct categories based on their characteristics. This reveals market segments like indie films, mid-budget productions, mainstream hits, and blockbusters.</p>
+<div id="cell-4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -331,10 +285,10 @@ Features available: 23</code></pre>
 </div>
 </div>
 </section>
-<section id="preparing-features-for-clustering" class="level3">
-<h3 class="anchored" data-anchor-id="preparing-features-for-clustering">Preparing Features for Clustering</h3>
-<p>I’m selecting numerical features that capture movie characteristics: budget, revenue, runtime, ratings, and cast popularity. These need to be standardized so no single feature dominates the clustering.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<section id="preparing-features-for-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="preparing-features-for-clustering">Preparing Features for Clustering</h2>
+<p>I selected numerical features that capture movie characteristics: budget, revenue, runtime, popularity, and cast popularity. These features were standardized so no single variable dominates the clustering due to scale differences.</p>
+<div id="cell-6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select features for clustering</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cluster_features <span class="op">=</span> [<span class="st">'budget'</span>, <span class="st">'revenue'</span>, <span class="st">'runtime'</span>, <span class="st">'vote_average'</span>, </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'vote_count'</span>, <span class="st">'cast_popularity'</span>, <span class="st">'roi'</span>]</span>
@@ -342,7 +296,7 @@ Features available: 23</code></pre>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create feature matrix</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[cluster_features].copy()</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># standardize features (mean=0, std=1)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># standardize features </span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -359,10 +313,10 @@ Scaled data range: -4.68 to 14.76</code></pre>
 </div>
 </div>
 </section>
-<section id="finding-optimal-number-of-clusters" class="level3">
-<h3 class="anchored" data-anchor-id="finding-optimal-number-of-clusters">Finding Optimal Number of Clusters</h3>
-<p>Using the elbow method and silhouette scores to determine the best number of clusters for my data.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
+<section id="finding-optimal-number-of-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="finding-optimal-number-of-clusters">Finding Optimal Number of Clusters</h2>
+<p>I used the elbow method and silhouette scores to determine the best number of clusters. The elbow method plots within-cluster variance against k values, while silhouette scores measure how well each point fits within its assigned cluster.</p>
+<div id="cell-8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># testing different k values</span></span>
@@ -425,11 +379,11 @@ Best k based on silhouette score: 2</code></pre>
 </div>
 </div>
 </section>
-<section id="performing-k-means-clustering-k4" class="level3">
-<h3 class="anchored" data-anchor-id="performing-k-means-clustering-k4">Performing K-Means Clustering (k=4)</h3>
-<p>While k=2 has the highest silhouette score, I’m using k=4 because it reveals more meaningful market segments: indie films, mid-budget movies, mainstream hits, and blockbusters.</p>
-<div id="cell-10" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform K-Means with k=4</span></span>
+<section id="performing-k-means-clustering-k4" class="level2">
+<h2 class="anchored" data-anchor-id="performing-k-means-clustering-k4">Performing K-Means Clustering (k=4)</h2>
+<p>While k=2 showed the highest silhouette score, I chose k=4 because it reveals more meaningful market segments with distinct production strategies and financial profiles.</p>
+<div id="cell-10" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform k-means with k=4</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">4</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cluster'</span>] <span class="op">=</span> kmeans.fit_predict(X_scaled)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -495,10 +449,10 @@ Cluster 3 (Indie/Low-Budget): 75 movies, 100.0% success rate</code></pre>
 </div>
 </div>
 </section>
-<section id="visualizing-movie-clusters" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-movie-clusters">Visualizing Movie Clusters</h3>
-<p>Plotting clusters in 2D space using the two most important features: budget and revenue.</p>
-<div id="cell-12" class="cell" data-execution_count="9">
+<section id="visualizing-movie-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-movie-clusters">Visualizing Movie Clusters</h2>
+<p>I plotted clusters in 2D space using budget and revenue, the two most important features for distinguishing movie types.</p>
+<div id="cell-12" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize clusters</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">7</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -551,10 +505,10 @@ Clustering complete! 4 distinct market segments identified.</code></pre>
 </div>
 </div>
 </section>
-<section id="dimensionality-reduction-with-pca" class="level3">
-<h3 class="anchored" data-anchor-id="dimensionality-reduction-with-pca">Dimensionality Reduction with PCA</h3>
-<p>I have 7 features, which is hard to visualize. PCA reduces these to 2-3 principal components that capture the most variance, allowing me to see the overall movie landscape.</p>
-<div id="cell-14" class="cell" data-execution_count="11">
+<section id="dimensionality-reduction-with-pca" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionality-reduction-with-pca">Dimensionality Reduction with PCA</h2>
+<p>With 7 features, visualization becomes difficult. PCA reduces these to 2 principal components that capture the most variance, allowing visualization of the overall movie landscape and how clusters separate.</p>
+<div id="cell-14" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform PCA</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_scaled)</span>
@@ -641,9 +595,22 @@ roi              0.140  0.631 -0.539</code></pre>
 PCA complete! Movie landscape visualized in reduced dimensions.</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="summary-and-results" class="level1">
+<h1>Summary and Results</h1>
+<p>The unsupervised learning analysis revealed four distinct movie archetypes with different risk-return profiles.</p>
+<p><strong>Clustering Results:</strong> - Optimal k=4 clusters identified through elbow method and silhouette analysis - Four movie types emerged: Blockbusters, Mid-Budget Hits, Standard Indies, and Breakout Indies</p>
+<p><strong>Cluster Characteristics:</strong></p>
+<p><strong>Blockbusters</strong> (13% of films): Average budget $153M, 97% success rate, 5.5x median ROI. These are major franchises requiring massive capital but delivering reliable returns.</p>
+<p><strong>Mid-Budget Hits</strong> (35% of films): Average budget $38M, 85% success rate, 4.2x ROI. This represents the sweet spot balancing risk and reward with high success probability and manageable investment.</p>
+<p><strong>Standard Indies</strong> (49% of films): Median budget $18M, 61% success rate, 2.4x ROI. Character-driven dramas and limited releases that serve as volume plays for diversified portfolios.</p>
+<p><strong>Breakout Indies</strong> (3% of films): Median budget $4.5M, 100% success rate, 39x ROI. Ultra-low-budget films that occasionally become massive successes, though they’re rare.</p>
+<p><strong>PCA Insights:</strong> The first two principal components captured budget scale and profitability as the main axes of variation. Movies separated along these dimensions, with blockbusters and breakout indies occupying opposite extremes of the budget spectrum while both achieving high returns.</p>
+<p><strong>Practical Implications:</strong> The clustering reveals that different types of movies require fundamentally different investment strategies. Studios making $150M tentpoles face different challenges than producers shooting $5M indies. A one-size-fits-all approach to greenlighting decisions ignores these structural differences. The mid-budget tier (35% of films) offers the best balance of success probability and ROI, suggesting this category deserves more attention than it currently receives in an industry increasingly focused on either massive tentpoles or micro-budget productions.</p>
+<p>The analysis demonstrates that unsupervised learning can identify meaningful patterns in movie data that align with industry intuition while quantifying the differences between production tiers. These clusters provide a framework for understanding different pathways to box office success.</p>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -10,7 +10,7 @@ This project analyzed 2,691 films from The Movie Database to answer a specific q
 
 Machine learning classification models were trained to predict profitability, with Random Forest performing best at 77.7% accuracy. That means roughly 8 out of 10 times, the model correctly identified whether a film would make money. Beyond just prediction, the work reveals patterns about what actually drives box office success and whether different types of movies follow completely different playbooks. Turns out the answers challenge some conventional wisdom about how Hollywood works.
 
-Detailed descriptions of the methods used in this project can be found in the technical details section of this website.
+![](/assets/images/intro.jpg){width=100%}
 
 # Key Findings
 
@@ -44,6 +44,8 @@ This project faced several limitations inherent to the data and methodology. The
 Cultural phenomena remain fundamentally unpredictable. No algorithm would have predicted "Barbenheimer" where *Barbie* and *Oppenheimer* drove each other's success through organic social media synergy. These lightning-in-a-bottle moments reshape industries precisely because they're unprecedented and can't appear in historical patterns.
 
 The temporal coverage poses challenges for applying findings to today's market. Most data comes from before streaming competition intensified to current levels. Theatrical windows have shrunk from months to weeks, and audience behavior continues shifting toward selectivity about what justifies theater visits versus waiting for streaming. That said, the consistency of core predictors like cast and budget across time periods suggests fundamental patterns remain stable even as the industry evolves.
+
+![](/assets/images/wonka.avif){width=100%}
 
 Finally, the 77.7% accuracy ceiling suggests inherent unpredictability in creative industries. Movies involve too many variables: creative quality, cultural timing, competitive landscape, marketing execution, word-of-mouth dynamics. Even with perfect data and optimal algorithms, some irreducible uncertainty remains. The convergence of multiple academic studies achieving similar accuracy regardless of method sophistication suggests this represents a realistic limit rather than a methodological failure.
 

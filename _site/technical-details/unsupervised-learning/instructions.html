@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>instructions – DSAN-5000: Project</title>
+<title>Unsupervised Learning – DSAN-5000: Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -152,90 +148,67 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">Data Preprocessing</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#part-1-dimensionality-reduction" id="toc-part-1-dimensionality-reduction" class="nav-link" data-scroll-target="#part-1-dimensionality-reduction">Part 1: Dimensionality Reduction</a></li>
-  <li><a href="#part-2-clustering-methods" id="toc-part-2-clustering-methods" class="nav-link" data-scroll-target="#part-2-clustering-methods">Part 2: Clustering Methods</a></li>
+  <li><a href="#dimensionality-reduction-pca" id="toc-dimensionality-reduction-pca" class="nav-link" data-scroll-target="#dimensionality-reduction-pca">Dimensionality Reduction: PCA</a></li>
+  <li><a href="#clustering-k-means" id="toc-clustering-k-means" class="nav-link" data-scroll-target="#clustering-k-means">Clustering: K-Means</a></li>
   </ul></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Unsupervised Learning</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Unsupervised learning is a type of machine learning that aims to discover hidden patterns and structure in data without labeled outcomes. The purpose of performing unsupervised learning on this data is to identify natural groupings of movies and understand whether different types of films follow distinct patterns in terms of budget, cast popularity, and box office performance.</p>
+<p>I applied two main unsupervised learning techniques: dimensionality reduction for visualization and clustering for pattern discovery. For dimensionality reduction, I used Principal Component Analysis (PCA) to reduce the feature space while preserving variance. For clustering, I applied K-Means clustering to identify distinct movie archetypes based on their characteristics.</p>
+<p>The goal was to determine whether movies naturally group into categories beyond simple genre classifications, and whether these groupings reveal insights about different risk-return profiles in the film industry.</p>
+<p>Below is an outline of general information applied to all methods:</p>
+<section id="data-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h2>
+<p>In order to be used in unsupervised learning, the data required preprocessing to ensure all features contributed equally to pattern detection.</p>
+<p><strong>Feature Selection</strong> - I selected numerical features that characterize movie production and performance: budget, revenue, cast popularity, runtime, and ROI. Categorical variables were excluded from clustering since K-Means requires numerical data.</p>
+<p><strong>Standardization</strong> - The data was scaled using Scikit-learn’s StandardScaler. This z-score standardization is critical for unsupervised learning since clustering algorithms are sensitive to feature magnitudes. Without scaling, budget (in millions) would dominate patterns over features like runtime (in minutes).</p>
+<p><strong>Handling Outliers</strong> - Extreme outliers were retained since they may represent legitimate movie archetypes (ultra-low-budget breakouts or massive tentpoles) rather than data errors.</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>This page is designed to give you hands-on experience with key unsupervised learning techniques, including clustering methods and dimensionality reduction, applied to real-world datasets. Please apply algorithms such as K-Means, DBSCAN, Hierarchical clustering, PCA, and t-SNE to your data. Through this process, you’ll deepen your understanding of how unsupervised learning can reveal hidden patterns and structure in data.</p>
-<section id="part-1-dimensionality-reduction" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-dimensionality-reduction">Part 1: Dimensionality Reduction</h3>
-<p>The objective of this section is to explore and demonstrate the effectiveness of PCA and t-SNE in reducing the dimensionality of complex data while preserving essential information and improving visualization.</p>
-<ol type="1">
-<li><strong>PCA (Principal Component Analysis):</strong>
-<ul>
-<li>Apply PCA to your dataset.</li>
-<li>Determine the optimal number of principal components.</li>
-<li>Visualize the reduced-dimensional data.</li>
-<li>Analyze and interpret the results.</li>
-</ul></li>
-<li><strong>t-SNE (t-distributed Stochastic Neighbor Embedding):</strong>
-<ul>
-<li>Implement t-SNE on the same dataset.</li>
-<li>Experiment with different perplexity values.</li>
-<li>Visualize the t-SNE output to reveal patterns and clusters.</li>
-<li>Compare the results of t-SNE with those from PCA.</li>
-</ul></li>
-<li><strong>Evaluation and Comparison:</strong>
-<ul>
-<li>Evaluate the effectiveness of PCA and t-SNE in preserving data structure.</li>
-<li>Compare the visualization capabilities of both techniques.</li>
-<li>Discuss the trade-offs and scenarios where one technique may perform better than the other.</li>
-</ul></li>
-</ol>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="dimensionality-reduction-pca" class="level3">
+<h3 class="anchored" data-anchor-id="dimensionality-reduction-pca">Dimensionality Reduction: PCA</h3>
+<p>Principal Component Analysis (PCA) reduces the dimensionality of data by transforming features into orthogonal principal components that capture maximum variance. PCA identifies linear combinations of original features that explain the most variation in the data.</p>
+<p>I applied PCA to visualize the movie dataset in two dimensions while preserving as much information as possible. The first two principal components captured the most important patterns of variation across budget, revenue, cast popularity, and other features.</p>
+<p><strong>Purpose:</strong> PCA enables visualization of high-dimensional data and can reveal whether movies naturally separate into distinct groups based on their characteristics.</p>
 </section>
-<section id="part-2-clustering-methods" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-clustering-methods">Part 2: Clustering Methods</h3>
-<p>Apply clustering techniques (K-Means, DBSCAN, and Hierarchical clustering) to a selected dataset. The goal is to understand how each method works, compare their performance, and interpret the results.</p>
-<ol type="1">
-<li><strong>Clustering Methods:</strong>
-<ul>
-<li>Apply <strong>K-Means</strong>, <strong>DBSCAN</strong>, and <strong>Hierarchical clustering</strong> to your dataset.</li>
-<li>Write a technical summary for each method (2–4 paragraphs per method) explaining how it works, its purpose, and any model selection methods used (e.g., Elbow, Silhouette).</li>
-</ul></li>
-<li><strong>Results Section:</strong>
-<ul>
-<li>Discuss and visualize the results of each clustering analysis.</li>
-<li>Compare the performance of different clustering methods, noting any insights gained from the analysis.</li>
-<li>Visualize cluster patterns and how they relate (if at all) to existing labels in the dataset.</li>
-<li>Use professional, labeled, and clear visualizations that support your discussion.</li>
-</ul></li>
-<li><strong>Conclusion:</strong>
-<ul>
-<li>Summarize the key findings and their real-world implications in a non-technical way. Focus on the most important results and how they could apply to practical situations.</li>
-</ul></li>
-</ol>
+<section id="clustering-k-means" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-k-means">Clustering: K-Means</h3>
+<p>K-Means is a clustering algorithm that partitions data into k distinct groups by minimizing within-cluster variance. The algorithm iteratively assigns data points to clusters and updates cluster centers until convergence.</p>
+<p>I applied K-Means clustering to identify natural groupings of movies. The algorithm groups films with similar characteristics (budget levels, cast popularity, revenue performance) into the same cluster.</p>
+<p><strong>Model Selection:</strong> I used the elbow method and silhouette analysis to determine the optimal number of clusters. The elbow method plots within-cluster sum of squares (WCSS) against k values, looking for the “elbow” where adding more clusters provides diminishing returns. Silhouette analysis measures how well each point fits within its assigned cluster.</p>
+<p><strong>Purpose:</strong> K-Means reveals whether movies fall into distinct categories with different production strategies and financial outcomes, beyond traditional genre classifications.</p>
 
 
 </section>

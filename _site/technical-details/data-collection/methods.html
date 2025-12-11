@@ -94,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -154,16 +150,15 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#api-selection-and-setup" id="toc-api-selection-and-setup" class="nav-link" data-scroll-target="#api-selection-and-setup">API Selection and Setup</a></li>
-  <li><a href="#collection-strategy" id="toc-collection-strategy" class="nav-link" data-scroll-target="#collection-strategy">Collection Strategy</a>
+  <li><a href="#data-collection" id="toc-data-collection" class="nav-link" data-scroll-target="#data-collection">Data Collection</a></li>
+  <li><a href="#api-selection" id="toc-api-selection" class="nav-link" data-scroll-target="#api-selection">API Selection</a></li>
+  <li><a href="#collection-approach" id="toc-collection-approach" class="nav-link" data-scroll-target="#collection-approach">Collection Approach</a>
   <ul class="collapse">
-  <li><a href="#query-construction" id="toc-query-construction" class="nav-link" data-scroll-target="#query-construction">Query Construction</a></li>
-  <li><a href="#rate-limiting-and-request-management" id="toc-rate-limiting-and-request-management" class="nav-link" data-scroll-target="#rate-limiting-and-request-management">Rate Limiting and Request Management</a></li>
-  <li><a href="#pagination-logic" id="toc-pagination-logic" class="nav-link" data-scroll-target="#pagination-logic">Pagination Logic</a></li>
+  <li><a href="#api-endpoints-used" id="toc-api-endpoints-used" class="nav-link" data-scroll-target="#api-endpoints-used">API Endpoints Used</a></li>
+  <li><a href="#rate-limiting" id="toc-rate-limiting" class="nav-link" data-scroll-target="#rate-limiting">Rate Limiting</a></li>
   </ul></li>
-  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">Feature Extraction</a></li>
-  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage">Data Storage</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
+  <li><a href="#features-collected" id="toc-features-collected" class="nav-link" data-scroll-target="#features-collected">Features Collected</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data Structure</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -176,55 +171,42 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<section id="api-selection-and-setup" class="level2">
-<h2 class="anchored" data-anchor-id="api-selection-and-setup">API Selection and Setup</h2>
-<p>This project uses The Movie Database (TMDB) API v3 as its primary data source. TMDB was selected over alternatives like IMDB or OMDb for several practical reasons: it provides comprehensive metadata without requiring paid subscriptions, maintains active data quality through community contributions, and offers a well-documented RESTful API with generous rate limits (1,000 requests per day on the free tier).</p>
-<p>Authentication requires a personal API key obtained through TMDB’s developer portal. The key is stored locally in a configuration file excluded from version control via <code>.gitignore</code> to prevent accidental exposure in the public repository.</p>
+<section id="data-collection" class="level2">
+<h2 class="anchored" data-anchor-id="data-collection">Data Collection</h2>
+<p>All data used in this project comes from The Movie Database (TMDB) API. TMDB maintains one of the largest databases of movie information with reliable financial data, cast details, and production metadata. The API provides free access for research purposes with reasonable rate limits.</p>
+<p>I used automated API queries with Python’s <code>requests</code> library to systematically retrieve movie lists and detailed information for each film, filtering for records with complete budget and revenue data.</p>
 </section>
-<section id="collection-strategy" class="level2">
-<h2 class="anchored" data-anchor-id="collection-strategy">Collection Strategy</h2>
-<section id="query-construction" class="level3">
-<h3 class="anchored" data-anchor-id="query-construction">Query Construction</h3>
-<p>The collection uses TMDB’s <code>/discover/movie</code> endpoint, which allows filtering by multiple parameters. The core query strategy prioritizes data completeness by applying two critical filters:</p>
-<ol type="1">
-<li><strong>Budget filter</strong>: <code>with_budget=true</code> - excludes movies without reported production budgets</li>
-<li><strong>Revenue filter</strong>: <code>with_revenue=true</code> - excludes movies without box office data</li>
-</ol>
-<p>These filters are essential because profitability analysis—the core objective of this project—requires both values. Movies missing either field cannot contribute to ROI calculations or success classification, so excluding them upfront prevents wasted API calls and downstream data quality issues.</p>
-<p>Additional query parameters include: - <code>sort_by=popularity.desc</code> - prioritizes well-known films likely to have complete metadata - <code>include_adult=false</code> - excludes adult content - <code>page={n}</code> - handles pagination to retrieve beyond the initial 20 results per request</p>
+<section id="api-selection" class="level2">
+<h2 class="anchored" data-anchor-id="api-selection">API Selection</h2>
+<p>I selected TMDB for several reasons. The API provides comprehensive movie data including financial information that many other sources don’t make publicly available. TMDB’s data quality is reliable, maintained by a large community of contributors. The API documentation is clear and the rate limits are reasonable for academic research. Most importantly, TMDB includes both recent releases and historical films, enabling analysis across different eras of cinema.</p>
 </section>
-<section id="rate-limiting-and-request-management" class="level3">
-<h3 class="anchored" data-anchor-id="rate-limiting-and-request-management">Rate Limiting and Request Management</h3>
-<p>TMDB’s free tier allows approximately 40 requests per 10 seconds. To stay well within this limit and avoid throttling, the collection script implements a 0.25-second delay between requests (effectively 4 requests per second). This conservative approach ensures stable data collection over the 35-40 minute runtime required to gather 2,500+ movie records.</p>
-<p>The script includes error handling for common API issues: - HTTP 429 (rate limit exceeded) triggers exponential backoff - HTTP 404 (movie not found) logs the error and continues - Network timeouts retry up to 3 times before skipping the record</p>
+<section id="collection-approach" class="level2">
+<h2 class="anchored" data-anchor-id="collection-approach">Collection Approach</h2>
+<p>The collection process used two TMDB API endpoints. The <code>/discover/movie</code> endpoint retrieved lists of popular movies sorted by popularity with vote counts of at least 100. The <code>/movie/{id}</code> endpoint provided detailed information for each film including cast, crew, and financial data. I only retained movies with non-zero budget and revenue values since these are required for profitability analysis.</p>
+<section id="api-endpoints-used" class="level3">
+<h3 class="anchored" data-anchor-id="api-endpoints-used">API Endpoints Used</h3>
+<p><strong>Discovery Endpoint:</strong> <code>/discover/movie</code> - Sorted by popularity (<code>sort_by='popularity.desc'</code>) - Filtered for vote count (<code>vote_count.gte=100</code>) - Retrieved paginated lists of movies</p>
+<p><strong>Details Endpoint:</strong> <code>/movie/{id}</code><br>
+- Appended credits data (<code>append_to_response='credits'</code>) - Retrieved comprehensive movie information including financials</p>
 </section>
-<section id="pagination-logic" class="level3">
-<h3 class="anchored" data-anchor-id="pagination-logic">Pagination Logic</h3>
-<p>Each API call returns up to 20 movies per page. The collection script iterates through pages sequentially until either: - The target number of movies is reached (~2,800 to account for later filtering) - The API returns fewer than 20 results (indicating the end of available data) - An unrecoverable error occurs</p>
+<section id="rate-limiting" class="level3">
+<h3 class="anchored" data-anchor-id="rate-limiting">Rate Limiting</h3>
+<p>I implemented a 0.25-second delay between requests to respect API rate limits and avoid overloading TMDB servers. This results in approximately 4 requests per second, well within acceptable usage. The collection process took several hours but ensured ethical API usage.</p>
 </section>
 </section>
-<section id="feature-extraction" class="level2">
-<h2 class="anchored" data-anchor-id="feature-extraction">Feature Extraction</h2>
-<p>For each movie, the script extracts 18 features across multiple dimensions:</p>
-<p><strong>Core Identifiers:</strong> - <code>movie_id</code> - TMDB’s unique identifier - <code>title</code> - Movie title - <code>release_date</code> - Theatrical release date</p>
-<p><strong>Financial Metrics:</strong> - <code>budget</code> - Production budget (USD) - <code>revenue</code> - Worldwide box office gross (USD)</p>
-<p><strong>Temporal Features:</strong> - <code>release_year</code> - Extracted from release_date - <code>release_month</code> - Extracted from release_date</p>
-<p><strong>Audience Reception:</strong> - <code>vote_average</code> - TMDB user rating (0-10 scale) - <code>vote_count</code> - Number of user ratings - <code>popularity</code> - TMDB’s proprietary popularity score</p>
-<p><strong>Content Metadata:</strong> - <code>runtime</code> - Film duration in minutes - <code>overview</code> - Plot synopsis - <code>genres</code> - Full list of genre classifications - <code>primary_genre</code> - Dominant genre</p>
-<p><strong>Production Details:</strong> - <code>production_companies</code> - Studios and production companies - <code>cast</code> - Top-billed actors (limited to top 5) - <code>cast_popularity</code> - Average popularity score of cast - <code>director</code> - Primary director</p>
-<p>Genre data arrives as nested JSON requiring parsing to extract both the complete genre list and the primary genre. Cast information requires a separate API call to the <code>/movie/{id}/credits</code> endpoint for each film, though this data is cached to minimize redundant requests.</p>
+<section id="features-collected" class="level2">
+<h2 class="anchored" data-anchor-id="features-collected">Features Collected</h2>
+<p>I extracted 18 features from API responses:</p>
+<p><strong>Financial Metrics:</strong> - Budget (production cost in USD) - Revenue (box office earnings in USD)</p>
+<p><strong>Cast and Crew:</strong> - Top 5 cast members by billing order - Average cast popularity (aggregated from individual actor popularity scores) - Director name</p>
+<p><strong>Production Details:</strong> - Up to 3 production companies<br>
+- All genres (pipe-separated string) - Primary genre (first listed)</p>
+<p><strong>Film Metadata:</strong> - Title, movie ID, release date - Runtime (minutes) - Vote average and vote count (user ratings from TMDB) - Popularity score (TMDB metric) - Overview text (first 500 characters)</p>
+<p><strong>Temporal Features:</strong> - Release year (extracted from release date) - Release month (extracted from release date)</p>
 </section>
-<section id="data-storage" class="level2">
-<h2 class="anchored" data-anchor-id="data-storage">Data Storage</h2>
-<p>Raw data is saved incrementally during collection to <code>data/raw-data/tmdb_movies_raw.csv</code> in case the script encounters errors midway through. This provides a recovery point without requiring a full re-collection. Each row represents a single movie with all 18 features as columns.</p>
-<p>The collection script logs: - Total movies collected - Collection duration - Any errors or skipped records - Final file location</p>
-<p>This raw dataset serves as the input for the data cleaning phase, where additional filtering, feature engineering, and quality checks prepare the data for analysis.</p>
-</section>
-<section id="reproducibility" class="level2">
-<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
-<p>The complete collection process is implemented in <code>collect_tmdb_data.py</code> in the <code>technical-details/data-collection/</code> directory. The script is self-contained and can be re-run with a valid TMDB API key to replicate the dataset or collect updated data as new movies are released.</p>
-<p>Key dependencies: - Python 3.8+ - <code>requests</code> library for API calls - <code>pandas</code> for data manipulation - <code>time</code> for rate limiting</p>
-<p>Total runtime: ~37 minutes for 2,812 movies (before cleaning).</p>
+<section id="data-structure" class="level2">
+<h2 class="anchored" data-anchor-id="data-structure">Data Structure</h2>
+<p>I stored the collected data in tabular format with each row representing one movie and each column representing a feature. Multi-value fields like genres and cast were stored as pipe-separated strings (e.g., “Action|Adventure|Sci-Fi”) to maintain a flat table structure while preserving all information. This format facilitates easy loading into pandas DataFrames for subsequent analysis.</p>
 
 
 </section>

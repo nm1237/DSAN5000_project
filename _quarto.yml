@@ -14,8 +14,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: instructions/overview.qmd
-        text: Instructions
 
       - href: report/report.qmd
         text: Report
@@ -37,11 +35,8 @@ website:
             href: technical-details/llm-usage-log.qmd
 
 format:
-  html:
-    theme: cosmo
-    bibliography:   ./assets/references.bib
-    csl:  ./assets/nature.csl
-    toc: true
-
-
-
+ html:
+   theme: cosmo
+   bibliography:   ./assets/references.bib
+   csl:  ./assets/nature.csl
+   toc: true

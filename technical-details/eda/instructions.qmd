@@ -1,83 +1,55 @@
-# Instructions 
+---
+title: "Exploratory Data Analysis"
+---
 
-`Note`: You should remove these instructions once you have read and understood them. They should not be included in your final submission.
+# Overview
 
-`Remember:` Exactly what do you put on this page will be specific you your project and data. Some things might "make more sense" on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.  
+Exploratory Data Analysis (EDA) is the process of examining and visualizing data to understand its characteristics, identify patterns, and uncover relationships between variables. The purpose of performing EDA on this data is to gain deeper insights into what drives box office success and to prepare the dataset for machine learning modeling.
 
-## Suggested page structure
+I conducted univariate, bivariate, and multivariate analyses to examine the cleaned dataset of 2,691 movies. The analysis explored distributions of key variables (budget, revenue, ROI), relationships between features (budget-revenue correlation, genre patterns, seasonal effects), and patterns that inform the prediction task.
 
-Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:
+The goal was to answer exploratory questions: How does budget relate to revenue? Do certain genres perform better? Does release timing matter? What's the typical ROI distribution? These insights shaped feature selection and informed expectations for model performance.
 
-`Audience`:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts. 
+Below is an outline of the analytical approach:
 
-- **Introduction and Motivation:** Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.
-- **Overview of Methods:** Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.
-- **Code:** Include the code you used to implement your workflow.
-- **Summary and Interpretation of Results:** Summarize your findings, interpret the results, and discuss their technical implications.
+## Data Overview
 
-## What to address 
+The cleaned dataset contains 2,691 movies with 23 features spanning financial metrics, cast information, genre classifications, and temporal characteristics. Key variables include:
 
-The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.
+**Financial Variables:** Budget, revenue, ROI, profitability (binary), success category (4-class)
 
-The **EDA (Exploratory Data Analysis)** tab in your portfolio serves as a crucial foundation for your project. It provides a thorough overview of the dataset, highlights patterns, identifies potential issues, and prepares the data for further analysis. Follow these instructions to document your EDA effectively:
+**Cast and Production:** Cast popularity, production companies, director
 
-The goal of EDA is to gain a deeper understanding of the dataset and its relevance to your project’s objectives. It involves summarizing key data characteristics, identifying patterns, anomalies, and preparing for future analysis phases.
+**Genre and Classification:** Primary genre, all genres, budget tier
 
-Here are suggestions for things to include on this page 
+**Temporal Features:** Release date, release year, release month, release season
 
-**Univariate Analysis**:
+**Film Characteristics:** Runtime, vote average, vote count, popularity score
 
-- **Numerical Variables**:
-    - Provide summary statistics (mean, median, standard deviation).
-    - Visualize distributions using histograms or density plots.
-- **Categorical Variables**:
-    - Present frequency counts and visualize distributions using bar charts or pie charts.
-- **Key Insights**:
-    - Highlight any notable trends or patterns observed.
+## Methods
 
-**Bivariate and Multivariate Analysis**:
+### Univariate Analysis
 
-- **Correlation Analysis**:
-  - Analyze relationships between numerical variables using a correlation matrix.
-  - Visualize with heatmaps or pair plots and discuss any strong correlations.
-- **Crosstabulations**:
-  - For categorical variables, use crosstabs to explore relationships and visualize them with grouped bar plots.
-- **Feature Pairings**:
-  - Analyze relationships between key variables, particularly those related to your target.
-  - Visualize with scatter plots, box plots, or violin plots.
+I examined the distribution of individual variables to understand their characteristics and identify potential issues.
 
-**Data Distribution and Normalization**:
+**Numerical Variables:** I generated summary statistics (mean, median, standard deviation) and visualized distributions using histograms. This revealed the range and spread of budget, revenue, and ROI values.
 
-- **Skewness and Kurtosis**:
- - Analyze and discuss the distribution of variables.
- - Apply transformations (e.g., log transformation) if needed for skewed data.
-- **Normalization**:
- - Apply normalization or scaling techniques (e.g., min-max scaling, z-score).
- - Document and visualize the impact of normalization.
+**Categorical Variables:** I calculated frequency counts for genres, budget tiers, and seasons, visualizing them with bar charts to understand category balance.
 
+### Bivariate Analysis
 
-**Statistical Insights**:
+I analyzed relationships between pairs of variables to identify patterns and correlations.
 
-- Conduct basic statistical tests (e.g., T-tests, ANOVA, chi-square) to explore relationships between variables.
-- Summarize the statistical results and their implications for your analysis.
+**Budget-Revenue Relationship:** I created scatter plots and calculated correlation coefficients to quantify the relationship between production spending and box office earnings.
 
+**Genre Performance:** I compared success rates across genres using grouped bar charts to identify which categories perform best.
 
-**Data Visualization and Storytelling**:
+**Seasonal Patterns:** I analyzed profitability rates by release season to determine whether timing affects outcomes.
 
+### Multivariate Analysis
 
-- **Visual Summary**:
- - Present key insights using charts and visualizations (e.g., Matplotlib, Seaborn, Plotly).
- - Ensure all visualizations are well-labeled and easy to interpret.
-- **Interactive Visualizations (Optional)**:
- - Include interactive elements (e.g., Plotly, Bokeh) to allow users to explore the data further.
+I examined interactions between multiple variables simultaneously.
 
+**Correlation Matrix:** I generated a correlation heatmap showing relationships among all numerical features to identify multicollinearity and feature importance patterns.
 
-**Conclusions and Next Steps**:
-
-- **Summary of EDA Findings**:
- - Highlight the main takeaways from the EDA process (key trends, patterns, data quality issues).
-- **Implications for Modeling**:
- - Discuss how your EDA informs the next steps in your project (e.g., feature selection, data transformations).
- - Outline any further data cleaning or preparation required before moving into modeling.
-
-
+**Budget Tier Analysis:** I compared ROI distributions across budget tiers using box plots to understand how spending level affects returns.

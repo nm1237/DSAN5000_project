@@ -94,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -154,13 +150,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a>
   <ul class="collapse">
-  <li><a href="#collection-results" id="toc-collection-results" class="nav-link" data-scroll-target="#collection-results">Collection Results</a></li>
-  <li><a href="#challenges-and-design-decisions" id="toc-challenges-and-design-decisions" class="nav-link" data-scroll-target="#challenges-and-design-decisions">Challenges and Design Decisions</a></li>
-  <li><a href="#data-quality-assessment" id="toc-data-quality-assessment" class="nav-link" data-scroll-target="#data-quality-assessment">Data Quality Assessment</a></li>
-  <li><a href="#validation-against-benchmarks" id="toc-validation-against-benchmarks" class="nav-link" data-scroll-target="#validation-against-benchmarks">Validation Against Benchmarks</a></li>
-  <li><a href="#transition-to-data-cleaning" id="toc-transition-to-data-cleaning" class="nav-link" data-scroll-target="#transition-to-data-cleaning">Transition to Data Cleaning</a></li>
-  <li><a href="#future-improvements" id="toc-future-improvements" class="nav-link" data-scroll-target="#future-improvements">Future Improvements</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -173,43 +164,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<section id="collection-results" class="level2">
-<h2 class="anchored" data-anchor-id="collection-results">Collection Results</h2>
-<p>The data collection phase successfully gathered 2,812 movies from TMDB’s database, spanning from 1934 to 2025. After applying the quality filters (requiring both budget and revenue data), the final dataset contained 2,691 complete records—a 95.7% retention rate. This high retention validates the initial query strategy of filtering for <code>with_budget=true</code> and <code>with_revenue=true</code> at the API level, rather than collecting everything and filtering later.</p>
-<p>The entire collection process ran for approximately 37 minutes with zero API errors or timeouts. The 0.25-second delay between requests proved conservative enough to avoid rate limiting while still maintaining reasonable collection speed.</p>
+<p>The data collection process successfully gathered information on 2,812 movies from TMDB with complete budget and revenue data. The collection script queried 250 pages of results, processing thousands of individual movie records over approximately 3-4 hours.</p>
+<p><strong>Collection Statistics:</strong></p>
+<ul>
+<li>Total movies collected: 2,812</li>
+<li>Features per movie: 18</li>
+<li>Date range: 1934-2025</li>
+<li>API requests made: approximately 5,000+ (250 pages + individual details)</li>
+<li>Collection time: approximately 37 mins</li>
+<li>Error rate: Minimal (less than 1%)</li>
+</ul>
+<p><strong>Data Quality:</strong></p>
+<ul>
+<li>All movies have non-zero budget and revenue values</li>
+<li>All movies have at least 100 user votes</li>
+<li>Cast information includes top 5 billed actors</li>
+<li>Release dates successfully parsed into year and month</li>
+</ul>
+<p><strong>Files Created:</strong></p>
+<ul>
+<li>Raw data saved to: <code>data/raw-data/tmdb_movies_raw.csv</code></li>
+<li>Format: CSV with 2,812 rows × 18 columns</li>
+</ul>
+<section id="challenges" class="level2">
+<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
+<p>The data collection process encountered a few technical challenges. API rate limiting required careful timing between requests to avoid hitting usage caps. Some movies had incomplete cast or crew information requiring error handling. The biggest challenge was determining appropriate filtering criteria. Including all movies regardless of data completeness would have produced a larger dataset but introduced significant missing values. Filtering strictly for complete budget and revenue data reduced the dataset size but ensured every record could be used for financial analysis.</p>
 </section>
-<section id="challenges-and-design-decisions" class="level2">
-<h2 class="anchored" data-anchor-id="challenges-and-design-decisions">Challenges and Design Decisions</h2>
-<p>The primary challenge was balancing dataset size against data quality. TMDB contains millions of movie records, but many lack the financial data essential for box office prediction. Early exploration revealed that collecting without financial filters would result in 60-70% of records being unusable after cleaning—wasting both API quota and processing time.</p>
-<p>The decision to prioritize quality over quantity meant accepting a smaller dataset (2,691 vs.&nbsp;a potential 10,000+ movies) in exchange for complete, analysis-ready records. This tradeoff proved worthwhile: every movie in the final dataset includes the 18 features needed for subsequent analysis, eliminating the need for imputation or dropping variables.</p>
-<p>Another consideration was temporal coverage. The dataset spans 91 years, which introduces potential distribution shifts (e.g., inflation effects on budgets, changes in release strategies). This was anticipated and addressed in the data cleaning phase through feature engineering (ROI calculations, inflation adjustment considerations) and exploratory analysis (temporal trend examination).</p>
-</section>
-<section id="data-quality-assessment" class="level2">
-<h2 class="anchored" data-anchor-id="data-quality-assessment">Data Quality Assessment</h2>
-<p>The 121 records dropped during cleaning (4.3% of raw data) failed quality checks for one of three reasons: - Missing budget values despite API filters (likely database inconsistencies) - Zero or negative revenue values (data entry errors) - Extreme outliers flagged during initial validation (potential currency conversion issues)</p>
-<p>These drops were acceptable given the remaining sample size. With 2,691 complete records, the dataset provides sufficient volume for training machine learning models while maintaining statistical validity for pattern detection across genres, time periods, and budget tiers.</p>
-</section>
-<section id="validation-against-benchmarks" class="level2">
-<h2 class="anchored" data-anchor-id="validation-against-benchmarks">Validation Against Benchmarks</h2>
-<p>Comparing this dataset to existing box office prediction research: - <strong>Zhang et al.&nbsp;(2024)</strong>: Used 5,000 movies but reported significant missing data issues, requiring extensive imputation - <strong>Tang et al.&nbsp;(2024)</strong>: Worked with 3,200 movies from Chinese market only - <strong>This project</strong>: 2,691 movies with zero missing values in critical features, global market coverage</p>
-<p>The smaller but cleaner dataset positions this analysis favorably for model training. Missing data imputation can introduce bias and reduce model accuracy—this dataset avoids that tradeoff entirely.</p>
-</section>
-<section id="transition-to-data-cleaning" class="level2">
-<h2 class="anchored" data-anchor-id="transition-to-data-cleaning">Transition to Data Cleaning</h2>
-<p>The raw dataset (<code>tmdb_movies_raw.csv</code>) serves as the foundation for the data cleaning phase, which involves: - Feature engineering (ROI calculation, success category classification) - Temporal feature extraction (release year, month, day of week) - Genre encoding and aggregation - Production company consolidation - Outlier detection and handling</p>
-<p>The cleaning phase will transform these 2,691 raw records into an analysis-ready dataset suitable for exploratory data analysis and machine learning model training. The completeness of the raw data means cleaning can focus on feature engineering and transformation rather than imputation or missing data handling.</p>
-</section>
-<section id="future-improvements" class="level2">
-<h2 class="anchored" data-anchor-id="future-improvements">Future Improvements</h2>
-<p>If repeating this data collection with more time or resources, several enhancements could strengthen the dataset:</p>
-<p><strong>Temporal refresh</strong>: TMDB updates movie data regularly (box office totals, ratings, metadata). Re-collecting data quarterly would capture these updates and provide temporal snapshots for longitudinal analysis.</p>
-<p><strong>Additional features</strong>: The current collection focuses on TMDB’s core metadata. Future iterations could incorporate: - Detailed cast/crew data (beyond top-billed names) - Production country and language metadata - Certification and content ratings - Distribution patterns (theatrical vs.&nbsp;streaming)</p>
-<p><strong>Expanded coverage</strong>: The 2,691 movie threshold was chosen to balance API limits with project timeline. With TMDB’s 1,000 requests/day limit, collecting 10,000+ movies would require multiple days but could provide richer training data for complex models.</p>
-<p><strong>Cross-validation with secondary sources</strong>: While TMDB provides comprehensive data, financial figures (especially for older films) could be validated against Box Office Mojo or The Numbers to catch database inconsistencies.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The data collection phase delivered a clean, complete dataset of 2,691 movies suitable for machine learning analysis. The decision to prioritize data quality over quantity—accepting a smaller dataset with zero missing values rather than a larger dataset requiring imputation—proved effective for downstream analysis. The collection process ran smoothly with no technical failures, and the resulting dataset provides strong foundation for exploring patterns in box office performance across nine decades of cinema.</p>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p>The raw dataset provides a solid foundation for analysis. The next phase involves cleaning this data to address any remaining quality issues and engineering additional features for machine learning models.</p>
 
 
 </section>

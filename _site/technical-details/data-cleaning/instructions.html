@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>instructions – DSAN-5000: Project</title>
+<title>Data Cleaning – DSAN-5000: Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -152,93 +148,74 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#general-comments" id="toc-general-comments" class="nav-link" data-scroll-target="#general-comments">General comments:</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
+  <li><a href="#data-quality-issues" id="toc-data-quality-issues" class="nav-link" data-scroll-target="#data-quality-issues">Data Quality Issues</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
+  <li><a href="#validation-filtering" id="toc-validation-filtering" class="nav-link" data-scroll-target="#validation-filtering">Validation Filtering</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Cleaning</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you on this page will be specific you your project and data. Some things might “make more sense” on other pages, depending on your workflow, for example, you might feel that normalization and scaling should be included in a later section, dealing with machine learning, rather than here, that is totally fine. Organize your project in the way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Data cleaning is the process of identifying and correcting quality issues in raw data to prepare it for analysis. The purpose of performing data cleaning on this dataset is to remove invalid records, handle missing information, and engineer features necessary for machine learning models.</p>
+<p>The raw data from TMDB contained 2,812 movies, but several data quality issues made portions unsuitable for analysis. I identified unrealistic financial values, missing cast information, and statistical outliers requiring removal. Beyond addressing quality issues, I engineered five new features that didn’t exist in the raw data but are essential for profitability analysis.</p>
+<p>The goal was to transform the raw dataset into a clean, analysis-ready format with complete records and meaningful features. The cleaning process involved validating financial data, filtering problematic records, and creating derived features like ROI, success categories, budget tiers, and seasonal indicators.</p>
+<p>Below is an outline of the cleaning approach:</p>
+<section id="data-quality-issues" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-issues">Data Quality Issues</h2>
+<p>The raw dataset had several problems requiring attention:</p>
+<p><strong>Unrealistic Financial Values:</strong> Some movies showed budgets under $1 million or revenues under $1,000, likely representing data entry errors or incomplete records.</p>
+<p><strong>Statistical Outliers:</strong> A handful of records showed ROI values exceeding 100x, representing extreme outliers that would distort analysis.</p>
+<p><strong>Missing Information:</strong> Some records lacked complete cast or production company information needed for popularity-based analysis.</p>
 </section>
-<section id="general-comments" class="level2">
-<h2 class="anchored" data-anchor-id="general-comments">General comments:</h2>
-<ul>
-<li><strong>Iterative Process</strong>: Data cleaning is often not a one-time process. As your analysis progresses, you may need to revisit the cleaning phase, and re-run the code, to adjust to new insights or requirements.</li>
-<li><strong>Clarity and Reproducibility</strong>: Ensure your documentation is clear and thorough. Others should be able to follow your steps and achieve the same results.</li>
-<li><strong>Visualizations</strong>: Use before-and-after visualizations to illustrate the impact of your cleaning steps, making the process more intuitive and transparent.</li>
-</ul>
-<p>By the end of this phase, your cleaned data should be well-documented and ready for further stages, such as <strong>Exploratory Data Analysis (EDA)</strong> and <strong>Machine Learning</strong>.</p>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h3>
+<p>I created five new features before applying validation filters, ensuring derived metrics were available for filtering criteria.</p>
+<p><strong>ROI Calculation:</strong> I calculated return on investment by dividing revenue by budget, providing the primary profitability metric.</p>
+<p><strong>Binary Profitability:</strong> I created a binary indicator marking whether films earned more than they cost.</p>
+<p><strong>Success Categories:</strong> I classified films into four performance tiers (Bomb, Modest, Hit, Blockbuster) based on ROI thresholds.</p>
+<p><strong>Budget Tiers:</strong> I grouped films by production budget into four spending categories (Low, Medium, High, Blockbuster) reflecting industry breakpoints.</p>
+<p><strong>Release Seasons:</strong> I categorized release months into three seasonal periods (Fall, Holiday, Summer) reflecting industry release patterns.</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>The <strong>Data Cleaning</strong> page of your portfolio is where you document the process of transforming your raw data into a usable format. Data cleaning is essential for ensuring the quality of your analysis, and this page should serve as a clear and reproducible guide for anyone reviewing your work. It also provides transparency, allowing others to trace the steps you took to prepare your data.</p>
-<p>The following is a guide to help you get started with possible thing to address on this page .</p>
-<ul>
-<li><strong>Description of the Data Cleaning Process</strong>: Explain the steps you took to clean and preprocess the data.</li>
-<li><strong>Code Documentation</strong>: Provide the code used in the data cleaning process (link to GitHub or embed the code directly).</li>
-<li><strong>Provide examples of data before and after cleaning</strong>: e.g.&nbsp;with df.head() or df.describe()</li>
-<li><strong>Raw and Cleaned Data Links</strong>: Ensure your page links to both the original (raw) dataset and the cleaned dataset. (please keep organized and store the cleaned data in <code>data/processed-data</code>, or similar location which doesn’t get synced to GitHub)</li>
-</ul>
-<p>Possible things to include:</p>
-<p><strong>Introduction to Data Cleaning</strong>:</p>
-<ul>
-<li>Provide a brief explanation of the data cleaning phase, its importance in preparing the data for further analysis (EDA, modeling), and its iterative nature.</li>
-<li>Mention that data cleaning may need to be revisited as the project evolves and analysis goals change.</li>
-</ul>
-<p><strong>Managing Missing Data</strong>:</p>
-<ul>
-<li><strong>Identify Missing Values</strong>: Explain how you identified missing data and where it occurred.</li>
-<li><strong>Handling Missing Data</strong>: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).</li>
-<li><strong>Visualize Missing Data</strong>: Include visualizations (e.g., heatmaps) showing missing values before and after handling them.</li>
-</ul>
-<p><strong>Outlier Detection and Treatment</strong>:</p>
-<ul>
-<li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
-<li><strong>Addressing Outliers</strong>: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).</li>
-<li><strong>Visualize Outliers</strong>: Use visualizations (e.g., box plots) to show how outliers were managed.</li>
-</ul>
-<p><strong>Data Type Correction and Formatting</strong>:</p>
-<ul>
-<li><strong>Review Data Types</strong>: Summarize the types of variables (numerical, categorical, date-time, etc.) and ensure they are correctly formatted.</li>
-<li><strong>Transformation</strong>: Document any transformations performed, such as converting date formats, handling categorical variables, or encoding labels.</li>
-<li><strong>Impact of Changes</strong>: Briefly explain why these changes were necessary for accurate analysis.</li>
-</ul>
-<p><strong>Normalization and Scaling</strong>:</p>
-<ul>
-<li><strong>Data Distribution Analysis</strong>: Check and discuss the distribution of numerical variables (e.g., skewness).</li>
-<li><strong>Normalization Techniques</strong>: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).</li>
-<li><strong>Before-and-After Visualizations</strong>: Provide visualizations comparing the data before and after scaling or normalization.</li>
-</ul>
-<p><strong>Subsetting the Data</strong>:</p>
-<ul>
-<li><strong>Data Filtering</strong>: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).</li>
-<li><strong>Rationale</strong>: Justify why you chose to work with a particular subset of the data.</li>
-</ul>
+<section id="validation-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="validation-filtering">Validation Filtering</h3>
+<p>I applied quality thresholds to remove problematic records while maintaining sufficient sample size.</p>
+<p><strong>Budget Threshold:</strong> Films with budgets below $1 million were excluded as these likely represent incomplete data rather than theatrical releases.</p>
+<p><strong>Revenue Threshold:</strong> Revenue below $1,000 indicated data quality issues and was filtered out.</p>
+<p><strong>ROI Threshold:</strong> ROI above 100x represented statistical outliers and was removed.</p>
+<p><strong>Completeness Requirement:</strong> Records missing cast or production company information were dropped as these features are required for analysis.</p>
 
 
+</section>
 </section>
 </section>
 

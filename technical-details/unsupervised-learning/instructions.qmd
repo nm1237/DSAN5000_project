@@ -1,61 +1,43 @@
-# Instructions 
+---
+title: "Unsupervised Learning"
+---
 
-`Note`: You should remove these instructions once you have read and understood them. They should not be included in your final submission.
+# Overview
 
-`Remember:` Exactly what do you put on this page will be specific you your project and data. Some things might "make more sense" on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.  
+Unsupervised learning is a type of machine learning that aims to discover hidden patterns and structure in data without labeled outcomes. The purpose of performing unsupervised learning on this data is to identify natural groupings of movies and understand whether different types of films follow distinct patterns in terms of budget, cast popularity, and box office performance.
 
-## Suggested page structure
+I applied two main unsupervised learning techniques: dimensionality reduction for visualization and clustering for pattern discovery. For dimensionality reduction, I used Principal Component Analysis (PCA) to reduce the feature space while preserving variance. For clustering, I applied K-Means clustering to identify distinct movie archetypes based on their characteristics.
 
-Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:
+The goal was to determine whether movies naturally group into categories beyond simple genre classifications, and whether these groupings reveal insights about different risk-return profiles in the film industry.
 
-`Audience`:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts. 
+Below is an outline of general information applied to all methods:
 
-- **Introduction and Motivation:** Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.
-- **Overview of Methods:** Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.
-- **Code:** Include the code you used to implement your workflow.
-- **Summary and Interpretation of Results:** Summarize your findings, interpret the results, and discuss their technical implications.
+## Data Preprocessing
 
-## What to address 
+In order to be used in unsupervised learning, the data required preprocessing to ensure all features contributed equally to pattern detection.
 
-The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.
+**Feature Selection** - I selected numerical features that characterize movie production and performance: budget, revenue, cast popularity, runtime, and ROI. Categorical variables were excluded from clustering since K-Means requires numerical data.
 
-This page is designed to give you hands-on experience with key unsupervised learning techniques, including clustering methods and dimensionality reduction, applied to real-world datasets. Please apply algorithms such as K-Means, DBSCAN, Hierarchical clustering, PCA, and t-SNE to your data. Through this process, you’ll deepen your understanding of how unsupervised learning can reveal hidden patterns and structure in data.
+**Standardization** - The data was scaled using Scikit-learn's StandardScaler. This z-score standardization is critical for unsupervised learning since clustering algorithms are sensitive to feature magnitudes. Without scaling, budget (in millions) would dominate patterns over features like runtime (in minutes).
 
-### Part 1: Dimensionality Reduction
+**Handling Outliers** - Extreme outliers were retained since they may represent legitimate movie archetypes (ultra-low-budget breakouts or massive tentpoles) rather than data errors.
 
-The objective of this section is to explore and demonstrate the effectiveness of PCA and t-SNE in reducing the dimensionality of complex data while preserving essential information and improving visualization.
+## Methods
 
-1. **PCA (Principal Component Analysis):**
-   - Apply PCA to your dataset.
-   - Determine the optimal number of principal components.
-   - Visualize the reduced-dimensional data.
-   - Analyze and interpret the results.
+### Dimensionality Reduction: PCA
 
-2. **t-SNE (t-distributed Stochastic Neighbor Embedding):**
-   - Implement t-SNE on the same dataset.
-   - Experiment with different perplexity values.
-   - Visualize the t-SNE output to reveal patterns and clusters.
-   - Compare the results of t-SNE with those from PCA.
+Principal Component Analysis (PCA) reduces the dimensionality of data by transforming features into orthogonal principal components that capture maximum variance. PCA identifies linear combinations of original features that explain the most variation in the data.
 
-3. **Evaluation and Comparison:**
-   - Evaluate the effectiveness of PCA and t-SNE in preserving data structure.
-   - Compare the visualization capabilities of both techniques.
-   - Discuss the trade-offs and scenarios where one technique may perform better than the other.
+I applied PCA to visualize the movie dataset in two dimensions while preserving as much information as possible. The first two principal components captured the most important patterns of variation across budget, revenue, cast popularity, and other features.
 
-### Part 2: Clustering Methods
+**Purpose:** PCA enables visualization of high-dimensional data and can reveal whether movies naturally separate into distinct groups based on their characteristics.
 
-Apply clustering techniques (K-Means, DBSCAN, and Hierarchical clustering) to a selected dataset. The goal is to understand how each method works, compare their performance, and interpret the results.
+### Clustering: K-Means
 
-1. **Clustering Methods:**
-   - Apply **K-Means**, **DBSCAN**, and **Hierarchical clustering** to your dataset.
-   - Write a technical summary for each method (2–4 paragraphs per method) explaining how it works, its purpose, and any model selection methods used (e.g., Elbow, Silhouette).
+K-Means is a clustering algorithm that partitions data into k distinct groups by minimizing within-cluster variance. The algorithm iteratively assigns data points to clusters and updates cluster centers until convergence.
 
-2. **Results Section:**
-   - Discuss and visualize the results of each clustering analysis.
-   - Compare the performance of different clustering methods, noting any insights gained from the analysis.
-   - Visualize cluster patterns and how they relate (if at all) to existing labels in the dataset.
-   - Use professional, labeled, and clear visualizations that support your discussion.
+I applied K-Means clustering to identify natural groupings of movies. The algorithm groups films with similar characteristics (budget levels, cast popularity, revenue performance) into the same cluster.
 
-3. **Conclusion:**
-   - Summarize the key findings and their real-world implications in a non-technical way. Focus on the most important results and how they could apply to practical situations.
+**Model Selection:** I used the elbow method and silhouette analysis to determine the optimal number of clusters. The elbow method plots within-cluster sum of squares (WCSS) against k values, looking for the "elbow" where adding more clusters provides diminishing returns. Silhouette analysis measures how well each point fits within its assigned cluster.
 
+**Purpose:** K-Means reveals whether movies fall into distinct categories with different production strategies and financial outcomes, beyond traditional genre classifications.

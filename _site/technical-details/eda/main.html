@@ -129,10 +129,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -187,20 +183,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data Overview</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#univariate-analysis" id="toc-univariate-analysis" class="nav-link" data-scroll-target="#univariate-analysis">Univariate Analysis</a></li>
+  <li><a href="#bivariate-analysis" id="toc-bivariate-analysis" class="nav-link" data-scroll-target="#bivariate-analysis">Bivariate Analysis</a></li>
+  <li><a href="#multivariate-analysis" id="toc-multivariate-analysis" class="nav-link" data-scroll-target="#multivariate-analysis">Multivariate Analysis</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
   <ul class="collapse">
-  <li><a href="#now-that-my-data-is-cleaned-im-exploring-patterns-to-understand-what-drives-box-office-success.-ill-be-looking-at-budget-vs.-revenue-relationships-genre-performance-release-timing-effects-and-more." id="toc-now-that-my-data-is-cleaned-im-exploring-patterns-to-understand-what-drives-box-office-success.-ill-be-looking-at-budget-vs.-revenue-relationships-genre-performance-release-timing-effects-and-more." class="nav-link" data-scroll-target="#now-that-my-data-is-cleaned-im-exploring-patterns-to-understand-what-drives-box-office-success.-ill-be-looking-at-budget-vs.-revenue-relationships-genre-performance-release-timing-effects-and-more.">Now that my data is cleaned, I’m exploring patterns to understand what drives box office success. I’ll be looking at budget vs.&nbsp;revenue relationships, genre performance, release timing effects, and more.</a></li>
-  <li><a href="#the-fundamental-question-does-spending-more-money-guarantee-higher-box-office-returns-im-plotting-budget-against-revenue-to-see-if-theres-a-clear-relationship-or-if-success-is-more-nuanced." id="toc-the-fundamental-question-does-spending-more-money-guarantee-higher-box-office-returns-im-plotting-budget-against-revenue-to-see-if-theres-a-clear-relationship-or-if-success-is-more-nuanced." class="nav-link" data-scroll-target="#the-fundamental-question-does-spending-more-money-guarantee-higher-box-office-returns-im-plotting-budget-against-revenue-to-see-if-theres-a-clear-relationship-or-if-success-is-more-nuanced.">The fundamental question: does spending more money guarantee higher box office returns? I’m plotting budget against revenue to see if there’s a clear relationship or if success is more nuanced.</a></li>
-  <li><a href="#while-bigger-budgets-can-generate-more-absolute-revenue-i-want-to-know-which-budget-tier-delivers-roi.-this-tells-us-the-most-efficient-way-to-spend-money." id="toc-while-bigger-budgets-can-generate-more-absolute-revenue-i-want-to-know-which-budget-tier-delivers-roi.-this-tells-us-the-most-efficient-way-to-spend-money." class="nav-link" data-scroll-target="#while-bigger-budgets-can-generate-more-absolute-revenue-i-want-to-know-which-budget-tier-delivers-roi.-this-tells-us-the-most-efficient-way-to-spend-money.">While bigger budgets can generate more absolute revenue, I want to know which budget tier delivers ROI. This tells us the most efficient way to spend money.</a></li>
-  <li><a href="#different-genres-have-different-success-rates-and-profitability-patterns.-im-analyzing-which-genres-consistently-deliver-profitable-films." id="toc-different-genres-have-different-success-rates-and-profitability-patterns.-im-analyzing-which-genres-consistently-deliver-profitable-films." class="nav-link" data-scroll-target="#different-genres-have-different-success-rates-and-profitability-patterns.-im-analyzing-which-genres-consistently-deliver-profitable-films.">Different genres have different success rates and profitability patterns. I’m analyzing which genres consistently deliver profitable films.</a></li>
-  <li><a href="#hollywood-has-conventional-wisdom-about-release-windows---summer-for-blockbusters-holidays-for-family-films.-im-testing-whether-release-timing-actually-impacts-success-rates." id="toc-hollywood-has-conventional-wisdom-about-release-windows---summer-for-blockbusters-holidays-for-family-films.-im-testing-whether-release-timing-actually-impacts-success-rates." class="nav-link" data-scroll-target="#hollywood-has-conventional-wisdom-about-release-windows---summer-for-blockbusters-holidays-for-family-films.-im-testing-whether-release-timing-actually-impacts-success-rates.">Hollywood has conventional wisdom about release windows - summer for blockbusters, holidays for family films. I’m testing whether release timing actually impacts success rates.</a></li>
-  <li><a href="#do-certain-directors-consistently-deliver-hits-does-cast-popularity-actually-predict-success" id="toc-do-certain-directors-consistently-deliver-hits-does-cast-popularity-actually-predict-success" class="nav-link" data-scroll-target="#do-certain-directors-consistently-deliver-hits-does-cast-popularity-actually-predict-success">Do certain directors consistently deliver hits? Does cast popularity actually predict success?</a></li>
+  <li><a href="#exploring-patterns-in-box-office-success" id="toc-exploring-patterns-in-box-office-success" class="nav-link" data-scroll-target="#exploring-patterns-in-box-office-success">Exploring Patterns in Box Office Success</a></li>
+  <li><a href="#budget-vs-revenue-does-spending-more-guarantee-success" id="toc-budget-vs-revenue-does-spending-more-guarantee-success" class="nav-link" data-scroll-target="#budget-vs-revenue-does-spending-more-guarantee-success">Budget vs Revenue: Does Spending More Guarantee Success?</a></li>
+  <li><a href="#finding-the-optimal-budget-tier-for-roi" id="toc-finding-the-optimal-budget-tier-for-roi" class="nav-link" data-scroll-target="#finding-the-optimal-budget-tier-for-roi">Finding the Optimal Budget Tier for ROI</a></li>
+  <li><a href="#genre-performance-analysis" id="toc-genre-performance-analysis" class="nav-link" data-scroll-target="#genre-performance-analysis">Genre Performance Analysis</a></li>
+  <li><a href="#release-timing-effects" id="toc-release-timing-effects" class="nav-link" data-scroll-target="#release-timing-effects">Release Timing Effects</a></li>
+  <li><a href="#cast-popularity-and-director-influence" id="toc-cast-popularity-and-director-influence" class="nav-link" data-scroll-target="#cast-popularity-and-director-influence">Cast Popularity and Director Influence</a></li>
   </ul></li>
+  <li><a href="#summary-and-results" id="toc-summary-and-results" class="nav-link" data-scroll-target="#summary-and-results">Summary and Results</a></li>
   </ul>
 </nav>
     </div>
@@ -227,101 +229,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Exploratory Data Analysis (EDA) is the process of examining and visualizing data to understand its characteristics, identify patterns, and uncover relationships between variables. The purpose of performing EDA on this data is to gain deeper insights into what drives box office success and to prepare the dataset for machine learning modeling.</p>
+<p>I conducted univariate, bivariate, and multivariate analyses to examine the cleaned dataset of 2,691 movies. The analysis explored distributions of key variables (budget, revenue, ROI), relationships between features (budget-revenue correlation, genre patterns, seasonal effects), and patterns that inform the prediction task.</p>
+<p>The goal was to answer exploratory questions: How does budget relate to revenue? Do certain genres perform better? Does release timing matter? What’s the typical ROI distribution? These insights shaped feature selection and informed expectations for model performance.</p>
+<p>Below is an outline of the analytical approach:</p>
+<section id="data-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-overview">Data Overview</h2>
+<p>The cleaned dataset contains 2,691 movies with 23 features spanning financial metrics, cast information, genre classifications, and temporal characteristics. Key variables include:</p>
+<p><strong>Financial Variables:</strong> Budget, revenue, ROI, profitability (binary), success category (4-class)</p>
+<p><strong>Cast and Production:</strong> Cast popularity, production companies, director</p>
+<p><strong>Genre and Classification:</strong> Primary genre, all genres, budget tier</p>
+<p><strong>Temporal Features:</strong> Release date, release year, release month, release season</p>
+<p><strong>Film Characteristics:</strong> Runtime, vote average, vote count, popularity score</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>The <strong>EDA (Exploratory Data Analysis)</strong> tab in your portfolio serves as a crucial foundation for your project. It provides a thorough overview of the dataset, highlights patterns, identifies potential issues, and prepares the data for further analysis. Follow these instructions to document your EDA effectively:</p>
-<p>The goal of EDA is to gain a deeper understanding of the dataset and its relevance to your project’s objectives. It involves summarizing key data characteristics, identifying patterns, anomalies, and preparing for future analysis phases.</p>
-<p>Here are suggestions for things to include on this page</p>
-<p><strong>Univariate Analysis</strong>:</p>
-<ul>
-<li><strong>Numerical Variables</strong>:
-<ul>
-<li>Provide summary statistics (mean, median, standard deviation).</li>
-<li>Visualize distributions using histograms or density plots.</li>
-</ul></li>
-<li><strong>Categorical Variables</strong>:
-<ul>
-<li>Present frequency counts and visualize distributions using bar charts or pie charts.</li>
-</ul></li>
-<li><strong>Key Insights</strong>:
-<ul>
-<li>Highlight any notable trends or patterns observed.</li>
-</ul></li>
-</ul>
-<p><strong>Bivariate and Multivariate Analysis</strong>:</p>
-<ul>
-<li><strong>Correlation Analysis</strong>:
-<ul>
-<li>Analyze relationships between numerical variables using a correlation matrix.</li>
-<li>Visualize with heatmaps or pair plots and discuss any strong correlations.</li>
-</ul></li>
-<li><strong>Crosstabulations</strong>:
-<ul>
-<li>For categorical variables, use crosstabs to explore relationships and visualize them with grouped bar plots.</li>
-</ul></li>
-<li><strong>Feature Pairings</strong>:
-<ul>
-<li>Analyze relationships between key variables, particularly those related to your target.</li>
-<li>Visualize with scatter plots, box plots, or violin plots.</li>
-</ul></li>
-</ul>
-<p><strong>Data Distribution and Normalization</strong>:</p>
-<ul>
-<li><strong>Skewness and Kurtosis</strong>:</li>
-<li>Analyze and discuss the distribution of variables.</li>
-<li>Apply transformations (e.g., log transformation) if needed for skewed data.</li>
-<li><strong>Normalization</strong>:</li>
-<li>Apply normalization or scaling techniques (e.g., min-max scaling, z-score).</li>
-<li>Document and visualize the impact of normalization.</li>
-</ul>
-<p><strong>Statistical Insights</strong>:</p>
-<ul>
-<li>Conduct basic statistical tests (e.g., T-tests, ANOVA, chi-square) to explore relationships between variables.</li>
-<li>Summarize the statistical results and their implications for your analysis.</li>
-</ul>
-<p><strong>Data Visualization and Storytelling</strong>:</p>
-<ul>
-<li><strong>Visual Summary</strong>:</li>
-<li>Present key insights using charts and visualizations (e.g., Matplotlib, Seaborn, Plotly).</li>
-<li>Ensure all visualizations are well-labeled and easy to interpret.</li>
-<li><strong>Interactive Visualizations (Optional)</strong>:</li>
-<li>Include interactive elements (e.g., Plotly, Bokeh) to allow users to explore the data further.</li>
-</ul>
-<p><strong>Conclusions and Next Steps</strong>:</p>
-<ul>
-<li><strong>Summary of EDA Findings</strong>:</li>
-<li>Highlight the main takeaways from the EDA process (key trends, patterns, data quality issues).</li>
-<li><strong>Implications for Modeling</strong>:</li>
-<li>Discuss how your EDA informs the next steps in your project (e.g., feature selection, data transformations).</li>
-<li>Outline any further data cleaning or preparation required before moving into modeling.</li>
-</ul>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="univariate-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="univariate-analysis">Univariate Analysis</h3>
+<p>I examined the distribution of individual variables to understand their characteristics and identify potential issues.</p>
+<p><strong>Numerical Variables:</strong> I generated summary statistics (mean, median, standard deviation) and visualized distributions using histograms. This revealed the range and spread of budget, revenue, and ROI values.</p>
+<p><strong>Categorical Variables:</strong> I calculated frequency counts for genres, budget tiers, and seasons, visualizing them with bar charts to understand category balance.</p>
+</section>
+<section id="bivariate-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="bivariate-analysis">Bivariate Analysis</h3>
+<p>I analyzed relationships between pairs of variables to identify patterns and correlations.</p>
+<p><strong>Budget-Revenue Relationship:</strong> I created scatter plots and calculated correlation coefficients to quantify the relationship between production spending and box office earnings.</p>
+<p><strong>Genre Performance:</strong> I compared success rates across genres using grouped bar charts to identify which categories perform best.</p>
+<p><strong>Seasonal Patterns:</strong> I analyzed profitability rates by release season to determine whether timing affects outcomes.</p>
+</section>
+<section id="multivariate-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="multivariate-analysis">Multivariate Analysis</h3>
+<p>I examined interactions between multiple variables simultaneously.</p>
+<p><strong>Correlation Matrix:</strong> I generated a correlation heatmap showing relationships among all numerical features to identify multicollinearity and feature importance patterns.</p>
+<p><strong>Budget Tier Analysis:</strong> I compared ROI distributions across budget tiers using box plots to understand how spending level affects returns.</p>
+</section>
 </section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
-<section id="now-that-my-data-is-cleaned-im-exploring-patterns-to-understand-what-drives-box-office-success.-ill-be-looking-at-budget-vs.-revenue-relationships-genre-performance-release-timing-effects-and-more." class="level3">
-<h3 class="anchored" data-anchor-id="now-that-my-data-is-cleaned-im-exploring-patterns-to-understand-what-drives-box-office-success.-ill-be-looking-at-budget-vs.-revenue-relationships-genre-performance-release-timing-effects-and-more.">Now that my data is cleaned, I’m exploring patterns to understand what drives box office success. I’ll be looking at budget vs.&nbsp;revenue relationships, genre performance, release timing effects, and more.</h3>
-<div id="cell-4" class="cell" data-execution_count="6">
+<section id="exploring-patterns-in-box-office-success" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-patterns-in-box-office-success">Exploring Patterns in Box Office Success</h2>
+<p>Now that the data is cleaned, I explored patterns to understand what drives box office success. This analysis examines budget-revenue relationships, genre performance, release timing effects, and cast influence.</p>
+<div id="cell-4" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -348,12 +299,12 @@ Budget range: $1,000,000 - $583,900,000
 Profitable rate: 75.1%</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right after loading the data:</span></span>
+<div id="cell-5" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'profitable'</span>].value_counts())</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'profitable'</span>].mean())  <span class="co"># Should be ~0.751 for 75.1%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'profitable'</span>].mean())  </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Then for genres:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for genres</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.groupby(<span class="st">'primary_genre'</span>)[<span class="st">'profitable'</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>profitable
@@ -384,9 +335,10 @@ Name: profitable, dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="the-fundamental-question-does-spending-more-money-guarantee-higher-box-office-returns-im-plotting-budget-against-revenue-to-see-if-theres-a-clear-relationship-or-if-success-is-more-nuanced." class="level3">
-<h3 class="anchored" data-anchor-id="the-fundamental-question-does-spending-more-money-guarantee-higher-box-office-returns-im-plotting-budget-against-revenue-to-see-if-theres-a-clear-relationship-or-if-success-is-more-nuanced.">The fundamental question: does spending more money guarantee higher box office returns? I’m plotting budget against revenue to see if there’s a clear relationship or if success is more nuanced.</h3>
-<div id="cell-7" class="cell" data-execution_count="8">
+<section id="budget-vs-revenue-does-spending-more-guarantee-success" class="level2">
+<h2 class="anchored" data-anchor-id="budget-vs-revenue-does-spending-more-guarantee-success">Budget vs Revenue: Does Spending More Guarantee Success?</h2>
+<p>I plotted budget against revenue to examine whether higher spending produces proportionally higher returns, or if the relationship is more complex.</p>
+<div id="cell-7" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># budget vs revenue scatter plot</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">8</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -433,9 +385,10 @@ Interpretation: Strong positive relationship</code></pre>
 </div>
 </div>
 </section>
-<section id="while-bigger-budgets-can-generate-more-absolute-revenue-i-want-to-know-which-budget-tier-delivers-roi.-this-tells-us-the-most-efficient-way-to-spend-money." class="level3">
-<h3 class="anchored" data-anchor-id="while-bigger-budgets-can-generate-more-absolute-revenue-i-want-to-know-which-budget-tier-delivers-roi.-this-tells-us-the-most-efficient-way-to-spend-money.">While bigger budgets can generate more absolute revenue, I want to know which budget tier delivers ROI. This tells us the most efficient way to spend money.</h3>
-<div id="cell-9" class="cell" data-execution_count="9">
+<section id="finding-the-optimal-budget-tier-for-roi" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-optimal-budget-tier-for-roi">Finding the Optimal Budget Tier for ROI</h2>
+<p>While bigger budgets can generate more absolute revenue, I analyzed which budget tier delivers the best return on investment. This reveals the most efficient way to allocate production spending.</p>
+<div id="cell-9" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROI by budget tier</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -454,12 +407,12 @@ Interpretation: Strong positive relationship</code></pre>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Budget Tier'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Return on Investment (ROI)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROI by Budget Tier: The Sweet Spot for Profitability'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">20</span>)  <span class="co"># Cap at 20x for better visibility</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">20</span>) </span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, axis<span class="op">=</span><span class="st">'y'</span>)</span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Print statistics</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">ROI Statistics by Budget Tier:"</span>)</span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>roi_stats <span class="op">=</span> df.groupby(<span class="st">'budget_tier'</span>)[<span class="st">'roi'</span>].agg([<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'std'</span>, <span class="st">'count'</span>])</span>
@@ -484,13 +437,14 @@ Blockbuster  3.570919  3.076213   2.255803    224</code></pre>
 </div>
 </div>
 </section>
-<section id="different-genres-have-different-success-rates-and-profitability-patterns.-im-analyzing-which-genres-consistently-deliver-profitable-films." class="level3">
-<h3 class="anchored" data-anchor-id="different-genres-have-different-success-rates-and-profitability-patterns.-im-analyzing-which-genres-consistently-deliver-profitable-films.">Different genres have different success rates and profitability patterns. I’m analyzing which genres consistently deliver profitable films.</h3>
-<div id="cell-11" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># genre success rates - FIXED</span></span>
+<section id="genre-performance-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="genre-performance-analysis">Genre Performance Analysis</h2>
+<p>Different genres have different success rates and profitability patterns. I examined which genres consistently deliver profitable films and whether certain categories outperform others.</p>
+<div id="cell-11" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># genre success rates </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>genre_stats <span class="op">=</span> df.groupby(<span class="st">'primary_genre'</span>).agg({</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'profitable'</span>: <span class="st">'mean'</span>,  <span class="co"># Just mean, not ['mean', 'count']</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'movie_id'</span>: <span class="st">'count'</span>,   <span class="co"># Use a different column for count</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'profitable'</span>: <span class="st">'mean'</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'movie_id'</span>: <span class="st">'count'</span>,   </span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'roi'</span>: <span class="st">'median'</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -559,9 +513,10 @@ Thriller             0.549618          131    1.295558</code></pre>
 </div>
 </div>
 </section>
-<section id="hollywood-has-conventional-wisdom-about-release-windows---summer-for-blockbusters-holidays-for-family-films.-im-testing-whether-release-timing-actually-impacts-success-rates." class="level3">
-<h3 class="anchored" data-anchor-id="hollywood-has-conventional-wisdom-about-release-windows---summer-for-blockbusters-holidays-for-family-films.-im-testing-whether-release-timing-actually-impacts-success-rates.">Hollywood has conventional wisdom about release windows - summer for blockbusters, holidays for family films. I’m testing whether release timing actually impacts success rates.</h3>
-<div id="cell-13" class="cell">
+<section id="release-timing-effects" class="level2">
+<h2 class="anchored" data-anchor-id="release-timing-effects">Release Timing Effects</h2>
+<p>Hollywood has conventional wisdom about release windows: summer for blockbusters, holidays for family films. I tested whether release timing actually impacts success rates and profitability.</p>
+<div id="cell-13" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># release timing analysis </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">7</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -666,9 +621,10 @@ release_month
 </div>
 </div>
 </section>
-<section id="do-certain-directors-consistently-deliver-hits-does-cast-popularity-actually-predict-success" class="level3">
-<h3 class="anchored" data-anchor-id="do-certain-directors-consistently-deliver-hits-does-cast-popularity-actually-predict-success">Do certain directors consistently deliver hits? Does cast popularity actually predict success?</h3>
-<div id="cell-15" class="cell" data-execution_count="12">
+<section id="cast-popularity-and-director-influence" class="level2">
+<h2 class="anchored" data-anchor-id="cast-popularity-and-director-influence">Cast Popularity and Director Influence</h2>
+<p>I analyzed whether certain directors consistently deliver hits and whether cast popularity actually predicts box office success.</p>
+<div id="cell-15" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># top directors analysis</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>director_stats <span class="op">=</span> df.groupby(<span class="st">'director'</span>).agg({</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'revenue'</span>: <span class="st">'mean'</span>,</span>
@@ -676,7 +632,7 @@ release_month
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'movie_id'</span>: <span class="st">'count'</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>director_stats.columns <span class="op">=</span> [<span class="st">'Avg_Revenue'</span>, <span class="st">'Success_Rate'</span>, <span class="st">'Movie_Count'</span>]</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>director_stats <span class="op">=</span> director_stats[director_stats[<span class="st">'Movie_Count'</span>] <span class="op">&gt;=</span> <span class="dv">3</span>]  <span class="co"># at least 3 movies</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>director_stats <span class="op">=</span> director_stats[director_stats[<span class="st">'Movie_Count'</span>] <span class="op">&gt;=</span> <span class="dv">3</span>]  </span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>top_directors <span class="op">=</span> director_stats.nlargest(<span class="dv">15</span>, <span class="st">'Avg_Revenue'</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># cast popularity vs profitability</span></span>
@@ -743,9 +699,21 @@ Average cast popularity for profitable films: 3.2
 Average cast popularity for unprofitable films: 2.6</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="summary-and-results" class="level1">
+<h1>Summary and Results</h1>
+<p>The exploratory data analysis revealed several key patterns that inform the prediction task:</p>
+<p><strong>Budget-Revenue Correlation:</strong> Budget and revenue show strong positive correlation (0.711), confirming that higher spending generally produces higher earnings. However, the relationship is not linear, with diminishing returns at higher budget levels.</p>
+<p><strong>Genre Performance Patterns:</strong> Family films showed the highest success rate at 89%, followed by Adventure (85%) and Fantasy (84%). Drama films succeeded 71% of the time, while Thriller films faced the toughest odds at 55%. These differences are substantial enough to use genre as a predictive feature.</p>
+<p><strong>Seasonal Effects:</strong> Holiday and Summer releases outperformed Fall releases by 14 percentage points in profitability rate. Family films particularly benefited from holiday timing (84% success vs 52% in Fall), while horror films peaked in October. Strategic timing creates measurable advantages.</p>
+<p><strong>Budget Tier Insights:</strong> The $80-150M budget tier achieved optimal median ROI at 2.9x, outperforming both lower and higher spending categories. This contradicts the assumption that bigger budgets always mean better returns and suggests a sweet spot for investment.</p>
+<p><strong>Distribution Characteristics:</strong> Revenue shows right-skewed distribution with most films earning modest returns and a few massive hits. ROI distribution reveals 75% profitability overall, creating slight class imbalance for classification modeling.</p>
+<p><strong>Feature Importance Indicators:</strong> Cast popularity and budget emerged as the most promising predictive features based on their correlation with profitability and their distribution differences between successful and unsuccessful films.</p>
+<p><strong>Implications for Modeling:</strong> The EDA confirms that profitability prediction is feasible with these features. The 75% baseline profitability rate sets the benchmark that classification models must exceed. Strong correlations between budget, cast popularity, and revenue suggest these features will drive model performance. Genre and seasonal variables show sufficient variation to contribute meaningfully. The analysis also identified no major data quality issues requiring additional cleaning.</p>
+<p>These insights shaped feature selection for supervised learning and established expectations for model accuracy around 75-80% based on the inherent patterns in the data.</p>
+
+
 </section>
 
 </main> <!-- /main -->

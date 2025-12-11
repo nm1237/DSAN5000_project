@@ -2,34 +2,24 @@
 
 ## Goals
 
-This data collection phase builds a comprehensive movie dataset from The Movie Database (TMDB) API to support machine learning analysis of box office performance. The focus is on gathering both pre-release features (budget, genre, cast) and post-release outcomes (revenue, ratings) that might predict a film's commercial success.
+The goal of this data collection phase was to gather comprehensive movie information from The Movie Database (TMDB) to analyze patterns in box office success. TMDB provides detailed financial data, cast information, production details, and temporal features needed for profitability analysis.
+
+I targeted movies with complete budget and revenue information since these financial metrics are essential for the analysis. I only included movies with at least 100 user votes to ensure data quality. I queried the API systematically to retrieve popular films where both production costs and box office earnings are documented.
 
 ## Motivation
 
-Predicting box office performance matters. Studios invest millions in production and marketing, often with little concrete data on what actually drives commercial success. The conventional wisdom—star power, big budgets, summer releases—gets repeated endlessly, but how much of it holds up under statistical scrutiny?
+Predicting box office success has challenged the film industry for decades. Studios invest hundreds of millions in productions with limited ability to forecast performance. Executives rely on star power, comparable film analysis, and gut instinct, but data-driven approaches may reveal patterns traditional methods miss.
 
-Machine learning offers a way to move beyond industry folklore and identify quantifiable patterns in what makes movies succeed or fail financially. However, this depends entirely on having quality data. Many existing movie datasets are incomplete, outdated, or lack the feature diversity needed for meaningful analysis. TMDB's API provides a solution: it's comprehensive, actively maintained, freely accessible, and includes the multidimensional features—from production budgets to cast popularity scores—necessary for this kind of investigation.
-
-The challenge is straightforward: collect clean, complete data on thousands of films to determine whether algorithmic approaches can outperform traditional methods of predicting box office outcomes.
+Understanding what drives box office success has practical implications beyond just making studios money. When studios make better investment decisions, they can take more creative risks rather than churning out safe franchise sequels. For audiences, improved decision-making could mean more diverse films getting greenlit. For data science, this demonstrates how machine learning can extract meaningful patterns from complex domains where art intersects with commerce.
 
 ## Objectives
 
-This data collection phase has five concrete objectives:
+The main objectives of this data collection phase were to:
 
-**1. Scale**: Retrieve records for 2,500+ movies spanning 1934-2025, prioritizing recent releases while maintaining historical breadth for temporal analysis.
+- Gather financial data (budget and revenue) for a large sample of theatrical releases
+- Collect cast and crew information to analyze the impact of talent on performance
+- Obtain genre classifications and temporal features to study market patterns
+- Ensure data quality by filtering for complete records and sufficient vote counts
+- Create a dataset suitable for exploratory analysis, clustering, and predictive modeling
 
-**2. Feature completeness**: Extract 18+ features per movie across multiple dimensions:
-- Financial data (budget, revenue, calculated ROI)
-- Temporal patterns (release dates, seasonal trends)  
-- Genre classifications (primary genre plus multi-genre combinations)
-- Talent metrics (cast lists, director information, popularity indices)
-- Audience reception (user ratings, vote counts, popularity scores)
-- Production specifications (runtime, production companies, countries)
-
-**3. Data quality**: Implement filtering to exclude incomplete records—specifically, movies lacking budget or revenue data—since these are essential for any profitability analysis.
-
-**4. Reproducibility**: Document the entire collection process in reusable Python scripts that handle API authentication, rate limiting, pagination, and error handling. Future researchers should be able to replicate or extend this dataset.
-
-**5. API efficiency**: Respect TMDB's rate limits while maximizing data yield through strategic query construction and 0.25-second request spacing.
-
-Meeting these objectives establishes the foundation for the exploratory analysis, clustering, and classification tasks that follow. The quality of insights from machine learning models depends directly on the quality of data going in—so getting this right matters.
+By collecting this comprehensive data, I aimed to identify which factors most strongly predict profitability, whether different types of movies follow different patterns, and how release timing affects success rates.

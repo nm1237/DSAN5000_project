@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Cleaning – DSAN-5000: Project</title>
+<title>Data Collection – DSAN-5000: Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,9 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -130,10 +127,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
@@ -190,16 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
-  <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
-  <li><a href="#start-collecting-data" id="toc-start-collecting-data" class="nav-link" data-scroll-target="#start-collecting-data">Start collecting data:</a></li>
-  <li><a href="#saving-the-raw-data" id="toc-saving-the-raw-data" class="nav-link" data-scroll-target="#saving-the-raw-data">Saving the raw data</a></li>
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements:</a></li>
-  </ul></li>
-  <li><a href="#what-do-include-on-this-page" id="toc-what-do-include-on-this-page" class="nav-link" data-scroll-target="#what-do-include-on-this-page">What do include on this page</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
   <li><a href="#goals" id="toc-goals" class="nav-link" data-scroll-target="#goals">Goals</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
@@ -207,34 +191,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#api-selection-and-setup" id="toc-api-selection-and-setup" class="nav-link" data-scroll-target="#api-selection-and-setup">API Selection and Setup</a></li>
-  <li><a href="#collection-strategy" id="toc-collection-strategy" class="nav-link" data-scroll-target="#collection-strategy">Collection Strategy</a>
+  <li><a href="#data-collection" id="toc-data-collection" class="nav-link" data-scroll-target="#data-collection">Data Collection</a></li>
+  <li><a href="#api-selection" id="toc-api-selection" class="nav-link" data-scroll-target="#api-selection">API Selection</a></li>
+  <li><a href="#collection-approach" id="toc-collection-approach" class="nav-link" data-scroll-target="#collection-approach">Collection Approach</a>
   <ul class="collapse">
-  <li><a href="#query-construction" id="toc-query-construction" class="nav-link" data-scroll-target="#query-construction">Query Construction</a></li>
-  <li><a href="#rate-limiting-and-request-management" id="toc-rate-limiting-and-request-management" class="nav-link" data-scroll-target="#rate-limiting-and-request-management">Rate Limiting and Request Management</a></li>
-  <li><a href="#pagination-logic" id="toc-pagination-logic" class="nav-link" data-scroll-target="#pagination-logic">Pagination Logic</a></li>
+  <li><a href="#api-endpoints-used" id="toc-api-endpoints-used" class="nav-link" data-scroll-target="#api-endpoints-used">API Endpoints Used</a></li>
+  <li><a href="#rate-limiting" id="toc-rate-limiting" class="nav-link" data-scroll-target="#rate-limiting">Rate Limiting</a></li>
   </ul></li>
-  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">Feature Extraction</a></li>
-  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage">Data Storage</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
+  <li><a href="#features-collected" id="toc-features-collected" class="nav-link" data-scroll-target="#features-collected">Features Collected</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data Structure</a></li>
   </ul></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
-  <ul class="collapse">
-  <li><a href="#i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with." id="toc-i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with." class="nav-link" data-scroll-target="#i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with.">I collected 2,812 movies from TMDB with complete budget and revenue data. First, I’m loading the data to see what I’m working with.</a></li>
-  <li><a href="#now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning." id="toc-now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning." class="nav-link" data-scroll-target="#now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning.">Now I’m checking to see if there are any missing values or data quality issues that I’ll need to address during cleaning.</a></li>
-  <li><a href="#before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable." id="toc-before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable." class="nav-link" data-scroll-target="#before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable.">Before cleaning, I’m creating the key features I’ll need for my analysis: ROI and a success label to predict whether movies are profitable.</a></li>
-  <li><a href="#i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality." id="toc-i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality." class="nav-link" data-scroll-target="#i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality.">I noticed some extreme ROI values that are likely data errors (movies with budgets under $1000 or revenues under $1000). I’m filtering these out to ensure data quality.</a></li>
-  <li><a href="#now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases." id="toc-now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases." class="nav-link" data-scroll-target="#now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases.">Now that I’ve engineered features and removed outliers, I’m saving the cleaned dataset for use in my exploratory analysis and modeling phases.</a></li>
-  </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
   <ul class="collapse">
-  <li><a href="#collection-results" id="toc-collection-results" class="nav-link" data-scroll-target="#collection-results">Collection Results</a></li>
-  <li><a href="#challenges-and-design-decisions" id="toc-challenges-and-design-decisions" class="nav-link" data-scroll-target="#challenges-and-design-decisions">Challenges and Design Decisions</a></li>
-  <li><a href="#data-quality-assessment" id="toc-data-quality-assessment" class="nav-link" data-scroll-target="#data-quality-assessment">Data Quality Assessment</a></li>
-  <li><a href="#validation-against-benchmarks" id="toc-validation-against-benchmarks" class="nav-link" data-scroll-target="#validation-against-benchmarks">Validation Against Benchmarks</a></li>
-  <li><a href="#transition-to-data-cleaning" id="toc-transition-to-data-cleaning" class="nav-link" data-scroll-target="#transition-to-data-cleaning">Transition to Data Cleaning</a></li>
-  <li><a href="#future-improvements" id="toc-future-improvements" class="nav-link" data-scroll-target="#future-improvements">Future Improvements</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -244,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Cleaning</h1>
+<h1 class="title">Data Collection</h1>
 </div>
 
 
@@ -261,759 +232,307 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instruction once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
-<p>In the provide repo, these subsections have been included in the <code>data-collection</code> file as separate <code>.qmd</code> files that can be embedded using the <code>{{&lt; include &gt;}}</code> tag.</p>
-</section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>On this page, you will focus on <strong>data collection</strong>, which is an essential step for future analysis. You should have already selected a specific data-science question that can be addressed in a data-driven way.</p>
-<p>It is recommended that you focus on one or two of the following data formats, <strong>text</strong>, <strong>tabular</strong>, <strong>image</strong>, <strong>geospatial</strong>, or <strong>network</strong> data.</p>
-<p><strong>Tabular</strong> (e.g.&nbsp;CSV files) and <strong>text</strong> formats are highly recommended, as these are covered most thoroughly in the course. Deviating from these formats may require additional work on your end. Please avoid <strong>timeseries</strong> data formats, as these require special methods not covered in the course. You can include as many additional formats as you want. Your project will revolve around the data you gather and will include data collection, analysis, visualization, and storytelling.</p>
-</section>
-<section id="start-collecting-data" class="level2">
-<h2 class="anchored" data-anchor-id="start-collecting-data">Start collecting data:</h2>
-<p>Begin gathering your data and document the methods and sources on the <strong>Data Collection</strong> page of your project. Include screenshots or example tables to illustrate the data collection process without displaying entire datasets. Ensure <strong>transparency</strong> so anyone can replicate your work.</p>
-</section>
-<section id="saving-the-raw-data" class="level2">
-<h2 class="anchored" data-anchor-id="saving-the-raw-data">Saving the raw data</h2>
-<ul>
-<li>During the collection phase, save the collected data locally to the <code>data/raw-data</code> folder, in the root of the project, for later processing. (Do not sync this folder to GitHub.)</li>
-<li>Remember, the “raw data” should typically be left “pristine”, to ensure replicability.</li>
-<li>Later when you clean the data, you should save the cleaned data to the <code>data/processed-data</code> folder, in the root of the project.</li>
-<li>You should also save files you download manually from online to this folder</li>
-</ul>
-</section>
-<section id="requirements" class="level2">
-<h2 class="anchored" data-anchor-id="requirements">Requirements:</h2>
-<ul>
-<li>Your data must be relevant to the project’s overall goals and help solve your research questions.</li>
-<li>You must use <strong>at least one API</strong> to collect your data.</li>
-<li>Ensure you have at least one <strong>regression target</strong>: a continuous quantity that can be used for regression prediction with other features.</li>
-<li>Ensure you have at least one <strong>binary classification target</strong>: a two-class (A,B) label that can be predicted using other features.</li>
-<li>Ensure you have at least one <strong>multiclass-classification target</strong>: a multi-class (A,B,C …) label that can be predicted using other features.</li>
-<li><strong>Do not use a Kaggle topic</strong>—this project is meant to simulate a real-world project. Kaggle datasets are typically too clean and have already been prepped for analysis, which doesn’t align with the project’s goals.</li>
-</ul>
-<p>Focus on data that tells a compelling story and supports the techniques covered in the class (e.g., clustering, classification, regression).</p>
-</section>
-</section>
-<section id="what-do-include-on-this-page" class="level1">
-<h1>What do include on this page</h1>
-<p>To ensure clarity and transparency throughout your project, your data collection documentation should include the following:</p>
-<ol start="0" type="1">
-<li><p><strong>Include all code used for data collection</strong> in the notebook below</p></li>
-<li><p><strong>Data Source Information</strong></p>
-<ul>
-<li>Specify where the data comes from, whether public datasets, APIs, or original collection.</li>
-<li>Provide links to datasets or API documentation and explain their relevance to the project.</li>
-</ul></li>
-<li><p><strong>Data Collection Methods</strong></p>
-<ul>
-<li>If you used an API or web scraping, explain the tools (e.g., <code>BeautifulSoup</code>, <code>Selenium</code>) and the process.</li>
-<li>Include links to your code for replicating data collection.</li>
-</ul></li>
-<li><p><strong>Data Structure and Format</strong></p>
-<ul>
-<li>Describe the structure of your raw data (e.g., rows, columns, data types) and its format (CSV, JSON, etc.).</li>
-</ul></li>
-<li><p><strong>Linking to Data</strong></p>
-<ul>
-<li>Include links to the <strong>raw dataset</strong>, ensuring transparency and allowing replication.</li>
-</ul></li>
-<li><p><strong>Code and Reproducibility</strong></p>
-<ul>
-<li>Link to all relevant code, including data collection , with clear documentation to enable replication.</li>
-</ul></li>
-<li><p><strong>Transparency and Replicability</strong></p>
-<ul>
-<li>Ensure your entire workflow is transparent and reproducible by linking all data, code, and documentation. This allows others to follow your process from start to finish.</li>
-</ul></li>
-</ol>
-</section>
 <section id="overview" class="level1">
 <h1>Overview</h1>
 <section id="goals" class="level2">
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<p>This data collection phase builds a comprehensive movie dataset from The Movie Database (TMDB) API to support machine learning analysis of box office performance. The focus is on gathering both pre-release features (budget, genre, cast) and post-release outcomes (revenue, ratings) that might predict a film’s commercial success.</p>
+<p>The goal of this data collection phase was to gather comprehensive movie information from The Movie Database (TMDB) to analyze patterns in box office success. TMDB provides detailed financial data, cast information, production details, and temporal features needed for profitability analysis.</p>
+<p>I targeted movies with complete budget and revenue information since these financial metrics are essential for the analysis. I only included movies with at least 100 user votes to ensure data quality. I queried the API systematically to retrieve popular films where both production costs and box office earnings are documented.</p>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Predicting box office performance matters. Studios invest millions in production and marketing, often with little concrete data on what actually drives commercial success. The conventional wisdom—star power, big budgets, summer releases—gets repeated endlessly, but how much of it holds up under statistical scrutiny?</p>
-<p>Machine learning offers a way to move beyond industry folklore and identify quantifiable patterns in what makes movies succeed or fail financially. However, this depends entirely on having quality data. Many existing movie datasets are incomplete, outdated, or lack the feature diversity needed for meaningful analysis. TMDB’s API provides a solution: it’s comprehensive, actively maintained, freely accessible, and includes the multidimensional features—from production budgets to cast popularity scores—necessary for this kind of investigation.</p>
-<p>The challenge is straightforward: collect clean, complete data on thousands of films to determine whether algorithmic approaches can outperform traditional methods of predicting box office outcomes.</p>
+<p>Predicting box office success has challenged the film industry for decades. Studios invest hundreds of millions in productions with limited ability to forecast performance. Executives rely on star power, comparable film analysis, and gut instinct, but data-driven approaches may reveal patterns traditional methods miss.</p>
+<p>Understanding what drives box office success has practical implications beyond just making studios money. When studios make better investment decisions, they can take more creative risks rather than churning out safe franchise sequels. For audiences, improved decision-making could mean more diverse films getting greenlit. For data science, this demonstrates how machine learning can extract meaningful patterns from complex domains where art intersects with commerce.</p>
 </section>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
-<p>This data collection phase has five concrete objectives:</p>
-<p><strong>1. Scale</strong>: Retrieve records for 2,500+ movies spanning 1934-2025, prioritizing recent releases while maintaining historical breadth for temporal analysis.</p>
-<p><strong>2. Feature completeness</strong>: Extract 18+ features per movie across multiple dimensions: - Financial data (budget, revenue, calculated ROI) - Temporal patterns (release dates, seasonal trends)<br>
-- Genre classifications (primary genre plus multi-genre combinations) - Talent metrics (cast lists, director information, popularity indices) - Audience reception (user ratings, vote counts, popularity scores) - Production specifications (runtime, production companies, countries)</p>
-<p><strong>3. Data quality</strong>: Implement filtering to exclude incomplete records—specifically, movies lacking budget or revenue data—since these are essential for any profitability analysis.</p>
-<p><strong>4. Reproducibility</strong>: Document the entire collection process in reusable Python scripts that handle API authentication, rate limiting, pagination, and error handling. Future researchers should be able to replicate or extend this dataset.</p>
-<p><strong>5. API efficiency</strong>: Respect TMDB’s rate limits while maximizing data yield through strategic query construction and 0.25-second request spacing.</p>
-<p>Meeting these objectives establishes the foundation for the exploratory analysis, clustering, and classification tasks that follow. The quality of insights from machine learning models depends directly on the quality of data going in—so getting this right matters.</p>
+<p>The main objectives of this data collection phase were to:</p>
+<ul>
+<li>Gather financial data (budget and revenue) for a large sample of theatrical releases</li>
+<li>Collect cast and crew information to analyze the impact of talent on performance</li>
+<li>Obtain genre classifications and temporal features to study market patterns</li>
+<li>Ensure data quality by filtering for complete records and sufficient vote counts</li>
+<li>Create a dataset suitable for exploratory analysis, clustering, and predictive modeling</li>
+</ul>
+<p>By collecting this comprehensive data, I aimed to identify which factors most strongly predict profitability, whether different types of movies follow different patterns, and how release timing affects success rates.</p>
 </section>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<section id="api-selection-and-setup" class="level2">
-<h2 class="anchored" data-anchor-id="api-selection-and-setup">API Selection and Setup</h2>
-<p>This project uses The Movie Database (TMDB) API v3 as its primary data source. TMDB was selected over alternatives like IMDB or OMDb for several practical reasons: it provides comprehensive metadata without requiring paid subscriptions, maintains active data quality through community contributions, and offers a well-documented RESTful API with generous rate limits (1,000 requests per day on the free tier).</p>
-<p>Authentication requires a personal API key obtained through TMDB’s developer portal. The key is stored locally in a configuration file excluded from version control via <code>.gitignore</code> to prevent accidental exposure in the public repository.</p>
+<section id="data-collection" class="level2">
+<h2 class="anchored" data-anchor-id="data-collection">Data Collection</h2>
+<p>All data used in this project comes from The Movie Database (TMDB) API. TMDB maintains one of the largest databases of movie information with reliable financial data, cast details, and production metadata. The API provides free access for research purposes with reasonable rate limits.</p>
+<p>I used automated API queries with Python’s <code>requests</code> library to systematically retrieve movie lists and detailed information for each film, filtering for records with complete budget and revenue data.</p>
 </section>
-<section id="collection-strategy" class="level2">
-<h2 class="anchored" data-anchor-id="collection-strategy">Collection Strategy</h2>
-<section id="query-construction" class="level3">
-<h3 class="anchored" data-anchor-id="query-construction">Query Construction</h3>
-<p>The collection uses TMDB’s <code>/discover/movie</code> endpoint, which allows filtering by multiple parameters. The core query strategy prioritizes data completeness by applying two critical filters:</p>
-<ol type="1">
-<li><strong>Budget filter</strong>: <code>with_budget=true</code> - excludes movies without reported production budgets</li>
-<li><strong>Revenue filter</strong>: <code>with_revenue=true</code> - excludes movies without box office data</li>
-</ol>
-<p>These filters are essential because profitability analysis—the core objective of this project—requires both values. Movies missing either field cannot contribute to ROI calculations or success classification, so excluding them upfront prevents wasted API calls and downstream data quality issues.</p>
-<p>Additional query parameters include: - <code>sort_by=popularity.desc</code> - prioritizes well-known films likely to have complete metadata - <code>include_adult=false</code> - excludes adult content - <code>page={n}</code> - handles pagination to retrieve beyond the initial 20 results per request</p>
+<section id="api-selection" class="level2">
+<h2 class="anchored" data-anchor-id="api-selection">API Selection</h2>
+<p>I selected TMDB for several reasons. The API provides comprehensive movie data including financial information that many other sources don’t make publicly available. TMDB’s data quality is reliable, maintained by a large community of contributors. The API documentation is clear and the rate limits are reasonable for academic research. Most importantly, TMDB includes both recent releases and historical films, enabling analysis across different eras of cinema.</p>
 </section>
-<section id="rate-limiting-and-request-management" class="level3">
-<h3 class="anchored" data-anchor-id="rate-limiting-and-request-management">Rate Limiting and Request Management</h3>
-<p>TMDB’s free tier allows approximately 40 requests per 10 seconds. To stay well within this limit and avoid throttling, the collection script implements a 0.25-second delay between requests (effectively 4 requests per second). This conservative approach ensures stable data collection over the 35-40 minute runtime required to gather 2,500+ movie records.</p>
-<p>The script includes error handling for common API issues: - HTTP 429 (rate limit exceeded) triggers exponential backoff - HTTP 404 (movie not found) logs the error and continues - Network timeouts retry up to 3 times before skipping the record</p>
+<section id="collection-approach" class="level2">
+<h2 class="anchored" data-anchor-id="collection-approach">Collection Approach</h2>
+<p>The collection process used two TMDB API endpoints. The <code>/discover/movie</code> endpoint retrieved lists of popular movies sorted by popularity with vote counts of at least 100. The <code>/movie/{id}</code> endpoint provided detailed information for each film including cast, crew, and financial data. I only retained movies with non-zero budget and revenue values since these are required for profitability analysis.</p>
+<section id="api-endpoints-used" class="level3">
+<h3 class="anchored" data-anchor-id="api-endpoints-used">API Endpoints Used</h3>
+<p><strong>Discovery Endpoint:</strong> <code>/discover/movie</code> - Sorted by popularity (<code>sort_by='popularity.desc'</code>) - Filtered for vote count (<code>vote_count.gte=100</code>) - Retrieved paginated lists of movies</p>
+<p><strong>Details Endpoint:</strong> <code>/movie/{id}</code><br>
+- Appended credits data (<code>append_to_response='credits'</code>) - Retrieved comprehensive movie information including financials</p>
 </section>
-<section id="pagination-logic" class="level3">
-<h3 class="anchored" data-anchor-id="pagination-logic">Pagination Logic</h3>
-<p>Each API call returns up to 20 movies per page. The collection script iterates through pages sequentially until either: - The target number of movies is reached (~2,800 to account for later filtering) - The API returns fewer than 20 results (indicating the end of available data) - An unrecoverable error occurs</p>
+<section id="rate-limiting" class="level3">
+<h3 class="anchored" data-anchor-id="rate-limiting">Rate Limiting</h3>
+<p>I implemented a 0.25-second delay between requests to respect API rate limits and avoid overloading TMDB servers. This results in approximately 4 requests per second, well within acceptable usage. The collection process took several hours but ensured ethical API usage.</p>
 </section>
 </section>
-<section id="feature-extraction" class="level2">
-<h2 class="anchored" data-anchor-id="feature-extraction">Feature Extraction</h2>
-<p>For each movie, the script extracts 18 features across multiple dimensions:</p>
-<p><strong>Core Identifiers:</strong> - <code>movie_id</code> - TMDB’s unique identifier - <code>title</code> - Movie title - <code>release_date</code> - Theatrical release date</p>
-<p><strong>Financial Metrics:</strong> - <code>budget</code> - Production budget (USD) - <code>revenue</code> - Worldwide box office gross (USD)</p>
-<p><strong>Temporal Features:</strong> - <code>release_year</code> - Extracted from release_date - <code>release_month</code> - Extracted from release_date</p>
-<p><strong>Audience Reception:</strong> - <code>vote_average</code> - TMDB user rating (0-10 scale) - <code>vote_count</code> - Number of user ratings - <code>popularity</code> - TMDB’s proprietary popularity score</p>
-<p><strong>Content Metadata:</strong> - <code>runtime</code> - Film duration in minutes - <code>overview</code> - Plot synopsis - <code>genres</code> - Full list of genre classifications - <code>primary_genre</code> - Dominant genre</p>
-<p><strong>Production Details:</strong> - <code>production_companies</code> - Studios and production companies - <code>cast</code> - Top-billed actors (limited to top 5) - <code>cast_popularity</code> - Average popularity score of cast - <code>director</code> - Primary director</p>
-<p>Genre data arrives as nested JSON requiring parsing to extract both the complete genre list and the primary genre. Cast information requires a separate API call to the <code>/movie/{id}/credits</code> endpoint for each film, though this data is cached to minimize redundant requests.</p>
+<section id="features-collected" class="level2">
+<h2 class="anchored" data-anchor-id="features-collected">Features Collected</h2>
+<p>I extracted 18 features from API responses:</p>
+<p><strong>Financial Metrics:</strong> - Budget (production cost in USD) - Revenue (box office earnings in USD)</p>
+<p><strong>Cast and Crew:</strong> - Top 5 cast members by billing order - Average cast popularity (aggregated from individual actor popularity scores) - Director name</p>
+<p><strong>Production Details:</strong> - Up to 3 production companies<br>
+- All genres (pipe-separated string) - Primary genre (first listed)</p>
+<p><strong>Film Metadata:</strong> - Title, movie ID, release date - Runtime (minutes) - Vote average and vote count (user ratings from TMDB) - Popularity score (TMDB metric) - Overview text (first 500 characters)</p>
+<p><strong>Temporal Features:</strong> - Release year (extracted from release date) - Release month (extracted from release date)</p>
 </section>
-<section id="data-storage" class="level2">
-<h2 class="anchored" data-anchor-id="data-storage">Data Storage</h2>
-<p>Raw data is saved incrementally during collection to <code>data/raw-data/tmdb_movies_raw.csv</code> in case the script encounters errors midway through. This provides a recovery point without requiring a full re-collection. Each row represents a single movie with all 18 features as columns.</p>
-<p>The collection script logs: - Total movies collected - Collection duration - Any errors or skipped records - Final file location</p>
-<p>This raw dataset serves as the input for the data cleaning phase, where additional filtering, feature engineering, and quality checks prepare the data for analysis.</p>
-</section>
-<section id="reproducibility" class="level2">
-<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
-<p>The complete collection process is implemented in <code>collect_tmdb_data.py</code> in the <code>technical-details/data-collection/</code> directory. The script is self-contained and can be re-run with a valid TMDB API key to replicate the dataset or collect updated data as new movies are released.</p>
-<p>Key dependencies: - Python 3.8+ - <code>requests</code> library for API calls - <code>pandas</code> for data manipulation - <code>time</code> for rate limiting</p>
-<p>Total runtime: ~37 minutes for 2,812 movies (before cleaning).</p>
+<section id="data-structure" class="level2">
+<h2 class="anchored" data-anchor-id="data-structure">Data Structure</h2>
+<p>I stored the collected data in tabular format with each row representing one movie and each column representing a feature. Multi-value fields like genres and cast were stored as pipe-separated strings (e.g., “Action|Adventure|Sci-Fi”) to maintain a flat table structure while preserving all information. This format facilitates easy loading into pandas DataFrames for subsequent analysis.</p>
 </section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>Ensure that the code is well-commented to enhance readability and understanding for others who may review or use it. If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>This page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
-<section id="i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with." class="level3">
-<h3 class="anchored" data-anchor-id="i-collected-2812-movies-from-tmdb-with-complete-budget-and-revenue-data.-first-im-loading-the-data-to-see-what-im-working-with.">I collected 2,812 movies from TMDB with complete budget and revenue data. First, I’m loading the data to see what I’m working with.</h3>
-<div id="cell-6" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/tmdb_movies_raw.csv'</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># basic exploration</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset shape:"</span>, df.shape)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns.tolist())</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First few rows:"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Dataset shape: (2812, 18)
-
-Column names:
-['movie_id', 'title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'overview', 'genres', 'primary_genre', 'production_companies', 'cast', 'cast_popularity', 'director', 'release_year', 'release_month']
-
-First few rows:</code></pre>
+<p>The following Python script shows the data collection process from TMDB:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>collect_tmdb_data.py</strong></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">movie_id</th>
-<th data-quarto-table-cell-role="th">title</th>
-<th data-quarto-table-cell-role="th">release_date</th>
-<th data-quarto-table-cell-role="th">budget</th>
-<th data-quarto-table-cell-role="th">revenue</th>
-<th data-quarto-table-cell-role="th">runtime</th>
-<th data-quarto-table-cell-role="th">vote_average</th>
-<th data-quarto-table-cell-role="th">vote_count</th>
-<th data-quarto-table-cell-role="th">popularity</th>
-<th data-quarto-table-cell-role="th">overview</th>
-<th data-quarto-table-cell-role="th">genres</th>
-<th data-quarto-table-cell-role="th">primary_genre</th>
-<th data-quarto-table-cell-role="th">production_companies</th>
-<th data-quarto-table-cell-role="th">cast</th>
-<th data-quarto-table-cell-role="th">cast_popularity</th>
-<th data-quarto-table-cell-role="th">director</th>
-<th data-quarto-table-cell-role="th">release_year</th>
-<th data-quarto-table-cell-role="th">release_month</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1084242</td>
-<td>Zootopia 2</td>
-<td>2025-11-26</td>
-<td>150000000</td>
-<td>642000000</td>
-<td>107</td>
-<td>7.725</td>
-<td>344</td>
-<td>512.6445</td>
-<td>After cracking the biggest case in Zootopia's ...</td>
-<td>Animation|Family|Comedy|Adventure</td>
-<td>Animation</td>
-<td>Walt Disney Animation Studios</td>
-<td>Ginnifer Goodwin|Jason Bateman|Ke Huy Quan|For...</td>
-<td>5.07572</td>
-<td>Jared Bush</td>
-<td>2025</td>
-<td>11</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>533533</td>
-<td>TRON: Ares</td>
-<td>2025-10-08</td>
-<td>220000000</td>
-<td>142073994</td>
-<td>119</td>
-<td>6.489</td>
-<td>539</td>
-<td>458.1744</td>
-<td>A highly sophisticated Program called Ares is ...</td>
-<td>Science Fiction|Adventure|Action</td>
-<td>Science Fiction</td>
-<td>Walt Disney Pictures|Sean Bailey Productions</td>
-<td>Jared Leto|Greta Lee|Evan Peters|Gillian Ander...</td>
-<td>4.80276</td>
-<td>Joachim Rønning</td>
-<td>2025</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1246049</td>
-<td>Dracula</td>
-<td>2025-07-30</td>
-<td>52000000</td>
-<td>25788866</td>
-<td>130</td>
-<td>7.100</td>
-<td>518</td>
-<td>248.9951</td>
-<td>When a 15th-century prince denounces God after...</td>
-<td>Horror|Fantasy|Romance</td>
-<td>Horror</td>
-<td>EuropaCorp|Luc Besson Production|TF1 Films Pro...</td>
-<td>Caleb Landry Jones|Zoë Bleu Sidel|Christoph Wa...</td>
-<td>3.63440</td>
-<td>Luc Besson</td>
-<td>2025</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1242898</td>
-<td>Predator: Badlands</td>
-<td>2025-11-05</td>
-<td>105000000</td>
-<td>175186920</td>
-<td>107</td>
-<td>7.379</td>
-<td>548</td>
-<td>190.6551</td>
-<td>Cast out from his clan, a young Predator finds...</td>
-<td>Action|Science Fiction|Adventure</td>
-<td>Action</td>
-<td>20th Century Studios|Lawrence Gordon Productio...</td>
-<td>Elle Fanning|Dimitrius Schuster-Koloamatangi|R...</td>
-<td>6.45618</td>
-<td>Dan Trachtenberg</td>
-<td>2025</td>
-<td>11</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>967941</td>
-<td>Wicked: For Good</td>
-<td>2025-11-19</td>
-<td>150000000</td>
-<td>642000000</td>
-<td>137</td>
-<td>6.700</td>
-<td>366</td>
-<td>142.4678</td>
-<td>As an angry mob rises against the Wicked Witch...</td>
-<td>Fantasy|Adventure|Romance</td>
-<td>Fantasy</td>
-<td>Universal Pictures|Marc Platt Productions|dentsu</td>
-<td>Ariana Grande|Cynthia Erivo|Jonathan Bailey|Je...</td>
-<td>6.13622</td>
-<td>Jon M. Chu</td>
-<td>2025</td>
-<td>11</td>
-</tr>
-</tbody>
-</table>
-
+<div class="sourceCode" id="cb1" data-filename="collect_tmdb_data.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ==========================================</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># TMDB DATA COLLECTION SCRIPT</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ==========================================</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># load environment variables from .env file</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>API_KEY <span class="op">=</span> os.getenv(<span class="st">"5d36ddb017b75e39993969f4f023d8cf"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="op">=</span> <span class="st">"https://api.themoviedb.org/3"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># output directory</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>OUTPUT_DIR <span class="op">=</span> <span class="st">"../../data/raw-data"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>os.makedirs(OUTPUT_DIR, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_popular_movies(page<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Get popular movies from TMDB"""</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>BASE_URL<span class="sc">}</span><span class="ss">/discover/movie"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">'api_key'</span>: API_KEY,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">'language'</span>: <span class="st">'en-US'</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sort_by'</span>: <span class="st">'popularity.desc'</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">'include_adult'</span>: <span class="st">'false'</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'include_video'</span>: <span class="st">'false'</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'page'</span>: page,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'vote_count.gte'</span>: <span class="dv">100</span>  <span class="co"># only movies with at least 100 votes</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url, params<span class="op">=</span>params)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.json()</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_movie_details(movie_id):</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Get detailed information for a specific movie"""</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>BASE_URL<span class="sc">}</span><span class="ss">/movie/</span><span class="sc">{</span>movie_id<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">'api_key'</span>: API_KEY,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">'append_to_response'</span>: <span class="st">'credits'</span>  <span class="co"># include cast and crew</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url, params<span class="op">=</span>params)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.json()</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_movie_data(movie_details):</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Extract relevant features from movie details"""</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># basic info</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    movie_data <span class="op">=</span> {</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">'movie_id'</span>: movie_details.get(<span class="st">'id'</span>),</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="st">'title'</span>: movie_details.get(<span class="st">'title'</span>),</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="st">'release_date'</span>: movie_details.get(<span class="st">'release_date'</span>),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="st">'budget'</span>: movie_details.get(<span class="st">'budget'</span>),</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="st">'revenue'</span>: movie_details.get(<span class="st">'revenue'</span>),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">'runtime'</span>: movie_details.get(<span class="st">'runtime'</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">'vote_average'</span>: movie_details.get(<span class="st">'vote_average'</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">'vote_count'</span>: movie_details.get(<span class="st">'vote_count'</span>),</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">'popularity'</span>: movie_details.get(<span class="st">'popularity'</span>),</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>        <span class="st">'overview'</span>: movie_details.get(<span class="st">'overview'</span>, <span class="st">''</span>)[:<span class="dv">500</span>],  <span class="co"># first 500 chars</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract genres</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    genres <span class="op">=</span> movie_details.get(<span class="st">'genres'</span>, [])</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    movie_data[<span class="st">'genres'</span>] <span class="op">=</span> <span class="st">'|'</span>.join([g[<span class="st">'name'</span>] <span class="cf">for</span> g <span class="kw">in</span> genres])</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    movie_data[<span class="st">'primary_genre'</span>] <span class="op">=</span> genres[<span class="dv">0</span>][<span class="st">'name'</span>] <span class="cf">if</span> genres <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract production companies</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    companies <span class="op">=</span> movie_details.get(<span class="st">'production_companies'</span>, [])</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    movie_data[<span class="st">'production_companies'</span>] <span class="op">=</span> <span class="st">'|'</span>.join([c[<span class="st">'name'</span>] <span class="cf">for</span> c <span class="kw">in</span> companies[:<span class="dv">3</span>]])  <span class="co"># top 3</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract cast (top 5 actors)</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    credits <span class="op">=</span> movie_details.get(<span class="st">'credits'</span>, {})</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    cast <span class="op">=</span> credits.get(<span class="st">'cast'</span>, [])[:<span class="dv">5</span>]</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    movie_data[<span class="st">'cast'</span>] <span class="op">=</span> <span class="st">'|'</span>.join([actor[<span class="st">'name'</span>] <span class="cf">for</span> actor <span class="kw">in</span> cast])</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    movie_data[<span class="st">'cast_popularity'</span>] <span class="op">=</span> <span class="bu">sum</span>([actor.get(<span class="st">'popularity'</span>, <span class="dv">0</span>) <span class="cf">for</span> actor <span class="kw">in</span> cast]) <span class="op">/</span> <span class="bu">len</span>(cast) <span class="cf">if</span> cast <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract director</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    crew <span class="op">=</span> credits.get(<span class="st">'crew'</span>, [])</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    directors <span class="op">=</span> [person[<span class="st">'name'</span>] <span class="cf">for</span> person <span class="kw">in</span> crew <span class="cf">if</span> person[<span class="st">'job'</span>] <span class="op">==</span> <span class="st">'Director'</span>]</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    movie_data[<span class="st">'director'</span>] <span class="op">=</span> directors[<span class="dv">0</span>] <span class="cf">if</span> directors <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract release month and year</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> movie_data[<span class="st">'release_date'</span>]:</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>            release_dt <span class="op">=</span> datetime.strptime(movie_data[<span class="st">'release_date'</span>], <span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>            movie_data[<span class="st">'release_year'</span>] <span class="op">=</span> release_dt.year</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>            movie_data[<span class="st">'release_month'</span>] <span class="op">=</span> release_dt.month</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>            movie_data[<span class="st">'release_year'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>            movie_data[<span class="st">'release_month'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>        movie_data[<span class="st">'release_year'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>        movie_data[<span class="st">'release_month'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> movie_data</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_movies(num_pages<span class="op">=</span><span class="dv">250</span>):</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="co">    Collect movies from TMDB</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="co">    Each page has ~20 movies, so 250 pages = ~5,000 movies</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    all_movies <span class="op">=</span> []</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>    movies_collected <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Starting data collection..."</span>)</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Target: </span><span class="sc">{</span>num_pages<span class="sc">}</span><span class="ss"> pages (~</span><span class="sc">{</span>num_pages <span class="op">*</span> <span class="dv">20</span><span class="sc">}</span><span class="ss"> movies)"</span>)</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    start_time <span class="op">=</span> time.time()</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> page <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, num_pages <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>            <span class="co"># get list of movies on this page</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>            popular_movies <span class="op">=</span> get_popular_movies(page)</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>            movie_list <span class="op">=</span> popular_movies.get(<span class="st">'results'</span>, [])</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>            <span class="co"># get detailed info for each movie</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> movie <span class="kw">in</span> movie_list:</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span>:</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>                    movie_id <span class="op">=</span> movie[<span class="st">'id'</span>]</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>                    details <span class="op">=</span> get_movie_details(movie_id)</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># only keep movies with budget and revenue data</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> details.get(<span class="st">'budget'</span>, <span class="dv">0</span>) <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> details.get(<span class="st">'revenue'</span>, <span class="dv">0</span>) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>                        movie_data <span class="op">=</span> extract_movie_data(details)</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>                        all_movies.append(movie_data)</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>                        movies_collected <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>                    time.sleep(<span class="fl">0.25</span>) </span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>                <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>                    errors <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"Error processing movie ID </span><span class="sc">{</span>movie_id<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>            <span class="co"># progress update every 10 pages</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> page <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>                elapsed <span class="op">=</span> time.time() <span class="op">-</span> start_time</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> movies_collected <span class="op">/</span> elapsed <span class="op">*</span> <span class="dv">60</span>  <span class="co"># movies per minute</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Page </span><span class="sc">{</span>page<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>num_pages<span class="sc">}</span><span class="ss"> | Movies collected: </span><span class="sc">{</span>movies_collected<span class="sc">}</span><span class="ss"> | "</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>                      <span class="ss">f"Rate: </span><span class="sc">{</span>rate<span class="sc">:.1f}</span><span class="ss"> movies/min | Errors: </span><span class="sc">{</span>errors<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Error on page </span><span class="sc">{</span>page<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>            errors <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>    <span class="co"># final summary</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>    elapsed <span class="op">=</span> time.time() <span class="op">-</span> start_time</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Collection complete!"</span>)</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Total movies collected: </span><span class="sc">{</span>movies_collected<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Total errors: </span><span class="sc">{</span>errors<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Time elapsed: </span><span class="sc">{</span>elapsed<span class="op">/</span><span class="dv">60</span><span class="sc">:.1f}</span><span class="ss"> minutes"</span>)</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_movies</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Main execution function"""</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>    <span class="co"># check API key</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> API_KEY <span class="op">==</span> <span class="st">"YOUR_API_KEY_HERE"</span>:</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"ERROR: Please replace 'YOUR_API_KEY_HERE' with your actual TMDB API key"</span>)</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"TMDB Movie Data Collection"</span>)</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>    <span class="co"># collect movies</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>    movies <span class="op">=</span> collect_movies(num_pages<span class="op">=</span><span class="dv">250</span>)</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert to DataFrame</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(movies)</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cave to CSV</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>    output_file <span class="op">=</span> os.path.join(OUTPUT_DIR, <span class="st">'tmdb_movies_raw.csv'</span>)</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>    df.to_csv(output_file, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Data saved to: </span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dataset shape: </span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> movies × </span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> features"</span>)</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>)</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.columns.tolist())</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>    <span class="co"># quick data preview</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Sample of collected data:"</span>)</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df[[<span class="st">'title'</span>, <span class="st">'budget'</span>, <span class="st">'revenue'</span>, <span class="st">'primary_genre'</span>, <span class="st">'release_year'</span>]].head(<span class="dv">10</span>))</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</section>
-<section id="now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning." class="level3">
-<h3 class="anchored" data-anchor-id="now-im-checking-to-see-if-there-are-any-missing-values-or-data-quality-issues-that-ill-need-to-address-during-cleaning.">Now I’m checking to see if there are any missing values or data quality issues that I’ll need to address during cleaning.</h3>
-<div id="cell-8" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing Values by Column:"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> df.isnull().<span class="bu">sum</span>()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>missing_pct <span class="op">=</span> (df.isnull().<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(df)) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>missing_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Missing Count'</span>: missing,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Percentage'</span>: missing_pct</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(missing_df[missing_df[<span class="st">'Missing Count'</span>] <span class="op">&gt;</span> <span class="dv">0</span>])</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Budget Statistics:"</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'budget'</span>].describe())</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Revenue Statistics:"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'revenue'</span>].describe())</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Runtime Statistics:"</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'runtime'</span>].describe())</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Movies by Year (last 10 years):"</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'release_year'</span>].value_counts().sort_index().tail(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Missing Values by Column:
-============================================================
-                      Missing Count  Percentage
-production_companies              1    0.035562
-cast                              1    0.035562
-
-============================================================
-Budget Statistics:
-count    2.812000e+03
-mean     4.536952e+07
-std      5.817536e+07
-min      5.000000e+00
-25%      8.289067e+06
-50%      2.500000e+07
-75%      6.000000e+07
-max      5.839000e+08
-Name: budget, dtype: float64
-
-============================================================
-Revenue Statistics:
-count    2.812000e+03
-mean     1.590962e+08
-std      2.650542e+08
-min      1.000000e+00
-25%      1.155852e+07
-50%      5.614315e+07
-75%      1.788447e+08
-max      2.923706e+09
-Name: revenue, dtype: float64
-
-============================================================
-Runtime Statistics:
-count    2812.000000
-mean      112.612731
-std        22.772921
-min        56.000000
-25%        97.000000
-50%       108.000000
-75%       124.000000
-max       254.000000
-Name: runtime, dtype: float64
-
-============================================================
-Movies by Year (last 10 years):
-release_year
-2016     63
-2017     74
-2018     82
-2019     85
-2020     40
-2021     81
-2022     74
-2023     85
-2024    113
-2025    113
-Name: count, dtype: int64</code></pre>
-</div>
-</div>
-</section>
-<section id="before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable." class="level3">
-<h3 class="anchored" data-anchor-id="before-cleaning-im-creating-the-key-features-ill-need-for-my-analysis-roi-and-a-success-label-to-predict-whether-movies-are-profitable.">Before cleaning, I’m creating the key features I’ll need for my analysis: ROI and a success label to predict whether movies are profitable.</h3>
-<div id="cell-10" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create ROI </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'roi'</span>] <span class="op">=</span> df[<span class="st">'revenue'</span>] <span class="op">/</span> df[<span class="st">'budget'</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create profitability label</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'profitable'</span>] <span class="op">=</span> (df[<span class="st">'revenue'</span>] <span class="op">&gt;</span> df[<span class="st">'budget'</span>]).astype(<span class="bu">int</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create success categories</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_success(row):</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    roi <span class="op">=</span> row[<span class="st">'roi'</span>]</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> roi <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Bomb'</span>  <span class="co"># lost money</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roi <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Modest'</span>  <span class="co"># made money but not much</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roi <span class="op">&lt;</span> <span class="dv">5</span>:</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Hit'</span>  <span class="co"># strong performer</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Blockbuster'</span>  <span class="co"># massive success</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'success_category'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(categorize_success, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># create budget tiers</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_budget(budget):</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> budget <span class="op">&lt;</span> <span class="dv">20_000_000</span>:</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Low'</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> budget <span class="op">&lt;</span> <span class="dv">80_000_000</span>:</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Medium'</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> budget <span class="op">&lt;</span> <span class="dv">150_000_000</span>:</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'High'</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Blockbuster'</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'budget_tier'</span>] <span class="op">=</span> df[<span class="st">'budget'</span>].<span class="bu">apply</span>(categorize_budget)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># create release season</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_season(month):</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> month <span class="kw">in</span> [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]:</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Summer'</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> month <span class="kw">in</span> [<span class="dv">11</span>, <span class="dv">12</span>]:</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Holiday'</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> month <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Spring'</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Fall'</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'release_season'</span>] <span class="op">=</span> df[<span class="st">'release_month'</span>].<span class="bu">apply</span>(get_season)</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"New Features Created:"</span>)</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROI range: </span><span class="sc">{</span>df[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Success Distribution:"</span>)</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'success_category'</span>].value_counts())</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Profitable: </span><span class="sc">{</span>df[<span class="st">'profitable'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>df[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Budget Tiers:"</span>)</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'budget_tier'</span>].value_counts())</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Release Seasons:"</span>)</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'release_season'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>New Features Created:
-ROI range: 0.00 to 12890.39
-
-Success Distribution:
-success_category
-Hit            936
-Blockbuster    706
-Bomb           690
-Modest         480
-Name: count, dtype: int64
-
-Profitable: 2118 (75.3%)
-
-Budget Tiers:
-budget_tier
-Low            1229
-Medium         1060
-High            299
-Blockbuster     224
-Name: count, dtype: int64
-
-Release Seasons:
-release_season
-Fall       911
-Summer     711
-Spring     649
-Holiday    541
-Name: count, dtype: int64</code></pre>
-</div>
-</div>
-</section>
-<section id="i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality." class="level3">
-<h3 class="anchored" data-anchor-id="i-noticed-some-extreme-roi-values-that-are-likely-data-errors-movies-with-budgets-under-1000-or-revenues-under-1000.-im-filtering-these-out-to-ensure-data-quality.">I noticed some extreme ROI values that are likely data errors (movies with budgets under $1000 or revenues under $1000). I’m filtering these out to ensure data quality.</h3>
-<div id="cell-12" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before cleaning:"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min budget: $</span><span class="sc">{</span>df[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min revenue: $</span><span class="sc">{</span>df[<span class="st">'revenue'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remove unrealistic budget/revenue values</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'budget'</span>] <span class="op">&gt;=</span> <span class="dv">1_000_000</span>) <span class="op">&amp;</span>  <span class="co"># at least $1M budget</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'revenue'</span>] <span class="op">&gt;=</span> <span class="dv">1_000</span>) <span class="op">&amp;</span>      <span class="co"># at least $1k revenue</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'roi'</span>] <span class="op">&lt;</span> <span class="dv">100</span>)                <span class="co"># ROI less than 100x </span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>].copy()</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drop rows with missing cast or production companies</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df_clean.dropna(subset<span class="op">=</span>[<span class="st">'cast'</span>, <span class="st">'production_companies'</span>])</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># recalculate features after cleaning</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'profitable'</span>] <span class="op">=</span> (df_clean[<span class="st">'revenue'</span>] <span class="op">&gt;</span> df_clean[<span class="st">'budget'</span>]).astype(<span class="bu">int</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">After cleaning:"</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Movies removed: </span><span class="sc">{</span><span class="bu">len</span>(df) <span class="op">-</span> <span class="bu">len</span>(df_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min budget: $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Min revenue: $</span><span class="sc">{</span>df_clean[<span class="st">'revenue'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max ROI: </span><span class="sc">{</span>df_clean[<span class="st">'roi'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">New Success Distribution:"</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean[<span class="st">'success_category'</span>].value_counts())</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">New Profitable Rate: </span><span class="sc">{</span>df_clean[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Before cleaning:
-Total movies: 2812
-Min budget: $5
-Min revenue: $1
-
-After cleaning:
-Total movies: 2691
-Movies removed: 121
-Min budget: $1,000,000
-Min revenue: $1,361
-Max ROI: 94.50
-
-New Success Distribution:
-success_category
-Hit            913
-Bomb           668
-Blockbuster    642
-Modest         468
-Name: count, dtype: int64
-
-New Profitable Rate: 75.1%</code></pre>
-</div>
-</div>
-</section>
-<section id="now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases." class="level3">
-<h3 class="anchored" data-anchor-id="now-that-ive-engineered-features-and-removed-outliers-im-saving-the-cleaned-dataset-for-use-in-my-exploratory-analysis-and-modeling-phases.">Now that I’ve engineered features and removed outliers, I’m saving the cleaned dataset for use in my exploratory analysis and modeling phases.</h3>
-<div id="cell-14" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save cleaned data</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">'../../data/processed-data/tmdb_movies_clean.csv'</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_clean.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Clean data saved to: </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Final Dataset Summary:"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total movies: </span><span class="sc">{</span><span class="bu">len</span>(df_clean)<span class="sc">:,}</span><span class="ss">"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features: </span><span class="sc">{</span><span class="bu">len</span>(df_clean.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Date range: </span><span class="sc">{</span>df_clean[<span class="st">'release_year'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>df_clean[<span class="st">'release_year'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Budget range: $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss"> - $</span><span class="sc">{</span>df_clean[<span class="st">'budget'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Profitable rate: </span><span class="sc">{</span>df_clean[<span class="st">'profitable'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">All columns:"</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_clean.columns.tolist())</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># show sample</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Sample of cleaned data:"</span>)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>df_clean[[<span class="st">'title'</span>, <span class="st">'budget'</span>, <span class="st">'revenue'</span>, <span class="st">'roi'</span>, <span class="st">'success_category'</span>, <span class="st">'budget_tier'</span>]].head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Clean data saved to: ../../data/processed-data/tmdb_movies_clean.csv
-
-Final Dataset Summary:
-Total movies: 2,691
-Features: 23
-Date range: 1934-2025
-Budget range: $1,000,000 - $583,900,000
-Profitable rate: 75.1%
-
-All columns:
-['movie_id', 'title', 'release_date', 'budget', 'revenue', 'runtime', 'vote_average', 'vote_count', 'popularity', 'overview', 'genres', 'primary_genre', 'production_companies', 'cast', 'cast_popularity', 'director', 'release_year', 'release_month', 'roi', 'profitable', 'success_category', 'budget_tier', 'release_season']
-
-Sample of cleaned data:</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">title</th>
-<th data-quarto-table-cell-role="th">budget</th>
-<th data-quarto-table-cell-role="th">revenue</th>
-<th data-quarto-table-cell-role="th">roi</th>
-<th data-quarto-table-cell-role="th">success_category</th>
-<th data-quarto-table-cell-role="th">budget_tier</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Zootopia 2</td>
-<td>150000000</td>
-<td>642000000</td>
-<td>4.280000</td>
-<td>Hit</td>
-<td>Blockbuster</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>TRON: Ares</td>
-<td>220000000</td>
-<td>142073994</td>
-<td>0.645791</td>
-<td>Bomb</td>
-<td>Blockbuster</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Dracula</td>
-<td>52000000</td>
-<td>25788866</td>
-<td>0.495940</td>
-<td>Bomb</td>
-<td>Medium</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Predator: Badlands</td>
-<td>105000000</td>
-<td>175186920</td>
-<td>1.668447</td>
-<td>Modest</td>
-<td>High</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Wicked: For Good</td>
-<td>150000000</td>
-<td>642000000</td>
-<td>4.280000</td>
-<td>Hit</td>
-<td>Blockbuster</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>Frankenstein</td>
-<td>120000000</td>
-<td>480678</td>
-<td>0.004006</td>
-<td>Bomb</td>
-<td>High</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>Zootopia</td>
-<td>150000000</td>
-<td>1025521689</td>
-<td>6.836811</td>
-<td>Blockbuster</td>
-<td>Blockbuster</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>Bugonia</td>
-<td>50000000</td>
-<td>34817177</td>
-<td>0.696344</td>
-<td>Bomb</td>
-<td>Medium</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>Demon Slayer: Kimetsu no Yaiba Infinity Castle</td>
-<td>20000000</td>
-<td>740400000</td>
-<td>37.020000</td>
-<td>Blockbuster</td>
-<td>Medium</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>Now You See Me: Now You Don't</td>
-<td>90000000</td>
-<td>159000154</td>
-<td>1.766668</td>
-<td>Modest</td>
-<td>High</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<section id="collection-results" class="level2">
-<h2 class="anchored" data-anchor-id="collection-results">Collection Results</h2>
-<p>The data collection phase successfully gathered 2,812 movies from TMDB’s database, spanning from 1934 to 2025. After applying the quality filters (requiring both budget and revenue data), the final dataset contained 2,691 complete records—a 95.7% retention rate. This high retention validates the initial query strategy of filtering for <code>with_budget=true</code> and <code>with_revenue=true</code> at the API level, rather than collecting everything and filtering later.</p>
-<p>The entire collection process ran for approximately 37 minutes with zero API errors or timeouts. The 0.25-second delay between requests proved conservative enough to avoid rate limiting while still maintaining reasonable collection speed.</p>
+<p>The data collection process successfully gathered information on 2,812 movies from TMDB with complete budget and revenue data. The collection script queried 250 pages of results, processing thousands of individual movie records over approximately 3-4 hours.</p>
+<p><strong>Collection Statistics:</strong></p>
+<ul>
+<li>Total movies collected: 2,812</li>
+<li>Features per movie: 18</li>
+<li>Date range: 1934-2025</li>
+<li>API requests made: approximately 5,000+ (250 pages + individual details)</li>
+<li>Collection time: approximately 37 mins</li>
+<li>Error rate: Minimal (less than 1%)</li>
+</ul>
+<p><strong>Data Quality:</strong></p>
+<ul>
+<li>All movies have non-zero budget and revenue values</li>
+<li>All movies have at least 100 user votes</li>
+<li>Cast information includes top 5 billed actors</li>
+<li>Release dates successfully parsed into year and month</li>
+</ul>
+<p><strong>Files Created:</strong></p>
+<ul>
+<li>Raw data saved to: <code>data/raw-data/tmdb_movies_raw.csv</code></li>
+<li>Format: CSV with 2,812 rows × 18 columns</li>
+</ul>
+<section id="challenges" class="level2">
+<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
+<p>The data collection process encountered a few technical challenges. API rate limiting required careful timing between requests to avoid hitting usage caps. Some movies had incomplete cast or crew information requiring error handling. The biggest challenge was determining appropriate filtering criteria. Including all movies regardless of data completeness would have produced a larger dataset but introduced significant missing values. Filtering strictly for complete budget and revenue data reduced the dataset size but ensured every record could be used for financial analysis.</p>
 </section>
-<section id="challenges-and-design-decisions" class="level2">
-<h2 class="anchored" data-anchor-id="challenges-and-design-decisions">Challenges and Design Decisions</h2>
-<p>The primary challenge was balancing dataset size against data quality. TMDB contains millions of movie records, but many lack the financial data essential for box office prediction. Early exploration revealed that collecting without financial filters would result in 60-70% of records being unusable after cleaning—wasting both API quota and processing time.</p>
-<p>The decision to prioritize quality over quantity meant accepting a smaller dataset (2,691 vs.&nbsp;a potential 10,000+ movies) in exchange for complete, analysis-ready records. This tradeoff proved worthwhile: every movie in the final dataset includes the 18 features needed for subsequent analysis, eliminating the need for imputation or dropping variables.</p>
-<p>Another consideration was temporal coverage. The dataset spans 91 years, which introduces potential distribution shifts (e.g., inflation effects on budgets, changes in release strategies). This was anticipated and addressed in the data cleaning phase through feature engineering (ROI calculations, inflation adjustment considerations) and exploratory analysis (temporal trend examination).</p>
-</section>
-<section id="data-quality-assessment" class="level2">
-<h2 class="anchored" data-anchor-id="data-quality-assessment">Data Quality Assessment</h2>
-<p>The 121 records dropped during cleaning (4.3% of raw data) failed quality checks for one of three reasons: - Missing budget values despite API filters (likely database inconsistencies) - Zero or negative revenue values (data entry errors) - Extreme outliers flagged during initial validation (potential currency conversion issues)</p>
-<p>These drops were acceptable given the remaining sample size. With 2,691 complete records, the dataset provides sufficient volume for training machine learning models while maintaining statistical validity for pattern detection across genres, time periods, and budget tiers.</p>
-</section>
-<section id="validation-against-benchmarks" class="level2">
-<h2 class="anchored" data-anchor-id="validation-against-benchmarks">Validation Against Benchmarks</h2>
-<p>Comparing this dataset to existing box office prediction research: - <strong>Zhang et al.&nbsp;(2024)</strong>: Used 5,000 movies but reported significant missing data issues, requiring extensive imputation - <strong>Tang et al.&nbsp;(2024)</strong>: Worked with 3,200 movies from Chinese market only - <strong>This project</strong>: 2,691 movies with zero missing values in critical features, global market coverage</p>
-<p>The smaller but cleaner dataset positions this analysis favorably for model training. Missing data imputation can introduce bias and reduce model accuracy—this dataset avoids that tradeoff entirely.</p>
-</section>
-<section id="transition-to-data-cleaning" class="level2">
-<h2 class="anchored" data-anchor-id="transition-to-data-cleaning">Transition to Data Cleaning</h2>
-<p>The raw dataset (<code>tmdb_movies_raw.csv</code>) serves as the foundation for the data cleaning phase, which involves: - Feature engineering (ROI calculation, success category classification) - Temporal feature extraction (release year, month, day of week) - Genre encoding and aggregation - Production company consolidation - Outlier detection and handling</p>
-<p>The cleaning phase will transform these 2,691 raw records into an analysis-ready dataset suitable for exploratory data analysis and machine learning model training. The completeness of the raw data means cleaning can focus on feature engineering and transformation rather than imputation or missing data handling.</p>
-</section>
-<section id="future-improvements" class="level2">
-<h2 class="anchored" data-anchor-id="future-improvements">Future Improvements</h2>
-<p>If repeating this data collection with more time or resources, several enhancements could strengthen the dataset:</p>
-<p><strong>Temporal refresh</strong>: TMDB updates movie data regularly (box office totals, ratings, metadata). Re-collecting data quarterly would capture these updates and provide temporal snapshots for longitudinal analysis.</p>
-<p><strong>Additional features</strong>: The current collection focuses on TMDB’s core metadata. Future iterations could incorporate: - Detailed cast/crew data (beyond top-billed names) - Production country and language metadata - Certification and content ratings - Distribution patterns (theatrical vs.&nbsp;streaming)</p>
-<p><strong>Expanded coverage</strong>: The 2,691 movie threshold was chosen to balance API limits with project timeline. With TMDB’s 1,000 requests/day limit, collecting 10,000+ movies would require multiple days but could provide richer training data for complex models.</p>
-<p><strong>Cross-validation with secondary sources</strong>: While TMDB provides comprehensive data, financial figures (especially for older films) could be validated against Box Office Mojo or The Numbers to catch database inconsistencies.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The data collection phase delivered a clean, complete dataset of 2,691 movies suitable for machine learning analysis. The decision to prioritize data quality over quantity—accepting a smaller dataset with zero missing values rather than a larger dataset requiring imputation—proved effective for downstream analysis. The collection process ran smoothly with no technical failures, and the resulting dataset provides strong foundation for exploring patterns in box office performance across nine decades of cinema.</p>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
+<p>The raw dataset provides a solid foundation for analysis. The next phase involves cleaning this data to address any remaining quality issues and engineering additional features for machine learning models.</p>
 
 
 </section>

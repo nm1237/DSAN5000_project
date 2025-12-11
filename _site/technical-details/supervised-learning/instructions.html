@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>instructions – DSAN-5000: Project</title>
+<title>Supervised Learning – DSAN-5000: Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -152,91 +148,71 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
   <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">Data Preprocessing</a></li>
+  <li><a href="#testing-and-training-strategy" id="toc-testing-and-training-strategy" class="nav-link" data-scroll-target="#testing-and-training-strategy">Testing and Training Strategy</a></li>
   <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
-  <li><a href="#training-and-testing-strategy" id="toc-training-and-testing-strategy" class="nav-link" data-scroll-target="#training-and-testing-strategy">Training and Testing Strategy</a></li>
-  <li><a href="#model-evaluation-metrics" id="toc-model-evaluation-metrics" class="nav-link" data-scroll-target="#model-evaluation-metrics">Model Evaluation Metrics</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics">Evaluation Metrics</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Supervised Learning</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instruction once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
-</section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>Please do some form of “Feature selection” in your project and include a section on it. Discuss the process you went through to select the features that you used in your model, this should be done for both classification models and regression models. What did you include and why? What did you exclude? What was the reasoning behind your decisions? This section can be included here, or you can make a new page in the dropdown menu for it.</p>
-<p>Please break this page into a “regression” section, “binary classification” section, and a “Multi-class classification” section. For each case you should try multiple methods, including those discussed in class, and compare and contrast their preformance and results.</p>
-</section>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Supervised learning is a type of machine learning that aims to fit the best model for predicting values of a labeled variable. The purpose of performing supervised learning on this data is to determine whether movie profitability can be predicted using features available before release, and to understand which factors most strongly influence box office success.</p>
+<p>I performed binary classification to predict whether films will be profitable (revenue exceeds budget) or unprofitable. Three classification algorithms were trained and compared: Logistic Regression, Random Forest, and Gradient Boosting. The model selection methods, evaluation metrics, and results are discussed in the sections below.</p>
+<p>Below is an outline of general information applied to all models:</p>
 <section id="data-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h2>
-<ol type="1">
-<li><strong>Normalization or Standardization</strong>: Apply techniques to scale the data appropriately.</li>
-<li><strong>Feature Selection or Extraction</strong>: Identify and select the most relevant features for your analysis.</li>
-<li><strong>Encoding Categorical Variables</strong>: Convert categorical variables into a suitable format for modeling.</li>
-</ol>
+<p>In order to be used in supervised learning, data must be cleaned, processed, and standardized following specific criteria. The following techniques were performed on the data:</p>
+<p><strong>Feature Selection</strong> - I selected features available before a film’s release: budget, budget tier, cast popularity, primary genre, release season, release year, and runtime. Post-release metrics like vote average and vote count were excluded since they aren’t available during pre-production when investment decisions get made.</p>
+<p><strong>Target Variable</strong> - The binary <code>profitable</code> indicator served as the classification target, where 1 indicates revenue exceeded budget and 0 indicates the film lost money.</p>
+<p><strong>Handling Categorical Variables</strong> - Categorical variables (primary genre, budget tier, release season) were one-hot encoded to be represented as numerical variables and included in the supervised learning models. - <strong>What is one-hot encoding?</strong>: A machine learning technique that converts categorical data into numerical data, denoted as 0 or 1. The levels of the categorical variable are pivoted so that each level becomes a column. If the row satisfies the categorical variable level, a 1 is input under that level’s column, while the remaining levels fill with 0.</p>
+<p><strong>Standardization</strong> - The data was scaled using Scikit-learn’s StandardScaler, which applies z-score standardization to the data. This ensures all features contribute equally to model training regardless of their original scale.</p>
+</section>
+<section id="testing-and-training-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="testing-and-training-strategy">Testing and Training Strategy</h2>
+<p>All models used an 80-20 training-testing split with stratified sampling to maintain class balance. The dataset was split using Scikit-learn’s <code>train_test_split</code> function, which randomly assigns 80% of the data to training and 20% to testing while preserving the proportion of profitable vs unprofitable films in both sets.</p>
+<p>I used 5-fold cross-validation during training to assess model stability and reduce overfitting risk.</p>
 </section>
 <section id="model-selection" class="level2">
 <h2 class="anchored" data-anchor-id="model-selection">Model Selection</h2>
-<ol type="1">
-<li><strong>Model Rationale</strong>: Explain the reasons for selecting specific models or algorithms.</li>
-<li><strong>Overview of Algorithms</strong>: Provide a brief overview of the algorithms used</li>
-</ol>
+<p>I trained three classification algorithms to compare their performance:</p>
+<p><strong>Logistic Regression</strong> - A linear model that predicts the probability of profitability using a logistic function. It serves as the baseline model and provides interpretable coefficients.</p>
+<p><strong>Random Forest</strong> - An ensemble method that builds multiple decision trees and aggregates their predictions. It handles non-linear relationships well and provides feature importance rankings.</p>
+<p><strong>Gradient Boosting</strong> - An ensemble method that builds trees sequentially, with each tree correcting errors from previous trees. It often achieves high accuracy but requires careful tuning.</p>
 </section>
-<section id="training-and-testing-strategy" class="level2">
-<h2 class="anchored" data-anchor-id="training-and-testing-strategy">Training and Testing Strategy</h2>
-<ol type="1">
-<li><strong>Split Methods</strong>: Detail the splitting methods used (e.g., train-test split, cross-validation).</li>
-<li><strong>Dataset Proportions</strong>: Specify the proportions used for splitting the dataset.</li>
-</ol>
-</section>
-<section id="model-evaluation-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="model-evaluation-metrics">Model Evaluation Metrics</h2>
-<ol type="1">
-<li><strong>Binary Classification Metrics</strong>: Discuss metrics such as accuracy, precision, recall, F1 score, and ROC-AUC.</li>
-<li><strong>Multiclass Classification Metrics</strong>: Include metrics such as confusion matrix and macro/micro F1 score.</li>
-<li><strong>Regression Metrics</strong>: Explain metrics such as RMSE, MAE, and R-squared, parity plots, etc.</li>
-</ol>
-</section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<ol type="1">
-<li><strong>Model Performance Summary</strong>: Provide a summary of the model’s performance.</li>
-<li><strong>Visualizations</strong>: Include visualizations of results (e.g., ROC curves, feature importance plots).</li>
-</ol>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<ol type="1">
-<li><strong>Result Interpretation</strong>: Interpret the results obtained from the analysis.</li>
-<li><strong>Model Performance Comparison</strong>: Compare the performance of different models.</li>
-<li><strong>Insights Gained</strong>: Share insights learned from the analysis.</li>
-</ol>
+<section id="evaluation-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation-metrics">Evaluation Metrics</h2>
+<p>Model performance was assessed using multiple classification metrics:</p>
+<p><strong>Accuracy</strong> - The percentage of correct predictions across all movies.</p>
+<p><strong>Precision</strong> - The proportion of movies predicted as profitable that actually were profitable. High precision means few false positives.</p>
+<p><strong>Recall</strong> - The proportion of actually profitable movies that were correctly identified. High recall means few false negatives.</p>
+<p><strong>F1-Score</strong> - The harmonic mean of precision and recall, balancing both metrics into a single score.</p>
+<p>For this application, recall is more important than precision. Studios want to avoid passing on films that would succeed (false negatives) more than they want to avoid greenlighting films that will fail (false positives).</p>
 
 
 </section>
