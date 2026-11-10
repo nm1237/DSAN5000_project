@@ -9,7 +9,6 @@ project:
 
 website:
   title: "DSAN-5000: Project"
-  favicon: "assets/gu-logo.png"
   navbar:
     left:
       - href: index.qmd
